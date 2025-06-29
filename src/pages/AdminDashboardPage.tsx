@@ -22,7 +22,8 @@ import {
   Award,
   AlertCircle,
   CheckCircle,
-  XCircle
+  XCircle,
+  LogOut
 } from 'lucide-react';
 import { cn } from '../utils/cn';
 import { 
@@ -35,8 +36,10 @@ import {
   ClassData
 } from '../data/adminData';
 import { coursesData } from '../data/coursesData';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AdminDashboardPage: React.FC = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'overview' | 'teachers' | 'courses' | 'analytics'>('overview');
   const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
   const [isAddTeacherModalOpen, setIsAddTeacherModalOpen] = useState(false);
@@ -61,6 +64,11 @@ const AdminDashboardPage: React.FC = () => {
   // 获取教师的班级数据
   const getTeacherClasses = (teacherId: number) => {
     return classDataList.filter(classData => classData.teacherId === teacherId);
+  };
+
+  // 退出管理中心
+  const handleLogout = () => {
+    navigate('/account');
   };
 
   // 状态标签组件
@@ -567,9 +575,18 @@ const AdminDashboardPage: React.FC = () => {
     <div className="pt-24 pb-20 bg-cream-50 min-h-screen">
       <div className="container-custom">
         {/* 页面头部 */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-forest-900 mb-2">机构管理中心</h1>
-          <p className="text-forest-600">管理本机构的教师账号、课程权限和教学数据</p>
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-forest-900 mb-2">机构管理中心</h1>
+            <p className="text-forest-600">管理本机构的教师账号、课程权限和教学数据</p>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="btn bg-red-50 text-red-600 hover:bg-red-100 flex items-center gap-2 border border-red-200"
+          >
+            <LogOut className="h-4 w-4" />
+            退出管理中心
+          </button>
         </div>
 
         {/* 标签导航 */}
