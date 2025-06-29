@@ -10,7 +10,8 @@ import {
   Image as ImageIcon,
   Send,
   Menu,
-  X
+  X,
+  Bookmark
 } from 'lucide-react';
 import { cn } from '../utils/cn';
 
@@ -37,6 +38,10 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('活动简介');
   const [newComment, setNewComment] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [likeCount, setLikeCount] = useState(89);
+  const [bookmarkCount, setBookmarkCount] = useState(34);
   const [comments, setComments] = useState<Comment[]>([
     {
       id: 1,
@@ -101,7 +106,17 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleLike = (commentId: number) => {
+  const handleLike = () => {
+    setIsLiked(!isLiked);
+    setLikeCount(prev => isLiked ? prev - 1 : prev + 1);
+  };
+
+  const handleBookmark = () => {
+    setIsBookmarked(!isBookmarked);
+    setBookmarkCount(prev => isBookmarked ? prev - 1 : prev + 1);
+  };
+
+  const handleCommentLike = (commentId: number) => {
     setComments(comments.map(comment => {
       if (comment.id === commentId) {
         return {
@@ -346,7 +361,7 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
                       
                       <div className="flex items-center space-x-4">
                         <button
-                          onClick={() => handleLike(comment.id)}
+                          onClick={() => handleCommentLike(comment.id)}
                           className={cn(
                             "flex items-center space-x-1 text-xs sm:text-sm",
                             comment.liked ? "text-red-500" : "text-forest-500 hover:text-red-500"
@@ -478,23 +493,90 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
           {/* Right Content Area (Desktop Only) */}
           <div className="flex-1 min-w-0">
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-cream-200">
-              {/* Module Header */}
-              <div className="relative h-64">
-                <img
-                  src={course.coverImage}
-                  alt={module.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                  <div className="p-6 text-white">
-                    <h1 className="text-2xl font-bold mb-2">{module.title}</h1>
-                    <p className="text-cream-200">{module.description} • 专家培训</p>
+              {/* Course Information - Two Column Layout */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+                {/* Left: Course Image */}
+                <div className="lg:order-1">
+                  <div className="relative">
+                    <img
+                      src={course.coverImage}
+                      alt={module.title}
+                      className="w-full h-64 lg:h-80 object-cover rounded-lg"
+                    />
+                    <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-lg text-sm">
+                      专家培训
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Right: Course Basic Information */}
+                <div className="lg:order-2 flex flex-col justify-center">
+                  <div className="space-y-4">
+                    <div>
+                      <h1 className="text-2xl font-bold text-forest-900 mb-2">{module.title}</h1>
+                      <p className="text-forest-600">{module.description}</p>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center text-sm">
+                        <span className="text-forest-500 w-20">所属课程：</span>
+                        <span className="font-medium text-forest-800">{course.title}</span>
+                      </div>
+                      
+                      <div className="flex items-center text-sm">
+                        <span className="text-forest-500 w-20">课程类型：</span>
+                        <span className="font-medium text-forest-800">专家培训</span>
+                      </div>
+                      
+                      <div className="flex items-center text-sm">
+                        <span className="text-forest-500 w-20">学习时长：</span>
+                        <span className="font-medium text-forest-800">135分钟</span>
+                      </div>
+                      
+                      <div className="flex items-center text-sm">
+                        <span className="text-forest-500 w-20">视频数量：</span>
+                        <span className="font-medium text-forest-800">5 个</span>
+                      </div>
+                      
+                      <div className="flex items-center text-sm">
+                        <span className="text-forest-500 w-20">学习进度：</span>
+                        <span className="font-medium text-forest-800">60% 已完成</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-3 pt-4">
+                      <button
+                        onClick={handleLike}
+                        className={cn(
+                          "flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors",
+                          isLiked 
+                            ? "bg-red-50 text-red-600 border border-red-200" 
+                            : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
+                        )}
+                      >
+                        <Heart className={cn("h-4 w-4", isLiked && "fill-current")} />
+                        <span>{likeCount}</span>
+                      </button>
+                      
+                      <button
+                        onClick={handleBookmark}
+                        className={cn(
+                          "flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors",
+                          isBookmarked 
+                            ? "bg-blue-50 text-blue-600 border border-blue-200" 
+                            : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
+                        )}
+                      >
+                        <Bookmark className={cn("h-4 w-4", isBookmarked && "fill-current")} />
+                        <span>{bookmarkCount}</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
               
               {/* Tabs */}
-              <div className="border-b border-cream-200">
+              <div className="border-t border-cream-200">
                 <div className="flex">
                   {tabs.map((tab) => (
                     <button
@@ -563,23 +645,85 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
           
           {/* Mobile Content */}
           <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-cream-200">
-            {/* Mobile Module Header */}
-            <div className="relative h-48">
-              <img
-                src={course.coverImage}
-                alt={module.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                <div className="p-4 text-white">
-                  <h1 className="text-xl font-bold mb-1">{module.title}</h1>
-                  <p className="text-cream-200 text-sm">{module.description} • 专家培训</p>
+            {/* Mobile Course Information - Two Column Layout */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4">
+              {/* Course Image */}
+              <div className="sm:order-1">
+                <div className="relative">
+                  <img
+                    src={course.coverImage}
+                    alt={module.title}
+                    className="w-full h-48 sm:h-56 object-cover rounded-lg"
+                  />
+                  <div className="absolute top-2 right-2 bg-purple-600 text-white px-2 py-1 rounded text-xs">
+                    专家培训
+                  </div>
+                </div>
+              </div>
+              
+              {/* Course Basic Information */}
+              <div className="sm:order-2 flex flex-col justify-center">
+                <div className="space-y-3">
+                  <div>
+                    <h1 className="text-lg font-bold text-forest-900 mb-1">{module.title}</h1>
+                    <p className="text-sm text-forest-600">{module.description}</p>
+                  </div>
+                  
+                  <div className="space-y-2 text-xs">
+                    <div className="flex">
+                      <span className="text-forest-500 w-16">课程：</span>
+                      <span className="font-medium text-forest-800">{course.title}</span>
+                    </div>
+                    
+                    <div className="flex">
+                      <span className="text-forest-500 w-16">类型：</span>
+                      <span className="font-medium text-forest-800">专家培训</span>
+                    </div>
+                    
+                    <div className="flex">
+                      <span className="text-forest-500 w-16">时长：</span>
+                      <span className="font-medium text-forest-800">135分钟</span>
+                    </div>
+                    
+                    <div className="flex">
+                      <span className="text-forest-500 w-16">进度：</span>
+                      <span className="font-medium text-forest-800">60%</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-2 pt-2">
+                    <button
+                      onClick={handleLike}
+                      className={cn(
+                        "flex items-center gap-1 px-3 py-2 rounded-lg font-medium transition-colors text-xs flex-1",
+                        isLiked 
+                          ? "bg-red-50 text-red-600 border border-red-200" 
+                          : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
+                      )}
+                    >
+                      <Heart className={cn("h-3 w-3", isLiked && "fill-current")} />
+                      <span>{likeCount}</span>
+                    </button>
+                    
+                    <button
+                      onClick={handleBookmark}
+                      className={cn(
+                        "flex items-center gap-1 px-3 py-2 rounded-lg font-medium transition-colors text-xs flex-1",
+                        isBookmarked 
+                          ? "bg-blue-50 text-blue-600 border border-blue-200" 
+                          : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
+                      )}
+                    >
+                      <Bookmark className={cn("h-3 w-3", isBookmarked && "fill-current")} />
+                      <span>{bookmarkCount}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
             
             {/* Mobile Tabs */}
-            <div className="border-b border-cream-200">
+            <div className="border-t border-cream-200">
               <div className="flex">
                 {tabs.map((tab) => (
                   <button
