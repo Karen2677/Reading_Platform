@@ -670,23 +670,73 @@ const LessonPlanDetailPage: React.FC = () => {
           {/* Right Content Area (Desktop Only) */}
           <div className="flex-1 min-w-0">
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-cream-200">
-              {/* Module Header */}
-              <div className="relative h-64">
-                <img
-                  src={course.coverImage}
-                  alt={module.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                  <div className="p-6 text-white">
-                    <h1 className="text-2xl font-bold mb-2">{module.title}</h1>
-                    <p className="text-cream-200">{module.description}</p>
+              {/* Course Information - Two Column Layout */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+                {/* Left: Course Image */}
+                <div className="lg:order-1">
+                  <div className="relative">
+                    <img
+                      src={course.coverImage}
+                      alt={module.title}
+                      className="w-full h-64 lg:h-80 object-cover rounded-lg"
+                    />
+                    <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-lg text-sm">
+                      {course.ageGroup}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Right: Course Basic Information */}
+                <div className="lg:order-2 flex flex-col justify-center">
+                  <div className="space-y-4">
+                    <div>
+                      <h1 className="text-2xl font-bold text-forest-900 mb-2">{module.title}</h1>
+                      <p className="text-forest-600">{module.description}</p>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center text-sm">
+                        <span className="text-forest-500 w-20">所属课程：</span>
+                        <span className="font-medium text-forest-800">{course.title}</span>
+                      </div>
+                      
+                      <div className="flex items-center text-sm">
+                        <span className="text-forest-500 w-20">适用年龄：</span>
+                        <span className="font-medium text-forest-800">{course.ageGroup}</span>
+                      </div>
+                      
+                      <div className="flex items-center text-sm">
+                        <span className="text-forest-500 w-20">课程类型：</span>
+                        <span className="font-medium text-forest-800">课堂教学</span>
+                      </div>
+                      
+                      <div className="flex items-center text-sm">
+                        <span className="text-forest-500 w-20">教学时长：</span>
+                        <span className="font-medium text-forest-800">80分钟（2课时）</span>
+                      </div>
+                      
+                      <div className="flex items-center text-sm">
+                        <span className="text-forest-500 w-20">材料数量：</span>
+                        <span className="font-medium text-forest-800">{module.materials.length} 种</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-3 pt-4">
+                      <button className="btn btn-primary flex-1">
+                        <Download className="h-4 w-4 mr-2" />
+                        下载教案
+                      </button>
+                      <button className="btn btn-outline">
+                        <Heart className="h-4 w-4 mr-2" />
+                        收藏
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
               
               {/* Tabs */}
-              <div className="border-b border-cream-200">
+              <div className="border-t border-cream-200">
                 <div className="flex overflow-x-auto scrollbar-hide">
                   {tabs.map((tab) => (
                     <button
@@ -755,23 +805,68 @@ const LessonPlanDetailPage: React.FC = () => {
           
           {/* Mobile Content */}
           <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-cream-200">
-            {/* Mobile Module Header */}
-            <div className="relative h-48">
-              <img
-                src={course.coverImage}
-                alt={module.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                <div className="p-4 text-white">
-                  <h1 className="text-xl font-bold mb-1">{module.title}</h1>
-                  <p className="text-cream-200 text-sm">{module.description}</p>
+            {/* Mobile Course Information - Two Column Layout */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4">
+              {/* Course Image */}
+              <div className="sm:order-1">
+                <div className="relative">
+                  <img
+                    src={course.coverImage}
+                    alt={module.title}
+                    className="w-full h-48 sm:h-56 object-cover rounded-lg"
+                  />
+                  <div className="absolute top-2 right-2 bg-primary-600 text-white px-2 py-1 rounded text-xs">
+                    {course.ageGroup}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Course Basic Information */}
+              <div className="sm:order-2 flex flex-col justify-center">
+                <div className="space-y-3">
+                  <div>
+                    <h1 className="text-lg font-bold text-forest-900 mb-1">{module.title}</h1>
+                    <p className="text-sm text-forest-600">{module.description}</p>
+                  </div>
+                  
+                  <div className="space-y-2 text-xs">
+                    <div className="flex">
+                      <span className="text-forest-500 w-16">课程：</span>
+                      <span className="font-medium text-forest-800">{course.title}</span>
+                    </div>
+                    
+                    <div className="flex">
+                      <span className="text-forest-500 w-16">年龄：</span>
+                      <span className="font-medium text-forest-800">{course.ageGroup}</span>
+                    </div>
+                    
+                    <div className="flex">
+                      <span className="text-forest-500 w-16">时长：</span>
+                      <span className="font-medium text-forest-800">80分钟</span>
+                    </div>
+                    
+                    <div className="flex">
+                      <span className="text-forest-500 w-16">材料：</span>
+                      <span className="font-medium text-forest-800">{module.materials.length} 种</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-2 pt-2">
+                    <button className="btn btn-primary text-xs flex-1">
+                      <Download className="h-3 w-3 mr-1" />
+                      下载
+                    </button>
+                    <button className="btn btn-outline text-xs">
+                      <Heart className="h-3 w-3 mr-1" />
+                      收藏
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
             
             {/* Mobile Tabs */}
-            <div className="border-b border-cream-200">
+            <div className="border-t border-cream-200">
               <div className="flex overflow-x-auto scrollbar-hide">
                 {tabs.map((tab) => (
                   <button
