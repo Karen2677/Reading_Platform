@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教案详情页 Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .wireframe {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .wireframe-section {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .wireframe-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .wireframe-content {
+            padding: 20px;
+        }
+        
+        .layout-container {
+            display: flex;
+            gap: 30px;
+            min-height: 600px;
+        }
+        
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            background: #fff;
+            border: 2px dashed #007bff;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .main-content {
+            flex: 1;
+            background: #fff;
+            border: 2px dashed #28a745;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .mobile-layout {
+            display: none;
+            background: #fff;
+            border: 2px dashed #dc3545;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .component-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .component-label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 2px 8px;
+            font-size: 12px;
+            color: #666;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+        }
+        
+        .tab-container {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .tab-header {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .tab-item {
+            padding: 10px 15px;
+            border-right: 1px solid #dee2e6;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .tab-item.active {
+            background: #007bff;
+            color: white;
+        }
+        
+        .tab-content {
+            padding: 20px;
+            min-height: 200px;
+            background: #fafafa;
+        }
+        
+        .image-placeholder {
+            background: #e9ecef;
+            border: 2px dashed #adb5bd;
+            border-radius: 4px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .text-block {
+            background: #e9ecef;
+            height: 20px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .text-block.short {
+            width: 60%;
+        }
+        
+        .text-block.medium {
+            width: 80%;
+        }
+        
+        .button-placeholder {
+            background: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .navigation-item {
+            padding: 8px 12px;
+            margin-bottom: 5px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .navigation-item.active {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            color: #1976d2;
+        }
+        
+        .comment-box {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #fafafa;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #dee2e6;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .video-placeholder {
+            background: #343a40;
+            color: white;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .responsive-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #856404;
+        }
+        
+        @media (max-width: 1024px) {
+            .layout-container {
+                display: none;
+            }
+            
+            .mobile-layout {
+                display: block;
+            }
+        }
+        
+        .annotation {
+            position: relative;
+            margin: 10px 0;
+        }
+        
+        .annotation::before {
+            content: "📝 ";
+            color: #007bff;
+        }
+        
+        .feature-list {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .feature-list ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe">
+        <h1 style="text-align: center; margin-bottom: 30px; color: #333;">教案详情页 Wireframe 设计</h1>
+        
+        <!-- 页面概述 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📋 页面功能概述</div>
+            <div class="wireframe-content">
+                <div class="feature-list">
+                    <h3>核心功能</h3>
+                    <ul>
+                        <li><strong>响应式布局：</strong>桌面端左右两栏，移动端单栏</li>
+                        <li><strong>课程导航：</strong>左侧边栏显示所有课程模块和教案</li>
+                        <li><strong>多标签内容：</strong>绘本简介、活动简介、所需材料、活动流程、延伸活动、家庭互动、教学视频、讨论区</li>
+                        <li><strong>互动功能：</strong>视频播放、资源下载、评论讨论</li>
+                        <li><strong>专家培训差异化：</strong>仅显示活动简介、教学视频、讨论区三个标签</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 桌面端布局 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🖥️ 桌面端布局 (≥1024px)</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>布局特点：</strong>左右两栏布局，左侧固定宽度300px的导航栏，右侧自适应内容区域
+                </div>
+                
+                <div class="layout-container">
+                    <!-- 左侧边栏 -->
+                    <div class="sidebar">
+                        <div class="component-box">
+                            <div class="component-label">返回按钮</div>
+                            <div class="button-placeholder">← 返回课程</div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">课程信息</div>
+                            <div class="text-block"></div>
+                            <div class="text-block short"></div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">课程模块导航</div>
+                            <div style="margin-bottom: 15px;">
+                                <div style="background: #f8f9fa; padding: 8px; border-radius: 4px; margin-bottom: 5px; font-weight: bold; font-size: 14px;">模块1: 启点阅读力1阶</div>
+                                <div class="navigation-item active">《大卫，不可以》</div>
+                                <div class="navigation-item">《好饿的毛毛虫》</div>
+                            </div>
+                            <div>
+                                <div style="background: #f8f9fa; padding: 8px; border-radius: 4px; margin-bottom: 5px; font-weight: bold; font-size: 14px;">模块2: 启点阅读力2阶</div>
+                                <div class="navigation-item">《爷爷一定有办法》</div>
+                            </div>
+                        </div>
+                        
+                        <div class="annotation">固定定位，可滚动</div>
+                    </div>
+                    
+                    <!-- 右侧主内容区 -->
+                    <div class="main-content">
+                        <div class="component-box">
+                            <div class="component-label">教案头图</div>
+                            <div class="image-placeholder">
+                                教案封面图片 + 标题叠加
+                                <br>《好饿的毛毛虫》
+                                <br>启点阅读力1阶
+                            </div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">教案描述</div>
+                            <div class="text-block"></div>
+                            <div class="text-block medium"></div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">标签导航</div>
+                            <div class="tab-container">
+                                <div class="tab-header">
+                                    <div class="tab-item">绘本简介</div>
+                                    <div class="tab-item active">活动简介</div>
+                                    <div class="tab-item">所需材料</div>
+                                    <div class="tab-item">活动流程</div>
+                                    <div class="tab-item">延伸活动</div>
+                                    <div class="tab-item">家庭互动</div>
+                                    <div class="tab-item">教学视频</div>
+                                    <div class="tab-item">讨论区</div>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="text-block"></div>
+                                    <div class="text-block"></div>
+                                    <div class="text-block short"></div>
+                                    <div style="margin-top: 15px;">
+                                        <div class="button-placeholder">下载资源</div>
+                                        <div class="button-placeholder">观看视频</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="annotation">内容区域可滚动，标签内容动态切换</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 移动端布局 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📱 移动端布局 (<1024px)</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>布局特点：</strong>单栏布局，侧边栏通过抽屉式菜单展示，优化触摸操作
+                </div>
+                
+                <div class="mobile-layout">
+                    <div class="component-box">
+                        <div class="component-label">移动端头部</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="button-placeholder">← 返回课程</div>
+                            <div class="button-placeholder">☰ 目录</div>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <div class="text-block"></div>
+                            <div class="text-block short"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-box">
+                        <div class="component-label">教案头图 (移动端优化)</div>
+                        <div class="image-placeholder" style="height: 150px;">
+                            移动端教案封面 (高度调整)
+                            <br>《好饿的毛毛虫》
+                        </div>
+                    </div>
+                    
+                    <div class="component-box">
+                        <div class="component-label">教案描述</div>
+                        <div class="text-block"></div>
+                        <div class="text-block medium"></div>
+                    </div>
+                    
+                    <div class="component-box">
+                        <div class="component-label">移动端标签 (横向滚动)</div>
+                        <div class="tab-container">
+                            <div class="tab-header" style="overflow-x: auto; white-space: nowrap;">
+                                <div class="tab-item" style="display: inline-block;">绘本简介</div>
+                                <div class="tab-item active" style="display: inline-block;">活动简介</div>
+                                <div class="tab-item" style="display: inline-block;">所需材料</div>
+                                <div class="tab-item" style="display: inline-block;">活动流程</div>
+                                <div class="tab-item" style="display: inline-block;">延伸活动</div>
+                                <div class="tab-item" style="display: inline-block;">家庭互动</div>
+                                <div class="tab-item" style="display: inline-block;">教学视频</div>
+                                <div class="tab-item" style="display: inline-block;">讨论区</div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="text-block"></div>
+                                <div class="text-block"></div>
+                                <div style="margin-top: 15px;">
+                                    <div class="button-placeholder" style="width: 100%; text-align: center; margin-bottom: 10px;">下载资源</div>
+                                    <div class="button-placeholder" style="width: 100%; text-align: center;">观看视频</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="annotation">移动端按钮全宽，标签可横向滚动</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 标签内容详细设计 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📑 标签内容详细设计</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    
+                    <!-- 绘本简介 -->
+                    <div class="component-box">
+                        <div class="component-label">绘本简介</div>
+                        <div class="text-block"></div>
+                        <div class="text-block"></div>
+                        <div class="text-block short"></div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            包含：绘本背景、作者介绍、故事概要、教育价值
+                        </div>
+                    </div>
+                    
+                    <!-- 活动简介 -->
+                    <div class="component-box">
+                        <div class="component-label">活动简介</div>
+                        <div class="text-block"></div>
+                        <div class="text-block medium"></div>
+                        <div style="background: #e3f2fd; padding: 10px; border-radius: 4px; margin-top: 10px;">
+                            <div style="font-size: 12px; color: #1976d2;">活动目标列表</div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            包含：设计理念、活动目标、核心价值
+                        </div>
+                    </div>
+                    
+                    <!-- 所需材料 -->
+                    <div class="component-box">
+                        <div class="component-label">所需材料</div>
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="font-size: 12px; color: #666;">基础材料清单</div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="font-size: 12px; color: #666;">手工材料清单</div>
+                        </div>
+                        <div style="background: #e3f2fd; padding: 10px; border-radius: 4px;">
+                            <div class="button-placeholder" style="font-size: 12px;">📥 下载资源包</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 活动流程 -->
+                    <div class="component-box">
+                        <div class="component-label">活动流程</div>
+                        <div style="border: 1px solid #dee2e6; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="background: #f8f9fa; padding: 8px; border-bottom: 1px solid #dee2e6; display: flex; justify-content: space-between;">
+                                <span style="font-size: 14px;">课时1：绘本导读与基础认知</span>
+                                <span style="font-size: 12px;">▼</span>
+                            </div>
+                            <div style="padding: 10px; background: #fafafa;">
+                                <div class="text-block"></div>
+                                <div class="text-block short"></div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            可折叠的详细流程，包含时间分配和具体步骤
+                        </div>
+                    </div>
+                    
+                    <!-- 教学视频 -->
+                    <div class="component-box">
+                        <div class="component-label">教学视频</div>
+                        <div class="video-placeholder">
+                            ▶️ 主要教学视频
+                            <br>(45分钟)
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
+                            <div class="video-placeholder" style="height: 100px; font-size: 12px;">
+                                ▶️ 案例分析
+                                <br>(20分钟)
+                            </div>
+                            <div class="video-placeholder" style="height: 100px; font-size: 12px;">
+                                ▶️ 实操演示
+                                <br>(15分钟)
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            专家培训课程重点展示区域
+                        </div>
+                    </div>
+                    
+                    <!-- 讨论区 -->
+                    <div class="component-box">
+                        <div class="component-label">讨论区</div>
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+                            <div style="height: 60px; background: white; border: 1px solid #dee2e6; border-radius: 4px; margin-bottom: 10px;"></div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <div class="button-placeholder" style="font-size: 12px;">🖼️ 添加图片</div>
+                                <div class="button-placeholder" style="font-size: 12px;">发布</div>
+                            </div>
+                        </div>
+                        
+                        <div class="comment-box">
+                            <div style="display: flex; align-items: start;">
+                                <div class="user-avatar"></div>
+                                <div style="flex: 1;">
+                                    <div class="text-block short"></div>
+                                    <div class="text-block"></div>
+                                    <div style="margin-top: 10px; display: flex; gap: 15px;">
+                                        <span style="font-size: 12px; color: #666;">❤️ 12</span>
+                                        <span style="font-size: 12px; color: #666;">💬 回复</span>
+                                        <span style="font-size: 12px; color: #666;">🔗 分享</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            支持图片上传、点赞、回复、分享功能
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 专家培训差异化设计 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🎓 专家培训课程差异化设计</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>重要差异：</strong>专家培训课程仅显示"活动简介"、"教学视频"、"讨论区"三个标签
+                </div>
+                
+                <div class="tab-container">
+                    <div class="tab-header">
+                        <div class="tab-item active">活动简介</div>
+                        <div class="tab-item">教学视频</div>
+                        <div class="tab-item">讨论区</div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="feature-list">
+                            <h4>专家培训特色内容</h4>
+                            <ul>
+                                <li><strong>活动简介：</strong>更注重理论基础和教学理念</li>
+                                <li><strong>教学视频：</strong>专家讲座为主，包含案例分析和实操演示</li>
+                                <li><strong>讨论区：</strong>学员交流学习心得，专家答疑</li>
+                                <li><strong>学习进度：</strong>显示视频观看进度和完成状态</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交互说明 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">⚡ 交互行为说明</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    
+                    <div class="feature-list">
+                        <h4>导航交互</h4>
+                        <ul>
+                            <li>左侧导航固定定位，可滚动</li>
+                            <li>当前教案高亮显示</li>
+                            <li>点击其他教案直接跳转</li>
+                            <li>移动端通过抽屉菜单展示</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>标签切换</h4>
+                        <ul>
+                            <li>点击标签切换内容区域</li>
+                            <li>移动端标签可横向滚动</li>
+                            <li>活动状态保持和记忆</li>
+                            <li>URL路由支持直接访问</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>内容交互</h4>
+                        <ul>
+                            <li>活动流程支持折叠展开</li>
+                            <li>视频支持在线播放</li>
+                            <li>资源文件支持下载</li>
+                            <li>讨论区支持实时互动</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>响应式适配</h4>
+                        <ul>
+                            <li>1024px以上：左右两栏布局</li>
+                            <li>1024px以下：单栏布局</li>
+                            <li>触摸友好的按钮尺寸</li>
+                            <li>优化的滚动和导航体验</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技术实现要点 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🔧 技术实现要点</div>
+            <div class="wireframe-content">
+                <div class="feature-list">
+                    <h4>关键技术点</h4>
+                    <ul>
+                        <li><strong>路由设计：</strong>/courses/:courseId/modules/:moduleId/lessons/:lessonId</li>
+                        <li><strong>专家培训路由：</strong>/expert-courses/:courseId/modules/:moduleId/lessons/:lessonId</li>
+                        <li><strong>状态管理：</strong>当前标签、侧边栏开关、评论数据</li>
+                        <li><strong>数据获取：</strong>根据URL参数获取对应的课程、模块、教案数据</li>
+                        <li><strong>响应式实现：</strong>CSS Grid + Flexbox + 媒体查询</li>
+                        <li><strong>性能优化：</strong>图片懒加载、视频按需加载、虚拟滚动</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
