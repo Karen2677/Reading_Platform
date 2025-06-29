@@ -18,6 +18,7 @@ import ContactPage from './pages/ContactPage';
 import AccountPage from './pages/AccountPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
+import PageNavigationFlowchart from './components/ui/PageNavigationFlowchart';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="contact" element={<ContactPage />} />
         <Route path="account" element={<AccountPage />} />
         <Route path="admin" element={<AdminDashboardPage />} />
+        <Route path="flowchart" element={<PageNavigationFlowchart />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
