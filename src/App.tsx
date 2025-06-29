@@ -16,6 +16,7 @@ import OrganizationDetailPage from './pages/OrganizationDetailPage';
 import AboutUsPage from './pages/AboutUsPage';
 import ContactPage from './pages/ContactPage';
 import AccountPage from './pages/AccountPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path="about" element={<AboutUsPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="account" element={<AccountPage />} />
+        <Route path="admin" element={<AdminDashboardPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

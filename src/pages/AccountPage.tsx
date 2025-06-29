@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, Book, FileText, CreditCard, LogOut, Building, Mail, Lock, UserPlus, LogIn } from 'lucide-react';
+import { User, Book, FileText, CreditCard, LogOut, Building, Mail, Lock, UserPlus, LogIn, Settings } from 'lucide-react';
 import CourseCard from '../components/ui/CourseCard';
 import { coursesData } from '../data/coursesData';
 
@@ -30,7 +30,7 @@ const AccountPage: React.FC = () => {
     membershipType: '个人会员',
     membershipStatus: '免费用户',
     organization: '阅见未来',
-    role: '机构教师'
+    role: '机构管理员' // 修改为机构管理员
   };
   
   // Mock purchased courses
@@ -378,6 +378,17 @@ const AccountPage: React.FC = () => {
                     <p className="text-sm text-forest-600">{user.role}</p>
                   </div>
                 </div>
+                
+                {/* 机构管理员专用入口 */}
+                {user.role === '机构管理员' && (
+                  <Link
+                    to="/admin"
+                    className="btn btn-primary w-full mt-4 flex items-center justify-center"
+                  >
+                    <Settings className="h-4 w-4 mr-2" />
+                    机构管理中心
+                  </Link>
+                )}
               </div>
               
               {/* Logout Button */}
