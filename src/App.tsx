@@ -20,7 +20,15 @@ import AdminDashboardPage from './pages/AdminDashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
 import PageNavigationFlowchart from './components/ui/PageNavigationFlowchart';
 
-Route path="expert-courses/:courseId/modules/:moduleId" element={<ExpertLessonPlanDetailPage />} />
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="courses" element={<CoursesPage />} />
+        <Route path="courses/:courseId" element={<CourseDetailPage />} />
+        <Route path="courses/:courseId/modules/:moduleId" element={<LessonPlanDetailPage />} />
+        <Route path="expert-courses/:courseId/modules/:moduleId" element={<ExpertLessonPlanDetailPage />} />
         <Route path="experts" element={<ExpertsPage />} />
         <Route path="experts/:expertId" element={<ExpertDetailPage />} />
         <Route path="resources" element={<ResourcesPage />} />
