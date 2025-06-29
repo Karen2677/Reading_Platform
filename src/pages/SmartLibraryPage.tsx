@@ -203,18 +203,6 @@ const SmartLibraryPage: React.FC = () => {
     }, 2000);
   };
 
-  const toggleBookSelection = (bookId: number) => {
-    setSelectedBooks(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(bookId)) {
-        newSet.delete(bookId);
-      } else {
-        newSet.add(bookId);
-      }
-      return newSet;
-    });
-  };
-
   // 新增：全选功能
   const handleSelectAll = () => {
     if (selectedBooks.size === generatedBooks.length) {
@@ -229,6 +217,18 @@ const SmartLibraryPage: React.FC = () => {
   // 检查是否全选状态
   const isAllSelected = selectedBooks.size === generatedBooks.length && generatedBooks.length > 0;
   const isPartialSelected = selectedBooks.size > 0 && selectedBooks.size < generatedBooks.length;
+
+  const toggleBookSelection = (bookId: number) => {
+    setSelectedBooks(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(bookId)) {
+        newSet.delete(bookId);
+      } else {
+        newSet.add(bookId);
+      }
+      return newSet;
+    });
+  };
 
   const calculateTotal = () => {
     return generatedBooks
@@ -520,88 +520,116 @@ const SmartLibraryPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Book List */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-              {generatedBooks.map((book) => (
-                <div
-                  key={book.id}
-                  className={cn(
-                    "bg-white rounded-xl shadow-md overflow-hidden transition-all hover:shadow-lg border border-cream-200",
-                    selectedBooks.has(book.id) && "ring-2 ring-primary-500"
-                  )}
-                >
-                  <div className="relative">
-                    <img
-                      src={book.coverImage}
-                      alt={book.title}
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="absolute top-2 right-2 bg-primary-600 text-white px-2 py-1 rounded text-xs">
-                      {book.ageGroup}
-                    </div>
-                    <div className="absolute top-2 left-2 bg-accent-600 text-white px-2 py-1 rounded text-xs">
-                      {book.category}
+            {/* Book List - 新的横条布局 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden border border-cream-200 mb-6">
+              <div className="divide-y divide-cream-200">
+                {generatedBooks.map((book) => (
+                  <div
+                    key={book.id}
+                    className={cn(
+                      "p-4 hover:bg-cream-50 transition-colors",
+                      selectedBooks.has(book.id) && "bg-primary-50 border-l-4 border-primary-500"
+                    )}
+                  >
+                    <div className="flex items-center gap-4">
+                      {/* 图书封面 */}
+                      <div className="flex-shrink-0">
+                        <img
+                          src={book.coverImage}
+                          alt={book.title}
+                          className="w-16 h-20 object-cover rounded-lg shadow-sm"
+                        />
+                      </div>
+                      
+                      {/* 图书信息 */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1 min-w-0 mr-4">
+                            {/* 书名 - 可点击进入详情页 */}
+                            <h3 className="text-lg font-medium text-forest-900 hover:text-primary-600 cursor-pointer transition-colors mb-1 truncate">
+                              {book.title}
+                            </h3>
+                            
+                            {/* 作者和出版社 */}
+                            <p className="text-sm text-forest-600 mb-2">
+                              {book.author} · {book.publisher}
+                            </p>
+                            
+                            {/* 标签和评分 */}
+                            <div className="flex items-center gap-3 mb-2">
+                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-700">
+                                {book.ageGroup}
+                              </span>
+                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-700">
+                                {book.category}
+                              </span>
+                              <div className="flex items-center">
+                                {[...Array(5)].map((_, i) => (
+                                  <Star
+                                    key={i}
+                                    className={cn(
+                                      "h-3 w-3",
+                                      i < Math.floor(book.rating) ? "text-accent-400 fill-current" : "text-cream-300"
+                                    )}
+                                  />
+                                ))}
+                                <span className="text-xs text-forest-500 ml-1">({book.rating})</span>
+                              </div>
+                            </div>
+                            
+                            {/* 描述 */}
+                            <p className="text-sm text-forest-600 line-clamp-2">
+                              {book.description}
+                            </p>
+                          </div>
+                          
+                          {/* 价格和操作区域 */}
+                          <div className="flex-shrink-0 text-right">
+                            {/* 价格 */}
+                            <div className="mb-3">
+                              <div className="flex items-center justify-end gap-2 mb-1">
+                                {book.discountPrice && (
+                                  <span className="text-sm text-forest-400 line-through">¥{book.price}</span>
+                                )}
+                                <span className="text-xl font-bold text-primary-600">
+                                  ¥{book.discountPrice || book.price}
+                                </span>
+                              </div>
+                              {book.discountPrice && (
+                                <div className="flex justify-end">
+                                  <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">
+                                    {Math.round((1 - book.discountPrice / book.price) * 100)}%折
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                            
+                            {/* 加入书单按钮 */}
+                            <button
+                              onClick={() => toggleBookSelection(book.id)}
+                              className={cn(
+                                "px-4 py-2 rounded-lg font-medium transition-colors text-sm min-w-[100px]",
+                                selectedBooks.has(book.id)
+                                  ? "bg-primary-600 text-white"
+                                  : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
+                              )}
+                            >
+                              {selectedBooks.has(book.id) ? (
+                                <>
+                                  <ShoppingCart className="h-4 w-4 mr-1 inline" />
+                                  已选择
+                                </>
+                              ) : (
+                                '加入书单'
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="p-4">
-                    <h3 className="font-medium text-forest-900 mb-1 line-clamp-2">{book.title}</h3>
-                    <p className="text-sm text-forest-600 mb-2">{book.author} · {book.publisher}</p>
-                    
-                    <div className="flex items-center mb-2">
-                      <div className="flex items-center">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={cn(
-                              "h-3 w-3",
-                              i < Math.floor(book.rating) ? "text-accent-400 fill-current" : "text-cream-300"
-                            )}
-                          />
-                        ))}
-                      </div>
-                      <span className="text-xs text-forest-500 ml-1">({book.rating})</span>
-                    </div>
-                    
-                    <p className="text-xs text-forest-600 mb-3 line-clamp-2">{book.description}</p>
-                    
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-2">
-                        {book.discountPrice && (
-                          <span className="text-sm text-forest-400 line-through">¥{book.price}</span>
-                        )}
-                        <span className="text-lg font-bold text-primary-600">
-                          ¥{book.discountPrice || book.price}
-                        </span>
-                        {book.discountPrice && (
-                          <span className="text-xs bg-red-100 text-red-600 px-1 py-0.5 rounded">
-                            {Math.round((1 - book.discountPrice / book.price) * 100)}%折
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <button
-                      onClick={() => toggleBookSelection(book.id)}
-                      className={cn(
-                        "w-full py-2 px-4 rounded-lg font-medium transition-colors",
-                        selectedBooks.has(book.id)
-                          ? "bg-primary-600 text-white"
-                          : "bg-cream-100 text-forest-700 hover:bg-cream-200"
-                      )}
-                    >
-                      {selectedBooks.has(book.id) ? (
-                        <>
-                          <ShoppingCart className="h-4 w-4 mr-2 inline" />
-                          已选择
-                        </>
-                      ) : (
-                        '加入书单'
-                      )}
-                    </button>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             {/* Order Summary */}
