@@ -1,232 +1,187 @@
 export interface Course {
   id: number;
   title: string;
-  description: string;
-  ageGroup: string;
   organization: string;
   organizationId: number;
+  ageGroup: string;
   coverImage: string;
-  type: 'classroom' | 'teacher';
+  description: string;
   price: number;
-  modules: {
-    id: number;
-    title: string;
-    description: string;
-    lesson: {
-      id: number;
-      title: string;
-      description: string;
-      materials: string[];
-      videoUrl?: string;
-      lessonPlan?: {
-        id: number;
-        title: string;
-        content: string;
-      };
-      resources?: {
-        id: number;
-        title: string;
-        type: 'document' | 'video' | 'image' | 'audio';
-        url: string;
-      }[];
-    };
-  }[];
-  expertId?: number;
+  type: 'classroom' | 'teacher'; // classroom: 课堂教学, teacher: 教师培训
+  expertId?: number; // 仅教师培训课程有专家ID
+  modules: CourseModule[];
+}
+
+export interface CourseModule {
+  id: number;
+  title: string;
+  description: string;
+  lesson: Lesson;
+}
+
+export interface Lesson {
+  id: number;
+  title: string;
+  description: string;
+  materials: string[];
+  lessonPlan?: {
+    content: string;
+  };
+  resources?: Resource[];
+}
+
+export interface Resource {
+  id: number;
+  title: string;
+  url: string;
+  type: 'pdf' | 'video' | 'image' | 'audio';
 }
 
 export const coursesData: Course[] = [
   {
     id: 1,
-    title: '启点阅读力课程',
-    description: '针对6-9岁儿童的阅读能力培养课程，通过精选绘本和互动活动，培养孩子的阅读理解能力和思维表达能力。',
-    ageGroup: '6-9岁',
+    title: '启点阅读力1阶',
     organization: '启点阅读',
     organizationId: 1,
-    coverImage: 'https://dxtdryilaoahkcazxyuu.supabase.co/storage/v1/object/public/course//ChatGPT%20Image%20May%2030,%202025,%2007_57_57%20AM.png',
+    ageGroup: '6-9岁',
+    coverImage: 'https://images.pexels.com/photos/8423121/pexels-photo-8423121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: '通过经典绘本阅读，培养儿童的观察力、理解力和表达能力，建立良好的阅读习惯。',
+    price: 299,
     type: 'classroom',
-    price: 3980,
     modules: [
       {
         id: 1,
-        title: '《大卫，不可以》教案',
-        description: '通过这本经典绘本，引导孩子理解规则的重要性，培养观察力和语言表达能力。',
+        title: '启点阅读力1阶',
+        description: '通过经典绘本《好饿的毛毛虫》，培养儿童基础阅读能力',
         lesson: {
           id: 1,
-          title: '《大卫，不可以》',
-          description: '通过这本书，引导孩子理解规则的重要性，同时培养观察力和语言表达能力。',
-          materials: ['绘本《大卫，不可以》', '活动卡片', '贴纸'],
+          title: '《好饿的毛毛虫》',
+          description: '通过《好饿的毛毛虫》这本经典绘本，帮助孩子认识数字、星期、食物，理解生命成长的过程。',
+          materials: [
+            '《好饿的毛毛虫》绘本',
+            '数字卡片1-5',
+            '星期卡片',
+            '水果图片卡',
+            '毛毛虫手偶',
+            '蝴蝶贴纸'
+          ],
           lessonPlan: {
-            id: 1,
-            title: '《大卫，不可以》教案',
-            content: `教学目标：
-1. 理解故事内容，培养规则意识
-2. 提高观察力和表达能力
-3. 学会换位思考，理解他人感受
+            content: `**课前准备**
+• 准备《好饿的毛毛虫》绘本
+• 准备数字卡片1-5
+• 准备各种水果的图片或实物
+• 准备毛毛虫手偶和蝴蝶贴纸
 
-教学准备：
-1. 绘本《大卫，不可以》
-2. 活动卡片
-3. 贴纸
-4. 白板和白板笔
+**导入环节（5分钟）**
+• 出示毛毛虫手偶，引起幼儿兴趣
+• 提问：小朋友们见过毛毛虫吗？它会变成什么？
+• 引出今天要学习的绘本《好饿的毛毛虫》
 
-教学流程：
-1. 导入活动（10分钟）
-   - 通过情境游戏引入"规则"概念
-   - 讨论"为什么需要规则"
+**绘本阅读（15分钟）**
+• 展示绘本封面，引导幼儿观察
+• 逐页阅读，重点关注：
+  - 数字的认识（1个苹果、2个梨...）
+  - 星期的概念
+  - 不同食物的名称
+• 引导幼儿跟读重复的句式
 
-2. 绘本阅读（15分钟）
-   - 封面导读，预测故事内容
-   - 分段阅读，观察大卫的行为
-   - 讨论每个场景中的规则
+**互动游戏（10分钟）**
+• 数字游戏：用手指表示毛毛虫吃了几个水果
+• 排序游戏：按照故事顺序排列水果卡片
+• 角色扮演：幼儿模仿毛毛虫爬行和蝴蝶飞舞
 
-3. 互动活动（20分钟）
-   - 角色扮演：扮演大卫和妈妈
-   - 制作规则卡片：画出自己遵守的规则
+**拓展活动（8分钟）**
+• 讨论：毛毛虫为什么会变成蝴蝶？
+• 联系生活：我们也在慢慢长大，就像毛毛虫一样
+• 分享：你最喜欢吃什么水果？
 
-4. 延伸活动（15分钟）
-   - 创编新故事：如果大卫遵守规则会怎样
-   - 制作"我能做到"贴纸墙
-
-5. 总结反思（10分钟）
-   - 分享遵守规则的重要性
-   - 制定个人行为计划`
+**总结回顾（2分钟）**
+• 回顾故事主要内容
+• 奖励表现好的幼儿蝴蝶贴纸
+• 预告下次活动内容`
           },
           resources: [
             {
               id: 1,
-              title: '《大卫，不可以》绘本导读视频',
-              type: 'video',
-              url: 'https://example.com/video1'
+              title: '《好饿的毛毛虫》PPT课件',
+              url: '/resources/hungry-caterpillar-ppt.pdf',
+              type: 'pdf'
             },
             {
               id: 2,
-              title: '活动指导手册',
-              type: 'document',
-              url: 'https://example.com/doc1'
+              title: '数字卡片打印版',
+              url: '/resources/number-cards.pdf',
+              type: 'pdf'
+            },
+            {
+              id: 3,
+              title: '水果图片素材包',
+              url: '/resources/fruit-images.zip',
+              type: 'image'
             }
           ]
         }
       },
       {
         id: 2,
-        title: '《好饿的毛毛虫》教案',
-        description: '通过这本经典绘本，教授孩子数字概念和生命成长的奇妙过程。',
+        title: '启点阅读力2阶',
+        description: '通过经典绘本《爷爷一定有办法》，培养儿童逻辑思维能力',
         lesson: {
           id: 2,
-          title: '《好饿的毛毛虫》',
-          description: '通过这本经典绘本，教授孩子数字概念和生命成长的奇妙过程。',
-          materials: ['绘本《好饿的毛毛虫》', '毛毛虫模型', '蝴蝶生长周期图'],
+          title: '《爷爷一定有办法》',
+          description: '通过这个温馨的故事，让孩子理解传承、创新和珍惜的意义，培养解决问题的思维能力。',
+          materials: [
+            '《爷爷一定有办法》绘本',
+            '各种布料样品',
+            '针线道具',
+            '小毯子、外套等道具',
+            '手工制作材料'
+          ],
           lessonPlan: {
-            id: 2,
-            title: '《好饿的毛毛虫》教案',
-            content: `教学目标：
-1. 认识数字1-5，理解数量概念
-2. 了解毛毛虫的生长过程
-3. 培养观察能力和想象力
+            content: `**课前准备**
+• 准备《爷爷一定有办法》绘本
+• 准备各种布料样品供幼儿触摸
+• 准备手工制作的简单材料
 
-教学准备：
-1. 绘本《好饿的毛毛虫》
-2. 毛毛虫模型
-3. 蝴蝶生长周期图
-4. 水果图片卡片
+**故事导入（5分钟）**
+• 展示一块漂亮的布料
+• 提问：这块布可以做什么？
+• 引出爷爷的故事
 
-教学流程：
-1. 导入活动（10分钟）
-   - 展示毛毛虫模型，激发兴趣
-   - 讨论"你喜欢吃什么水果"
+**绘本阅读（20分钟）**
+• 仔细阅读每一页，重点关注：
+  - 毯子变外套的过程
+  - 外套变背心的过程
+  - 每次改造的原因和方法
+• 引导幼儿预测下一步会变成什么
 
-2. 绘本阅读（15分钟）
-   - 封面导读，认识主角
-   - 跟读故事，数一数水果数量
-   - 观察毛毛虫的变化
+**思维训练（10分钟）**
+• 讨论：为什么爷爷总是有办法？
+• 思考：如果是你，你会怎么办？
+• 培养解决问题的思维
 
-3. 互动活动（20分钟）
-   - 角色扮演：饿肚子的毛毛虫
-   - 制作水果拼贴画
-   - 学习蝴蝶的生长过程
+**创意活动（10分钟）**
+• 用手工材料制作简单的小物件
+• 体验"变废为宝"的乐趣
+• 分享自己的创意想法
 
-4. 延伸活动（15分钟）
-   - 创编新故事：毛毛虫的新菜单
-   - 观察真实的蝴蝶标本
-
-5. 总结反思（10分钟）
-   - 复习学过的数字
-   - 分享对成长的理解`
+**情感教育（5分钟）**
+• 讨论爷爷对约瑟的爱
+• 分享自己和爷爷奶奶的故事
+• 培养感恩之心`
           },
           resources: [
-            {
-              id: 3,
-              title: '蝴蝶生长周期视频',
-              type: 'video',
-              url: 'https://example.com/video2'
-            },
             {
               id: 4,
-              title: '数学游戏材料包',
-              type: 'document',
-              url: 'https://example.com/doc2'
-            }
-          ]
-        }
-      },
-      {
-        id: 3,
-        title: '《爷爷一定有办法》教案',
-        description: '学习问题解决的思维方式，培养创造性思维和坚持不懈的品质。',
-        lesson: {
-          id: 3,
-          title: '《爷爷一定有办法》',
-          description: '学习问题解决的思维方式，培养创造性思维和坚持不懈的品质。',
-          materials: ['绘本《爷爷一定有办法》', '手工材料', '创意工作表'],
-          lessonPlan: {
-            id: 3,
-            title: '《爷爷一定有办法》教案',
-            content: `教学目标：
-1. 培养解决问题的能力
-2. 激发创造性思维
-3. 学习积极乐观的态度
-
-教学准备：
-1. 绘本《爷爷一定有办法》
-2. 手工材料
-3. 创意工作表
-4. 问题解决卡片
-
-教学流程：
-1. 导入活动（10分钟）
-   - 分享生活中遇到的小困难
-   - 讨论"如何解决问题"
-
-2. 绘本阅读（15分钟）
-   - 封面导读，预测故事内容
-   - 观察爷爷的解决方法
-   - 讨论每个解决方案的创意
-
-3. 互动活动（20分钟）
-   - 角色扮演：创意解决问题
-   - 制作创意发明图
-   - 小组讨论其他可能的解决方案
-
-4. 延伸活动（15分钟）
-   - 创编新故事：我也有好办法
-   - 设计生活中的创意发明
-
-5. 总结反思（10分钟）
-   - 分享最喜欢的解决方案
-   - 制定问题解决步骤表`
-          },
-          resources: [
-            {
-              id: 5,
-              title: '创意思维训练视频',
-              type: 'video',
-              url: 'https://example.com/video3'
+              title: '《爷爷一定有办法》教学视频',
+              url: '/resources/grandpa-story-video.mp4',
+              type: 'video'
             },
             {
-              id: 6,
-              title: '问题解决工具包',
-              type: 'document',
-              url: 'https://example.com/doc3'
+              id: 5,
+              title: '手工制作指导手册',
+              url: '/resources/craft-guide.pdf',
+              type: 'pdf'
             }
           ]
         }
@@ -235,126 +190,215 @@ export const coursesData: Course[] = [
   },
   {
     id: 2,
-    title: '乐米乐婴幼儿互动阅读课',
-    description: '专为0-3岁婴幼儿设计的互动式阅读课程，通过丰富的感官体验和亲子互动，培养宝宝的早期语言能力和认知发展。',
-    ageGroup: '0-3岁',
+    title: '乐米乐早期阅读启蒙',
     organization: '乐米乐',
     organizationId: 2,
-    coverImage: 'https://dxtdryilaoahkcazxyuu.supabase.co/storage/v1/object/public/course//ChatGPT%20Image%20May%2030,%202025,%2007_55_09%20AM.png',
+    ageGroup: '0-3岁',
+    coverImage: 'https://images.pexels.com/photos/3662667/pexels-photo-3662667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: '专为0-3岁婴幼儿设计的早期阅读启蒙课程，通过感官互动激发阅读兴趣和语言潜能。',
+    price: 199,
     type: 'classroom',
-    price: 4980,
     modules: [
       {
-        id: 4,
-        title: '触摸认知：动物朋友',
-        description: '通过触摸不同质感的动物图案，认识常见动物及其特征。',
+        id: 3,
+        title: '感官认知启蒙',
+        description: '通过触摸书和感官游戏，启发婴幼儿的认知能力',
         lesson: {
-          id: 4,
-          title: '触摸认知：动物朋友',
-          description: '通过触摸不同质感的动物图案，认识常见动物及其特征。',
-          materials: ['触摸书《动物朋友》', '动物手偶', '动物音效卡']
+          id: 3,
+          title: '《小手摸摸》触感认知',
+          description: '通过不同材质的触摸体验，帮助宝宝认识世界，发展触觉和语言能力。',
+          materials: [
+            '触摸认知书',
+            '不同材质的布料',
+            '安全的触摸玩具',
+            '音乐播放设备',
+            '柔软的垫子'
+          ],
+          lessonPlan: {
+            content: `**环境准备**
+• 铺设柔软安全的地垫
+• 准备各种材质的触摸材料
+• 播放轻柔的背景音乐
+
+**亲子互动开始（5分钟）**
+• 家长和宝宝一起坐在地垫上
+• 简单的手指游戏热身
+• 营造轻松愉快的氛围
+
+**触感探索（15分钟）**
+• 引导宝宝触摸不同材质：
+  - 柔软的毛绒
+  - 光滑的丝绸
+  - 粗糙的麻布
+  - 凉爽的金属
+• 用简单的词汇描述感受："软软的"、"滑滑的"
+
+**语言启蒙（10分钟）**
+• 重复简单的词汇和声音
+• 鼓励宝宝模仿发音
+• 用夸张的表情和语调吸引注意
+
+**亲子共读（10分钟）**
+• 选择适合的触摸书
+• 家长用温柔的声音朗读
+• 引导宝宝触摸书中的不同材质
+
+**放松结束（5分钟）**
+• 轻柔的音乐和抚触
+• 总结今天的活动
+• 给宝宝温暖的拥抱`
+          }
         }
       }
     ]
   },
   {
     id: 3,
-    title: '桃言阅读探究课',
-    description: '针对3-6岁幼儿的深度阅读探究课程，通过主题式阅读和探究活动，培养孩子的思考能力和创造力。',
-    ageGroup: '3-6岁',
+    title: '桃言主题式阅读探究',
     organization: '桃言阅读',
     organizationId: 3,
-    coverImage: 'https://images.pexels.com/photos/8535222/pexels-photo-8535222.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    ageGroup: '3-6岁',
+    coverImage: 'https://images.pexels.com/photos/8422503/pexels-photo-8422503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: '以主题探究为特色的幼儿阅读课程，培养好奇心、探索精神和创造力。',
+    price: 399,
     type: 'classroom',
-    price: 5980,
     modules: [
       {
-        id: 5,
-        title: '《种子旅行记》探究',
-        description: '了解植物生长的奥秘，通过实际种植活动，观察记录植物生长过程。',
+        id: 4,
+        title: '自然探索主题',
+        description: '通过自然主题的绘本和活动，培养幼儿的观察力和探究精神',
         lesson: {
-          id: 5,
-          title: '《种子旅行记》',
-          description: '了解植物生长的奥秘，通过实际种植活动，观察记录植物生长过程。',
-          materials: ['绘本《种子旅行记》', '种子套装', '观察记录本']
+          id: 4,
+          title: '《小种子的旅行》自然探索',
+          description: '跟随小种子的成长旅程，了解植物的生长过程，培养对自然的热爱和观察能力。',
+          materials: [
+            '《小种子的旅行》绘本',
+            '各种植物种子',
+            '放大镜',
+            '小花盆和土壤',
+            '观察记录表',
+            '植物成长图片'
+          ],
+          lessonPlan: {
+            content: `**探究导入（8分钟）**
+• 出示神秘盒子，里面装着各种种子
+• 让幼儿猜测盒子里是什么
+• 引出今天的探究主题：种子的秘密
+
+**绘本共读（15分钟）**
+• 阅读《小种子的旅行》
+• 重点关注：
+  - 种子是如何传播的
+  - 种子需要什么条件才能发芽
+  - 植物的成长过程
+• 鼓励幼儿提出问题
+
+**科学探究（20分钟）**
+• 观察活动：用放大镜观察不同的种子
+• 分类活动：按大小、颜色、形状分类种子
+• 种植实验：每个幼儿种下一颗种子
+• 记录观察：画下种子的样子
+
+**创意表达（12分钟）**
+• 用身体动作模仿种子发芽长大
+• 画出自己想象中的神奇植物
+• 编一个关于种子的小故事
+
+**总结分享（5分钟）**
+• 分享今天的发现和感受
+• 制定观察计划：每天观察种子的变化
+• 预告下次活动：观察记录分享`
+          }
         }
       }
     ]
   },
   {
     id: 4,
-    title: '阅读教学技巧与课堂管理',
-    description: '为幼儿园和小学教师设计的专业培训课程，提供实用的阅读教学方法和高效的课堂管理技巧。',
-    ageGroup: '教师培训',
+    title: '儿童阅读心理发展',
     organization: '阅见未来',
     organizationId: 4,
-    coverImage: 'https://images.pexels.com/photos/8471983/pexels-photo-8471983.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    ageGroup: '教师培训',
+    coverImage: 'https://images.pexels.com/photos/4161775/pexels-photo-4161775.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: '深入了解不同年龄段儿童的阅读心理特点，掌握科学的阅读指导方法。',
+    price: 599,
     type: 'teacher',
-    price: 2980,
     expertId: 1,
     modules: [
       {
-        id: 6,
-        title: '儿童阅读心理发展特点',
-        description: '了解不同年龄段儿童的阅读心理特点，有针对性地选择适合的阅读材料和教学方法。',
+        id: 5,
+        title: '0-12岁儿童阅读心理发展特点',
+        description: '系统学习不同年龄段儿童的阅读心理发展规律和特点',
         lesson: {
-          id: 6,
-          title: '儿童阅读心理发展特点',
-          description: '了解不同年龄段儿童的阅读心理特点，有针对性地选择适合的阅读材料和教学方法。',
-          materials: ['讲义', '案例分析表', '阅读发展评估工具'],
-          videoUrl: 'https://example.com/video1'
+          id: 5,
+          title: '儿童阅读心理发展的阶段性特征',
+          description: '深入理解0-12岁儿童阅读心理发展的核心理论与实践应用，掌握科学的阅读教学方法。',
+          materials: [
+            '儿童发展心理学理论资料',
+            '不同年龄段阅读案例',
+            '阅读能力评估工具',
+            '教学实践指导手册'
+          ]
         }
       }
     ]
   },
   {
     id: 5,
-    title: '绘本解读与表达艺术',
-    description: '帮助教师和家长掌握绘本解读技巧，提升讲述和表达能力，让绘本阅读更加生动有趣。',
-    ageGroup: '教师培训',
+    title: '绘本教学设计与实施',
     organization: '阅见未来',
     organizationId: 4,
-    coverImage: 'https://images.pexels.com/photos/8364026/pexels-photo-8364026.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    ageGroup: '教师培训',
+    coverImage: 'https://images.pexels.com/photos/5212317/pexels-photo-5212317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: '系统学习绘本教学的设计原理和实施技巧，提升课堂教学效果。',
+    price: 499,
     type: 'teacher',
-    price: 3280,
     expertId: 2,
     modules: [
       {
-        id: 7,
-        title: '绘本视觉语言的解读',
-        description: '学习如何解读绘本中的视觉元素，包括构图、色彩、线条等，理解其传达的情感和含义。',
+        id: 6,
+        title: '绘本教学设计原理与方法',
+        description: '学习绘本教学的理论基础和实践方法',
         lesson: {
-          id: 7,
-          title: '绘本视觉语言的解读',
-          description: '学习如何解读绘本中的视觉元素，包括构图、色彩、线条等，理解其传达的情感和含义。',
-          materials: ['精选绘本', '分析工作表', '视觉元素词典'],
-          videoUrl: 'https://example.com/video2'
+          id: 6,
+          title: '绘本教学的设计原理与实施策略',
+          description: '掌握绘本教学的核心理念，学会设计有效的绘本教学活动，提升教学质量。',
+          materials: [
+            '绘本教学理论资料',
+            '优秀教学案例集',
+            '教学设计模板',
+            '评估工具和方法'
+          ]
         }
       }
     ]
   },
   {
     id: 6,
-    title: '儿童阅读环境创设与资源管理',
-    description: '针对机构管理者和教师的专业培训，指导如何打造理想的儿童阅读环境并有效管理阅读资源。',
-    ageGroup: '教师培训',
+    title: '阅读评估与诊断',
     organization: '阅见未来',
     organizationId: 4,
-    coverImage: 'https://images.pexels.com/photos/8535215/pexels-photo-8535215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    ageGroup: '教师培训',
+    coverImage: 'https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description: '学习专业的阅读能力评估工具和方法，为个性化教学提供科学依据。',
+    price: 399,
     type: 'teacher',
-    price: 3580,
     expertId: 3,
     modules: [
       {
-        id: 8,
-        title: '儿童阅读区域的功能划分',
-        description: '学习如何根据年龄特点和活动需求，合理划分和设计阅读区域，创造舒适有吸引力的阅读环境。',
+        id: 7,
+        title: '阅读能力评估理论与实践',
+        description: '掌握科学的阅读评估方法和诊断技巧',
         lesson: {
-          id: 8,
-          title: '儿童阅读区域的功能划分',
-          description: '学习如何根据年龄特点和活动需求，合理划分和设计阅读区域，创造舒适有吸引力的阅读环境。',
-          materials: ['空间设计指南', '案例图库', '空间规划模板'],
-          videoUrl: 'https://example.com/video3'
+          id: 7,
+          title: '阅读能力的科学评估与个性化诊断',
+          description: '学习使用专业的评估工具，准确诊断儿童阅读能力水平，制定个性化教学方案。',
+          materials: [
+            '阅读评估理论资料',
+            '标准化评估工具',
+            '诊断报告模板',
+            '个性化教学方案示例'
+          ]
         }
       }
     ]
