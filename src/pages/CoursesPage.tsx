@@ -34,7 +34,7 @@ const CoursesPage: React.FC = () => {
       <div className="container-custom">
         <SectionHeading
           title="阅读教育活动"
-          subtitle="为不同年龄段儿童提供专业的阅读教学课程"
+          subtitle="为不同年龄段儿童提供专业的阅读教学活动"
           centered
         />
 
