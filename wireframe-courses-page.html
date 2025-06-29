@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程页面 Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .wireframe {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .wireframe-section {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .wireframe-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .wireframe-content {
+            padding: 20px;
+        }
+        
+        .component-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .component-label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 2px 8px;
+            font-size: 12px;
+            color: #666;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+        }
+        
+        .page-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .page-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .layout-container {
+            display: flex;
+            gap: 30px;
+            min-height: 600px;
+        }
+        
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+        }
+        
+        .main-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .filter-section {
+            background: white;
+            border: 2px dashed #007bff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        
+        .filter-group-title {
+            font-size: 16px;
+            font-weight: medium;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .filter-option {
+            padding: 8px 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        
+        .filter-option:hover {
+            background: #f8f9fa;
+            border-color: #007bff;
+        }
+        
+        .filter-option.active {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            color: #1976d2;
+            font-weight: medium;
+        }
+        
+        .mobile-filter-toggle {
+            display: none;
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .course-image {
+            height: 200px;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .course-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #007bff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: medium;
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+            line-height: 1.3;
+        }
+        
+        .course-description {
+            color: #666;
+            margin-bottom: 16px;
+            font-size: 14px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .course-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            font-size: 13px;
+            color: #999;
+        }
+        
+        .course-organization {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .course-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .course-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .price-current {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .price-original {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+        
+        .course-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+            font-weight: medium;
+            transition: background-color 0.2s;
+        }
+        
+        .course-button:hover {
+            background: #0056b3;
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .results-count {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .sort-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sort-select {
+            padding: 8px 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            background: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 40px;
+        }
+        
+        .pagination-button {
+            padding: 8px 12px;
+            border: 1px solid #dee2e6;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .pagination-button:hover {
+            background: #f8f9fa;
+            border-color: #007bff;
+        }
+        
+        .pagination-button.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        .pagination-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .no-results-icon {
+            font-size: 48px;
+            color: #dee2e6;
+            margin-bottom: 16px;
+        }
+        
+        .no-results-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .no-results-text {
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .annotation {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            color: #856404;
+            font-size: 12px;
+        }
+        
+        .feature-list {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .feature-list ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 5px;
+        }
+        
+        .responsive-note {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #0c5460;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .layout-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                order: 2;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+            
+            .mobile-filter-toggle {
+                display: block;
+            }
+            
+            .filter-section {
+                display: none;
+            }
+            
+            .filter-section.mobile-open {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1000;
+                background: white;
+                border: none;
+                border-radius: 0;
+                margin: 0;
+                overflow-y: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .page-subtitle {
+                font-size: 16px;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .results-header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+            }
+            
+            .sort-dropdown {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .wireframe {
+                padding: 10px;
+            }
+            
+            .course-content {
+                padding: 16px;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+            
+            .pagination-button {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe">
+        <h1 style="text-align: center; margin-bottom: 30px; color: #333;">课程页面 Wireframe 设计</h1>
+        
+        <!-- 页面概述 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📋 页面功能概述</div>
+            <div class="wireframe-content">
+                <div class="feature-list">
+                    <h3>核心功能</h3>
+                    <ul>
+                        <li><strong>课程筛选：</strong>按年龄段、机构、价格等条件筛选课程</li>
+                        <li><strong>课程展示：</strong>网格布局展示课程卡片，包含关键信息</li>
+                        <li><strong>排序功能：</strong>按价格、评分、热度等排序</li>
+                        <li><strong>分页导航：</strong>支持分页浏览大量课程</li>
+                        <li><strong>响应式设计：</strong>适配桌面端、平板端、移动端</li>
+                        <li><strong>搜索功能：</strong>关键词搜索课程（可选）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面头部 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🎯 页面头部</div>
+            <div class="wireframe-content">
+                <div class="component-box">
+                    <div class="component-label">Page Header</div>
+                    <div class="page-header">
+                        <div class="page-title">阅读教育活动</div>
+                        <div class="page-subtitle">为不同年龄段儿童提供专业的阅读教学活动</div>
+                    </div>
+                </div>
+                
+                <div class="annotation">
+                    <strong>设计要点：</strong>
+                    <br>• 使用渐变背景突出页面主题
+                    <br>• 标题简洁明了，副标题说明页面价值
+                    <br>• 移动端适配：字体大小和间距调整
+                </div>
+            </div>
+        </div>
+
+        <!-- 桌面端布局 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🖥️ 桌面端布局 (≥1024px)</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>布局特点：</strong>左侧固定宽度筛选栏(280px)，右侧自适应内容区域
+                </div>
+                
+                <div class="layout-container">
+                    <!-- 左侧筛选栏 */
+                    <div class="sidebar">
+                        <div class="filter-section">
+                            <div class="filter-title">筛选课程</div>
+                            
+                            <div class="filter-group">
+                                <div class="filter-group-title">按年龄</div>
+                                <div class="filter-options">
+                                    <div class="filter-option active">全部</div>
+                                    <div class="filter-option">0-3岁</div>
+                                    <div class="filter-option">3-6岁</div>
+                                    <div class="filter-option">6-12岁</div>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <div class="filter-group-title">按机构</div>
+                                <div class="filter-options">
+                                    <div class="filter-option active">全部</div>
+                                    <div class="filter-option">启点阅读</div>
+                                    <div class="filter-option">乐米乐</div>
+                                    <div class="filter-option">桃言阅读</div>
+                                    <div class="filter-option">阅见未来</div>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <div class="filter-group-title">按价格</div>
+                                <div class="filter-options">
+                                    <div class="filter-option">全部</div>
+                                    <div class="filter-option">免费</div>
+                                    <div class="filter-option">¥100以下</div>
+                                    <div class="filter-option">¥100-300</div>
+                                    <div class="filter-option">¥300以上</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="annotation">固定定位，可滚动</div>
+                    </div>
+                    
+                    <!-- 右侧主内容区 -->
+                    <div class="main-content">
+                        <div class="component-box">
+                            <div class="component-label">Results Header</div>
+                            <div class="results-header">
+                                <div class="results-count">找到 12 个课程</div>
+                                <div class="sort-dropdown">
+                                    <span>排序：</span>
+                                    <select class="sort-select">
+                                        <option>默认排序</option>
+                                        <option>价格从低到高</option>
+                                        <option>价格从高到低</option>
+                                        <option>评分最高</option>
+                                        <option>最新发布</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">Courses Grid</div>
+                            <div class="courses-grid">
+                                <!-- 课程卡片1 -->
+                                <div class="course-card">
+                                    <div class="course-image">
+                                        课程封面图片
+                                        <div class="course-badge">6-9岁</div>
+                                    </div>
+                                    <div class="course-content">
+                                        <div class="course-title">启点阅读力1阶</div>
+                                        <div class="course-description">通过经典绘本阅读，培养儿童的观察力、理解力和表达能力，建立良好的阅读习惯。</div>
+                                        <div class="course-meta">
+                                            <div class="course-organization">
+                                                <span>👥</span>
+                                                <span>启点阅读</span>
+                                            </div>
+                                            <div class="course-rating">
+                                                <span>⭐</span>
+                                                <span>4.8</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-price">
+                                            <div>
+                                                <span class="price-current">¥299</span>
+                                                <span class="price-original">¥399</span>
+                                            </div>
+                                            <span style="font-size: 12px; color: #28a745;">25%折扣</span>
+                                        </div>
+                                        <button class="course-button">查看详情</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 课程卡片2 -->
+                                <div class="course-card">
+                                    <div class="course-image">
+                                        课程封面图片
+                                        <div class="course-badge">0-3岁</div>
+                                    </div>
+                                    <div class="course-content">
+                                        <div class="course-title">乐米乐早期阅读启蒙</div>
+                                        <div class="course-description">专为0-3岁婴幼儿设计的早期阅读启蒙课程，通过感官互动激发阅读兴趣。</div>
+                                        <div class="course-meta">
+                                            <div class="course-organization">
+                                                <span>👥</span>
+                                                <span>乐米乐</span>
+                                            </div>
+                                            <div class="course-rating">
+                                                <span>⭐</span>
+                                                <span>4.9</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-price">
+                                            <div>
+                                                <span class="price-current">¥199</span>
+                                            </div>
+                                        </div>
+                                        <button class="course-button">查看详情</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 课程卡片3 -->
+                                <div class="course-card">
+                                    <div class="course-image">
+                                        课程封面图片
+                                        <div class="course-badge">3-6岁</div>
+                                    </div>
+                                    <div class="course-content">
+                                        <div class="course-title">桃言主题式阅读探究</div>
+                                        <div class="course-description">以主题探究为特色的幼儿阅读课程，培养好奇心、探索精神和创造力。</div>
+                                        <div class="course-meta">
+                                            <div class="course-organization">
+                                                <span>👥</span>
+                                                <span>桃言阅读</span>
+                                            </div>
+                                            <div class="course-rating">
+                                                <span>⭐</span>
+                                                <span>4.7</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-price">
+                                            <div>
+                                                <span class="price-current">¥399</span>
+                                                <span class="price-original">¥499</span>
+                                            </div>
+                                            <span style="font-size: 12px; color: #28a745;">20%折扣</span>
+                                        </div>
+                                        <button class="course-button">查看详情</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- 更多课程卡片... -->
+                                <div class="course-card" style="opacity: 0.6;">
+                                    <div class="course-image">更多课程...</div>
+                                    <div class="course-content">
+                                        <div class="course-title">更多课程</div>
+                                        <div class="course-description">...</div>
+                                        <div class="course-meta">
+                                            <div class="course-organization">
+                                                <span>👥</span>
+                                                <span>机构名称</span>
+                                            </div>
+                                            <div class="course-rating">
+                                                <span>⭐</span>
+                                                <span>4.x</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-price">
+                                            <div>
+                                                <span class="price-current">¥xxx</span>
+                                            </div>
+                                        </div>
+                                        <button class="course-button">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">Pagination</div>
+                            <div class="pagination">
+                                <button class="pagination-button" disabled>‹ 上一页</button>
+                                <button class="pagination-button active">1</button>
+                                <button class="pagination-button">2</button>
+                                <button class="pagination-button">3</button>
+                                <span style="color: #999;">...</span>
+                                <button class="pagination-button">10</button>
+                                <button class="pagination-button">下一页 ›</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 移动端布局 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📱 移动端布局 (<1024px)</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>布局特点：</strong>单列布局，筛选栏通过按钮触发全屏弹窗
+                </div>
+                
+                <div style="max-width: 400px; margin: 0 auto; border: 2px solid #ddd; border-radius: 8px; overflow: hidden;">
+                    <div class="component-box" style="margin: 0; border-radius: 0;">
+                        <div class="component-label">Mobile Filter Toggle</div>
+                        <div class="mobile-filter-toggle" style="display: block;">
+                            🔍 筛选课程
+                        </div>
+                    </div>
+                    
+                    <div class="component-box" style="margin: 0; border-radius: 0;">
+                        <div class="component-label">Mobile Results Header</div>
+                        <div class="results-header" style="flex-direction: column; gap: 12px;">
+                            <div class="results-count">找到 12 个课程</div>
+                            <div class="sort-dropdown">
+                                <span>排序：</span>
+                                <select class="sort-select">
+                                    <option>默认排序</option>
+                                    <option>价格从低到高</option>
+                                    <option>评分最高</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-box" style="margin: 0; border-radius: 0;">
+                        <div class="component-label">Mobile Course List</div>
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div class="course-card" style="margin: 0;">
+                                <div class="course-image" style="height: 160px;">
+                                    课程封面图片
+                                    <div class="course-badge">6-9岁</div>
+                                </div>
+                                <div class="course-content" style="padding: 16px;">
+                                    <div class="course-title" style="font-size: 16px;">启点阅读力1阶</div>
+                                    <div class="course-description">通过经典绘本阅读，培养儿童的观察力...</div>
+                                    <div class="course-meta">
+                                        <div class="course-organization">
+                                            <span>👥</span>
+                                            <span>启点阅读</span>
+                                        </div>
+                                        <div class="course-rating">
+                                            <span>⭐</span>
+                                            <span>4.8</span>
+                                        </div>
+                                    </div>
+                                    <div class="course-price">
+                                        <div>
+                                            <span class="price-current">¥299</span>
+                                            <span class="price-original">¥399</span>
+                                        </div>
+                                    </div>
+                                    <button class="course-button">查看详情</button>
+                                </div>
+                            </div>
+                            
+                            <div class="course-card" style="margin: 0; opacity: 0.6;">
+                                <div class="course-image" style="height: 160px;">更多课程...</div>
+                                <div class="course-content" style="padding: 16px;">
+                                    <div class="course-title" style="font-size: 16px;">更多课程</div>
+                                    <div class="course-description">...</div>
+                                    <button class="course-button">查看详情</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-box" style="margin: 0; border-radius: 0;">
+                        <div class="component-label">Mobile Pagination</div>
+                        <div class="pagination" style="flex-wrap: wrap; gap: 4px;">
+                            <button class="pagination-button" style="padding: 6px 10px; font-size: 12px;" disabled>‹</button>
+                            <button class="pagination-button active" style="padding: 6px 10px; font-size: 12px;">1</button>
+                            <button class="pagination-button" style="padding: 6px 10px; font-size: 12px;">2</button>
+                            <button class="pagination-button" style="padding: 6px 10px; font-size: 12px;">3</button>
+                            <button class="pagination-button" style="padding: 6px 10px; font-size: 12px;">›</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="annotation" style="margin-top: 20px;">
+                    <strong>移动端特性：</strong>
+                    <br>• 筛选按钮触发全屏弹窗
+                    <br>• 单列课程卡片布局
+                    <br>• 简化的分页控件
+                    <br>• 优化的触摸目标尺寸
+                </div>
+            </div>
+        </div>
+
+        <!-- 筛选功能详细设计 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🔍 筛选功能详细设计</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    
+                    <!-- 年龄筛选 -->
+                    <div class="component-box">
+                        <div class="component-label">年龄筛选</div>
+                        <div class="filter-group-title">按年龄段</div>
+                        <div class="filter-options">
+                            <div class="filter-option active">全部</div>
+                            <div class="filter-option">0-3岁 (2个课程)</div>
+                            <div class="filter-option">3-6岁 (5个课程)</div>
+                            <div class="filter-option">6-12岁 (5个课程)</div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            显示每个选项对应的课程数量
+                        </div>
+                    </div>
+                    
+                    <!-- 机构筛选 -->
+                    <div class="component-box">
+                        <div class="component-label">机构筛选</div>
+                        <div class="filter-group-title">按教育机构</div>
+                        <div class="filter-options">
+                            <div class="filter-option active">全部机构</div>
+                            <div class="filter-option">启点阅读 (1个课程)</div>
+                            <div class="filter-option">乐米乐 (1个课程)</div>
+                            <div class="filter-option">桃言阅读 (1个课程)</div>
+                            <div class="filter-option">阅见未来 (9个课程)</div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            支持多选，显示课程数量
+                        </div>
+                    </div>
+                    
+                    <!-- 价格筛选 -->
+                    <div class="component-box">
+                        <div class="component-label">价格筛选</div>
+                        <div class="filter-group-title">按价格范围</div>
+                        <div class="filter-options">
+                            <div class="filter-option">全部价格</div>
+                            <div class="filter-option">免费课程 (0个)</div>
+                            <div class="filter-option">¥100以下 (0个)</div>
+                            <div class="filter-option">¥100-300 (2个)</div>
+                            <div class="filter-option">¥300-500 (2个)</div>
+                            <div class="filter-option">¥500以上 (8个)</div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            价格区间筛选，实时更新数量
+                        </div>
+                    </div>
+                    
+                    <!-- 高级筛选 -->
+                    <div class="component-box">
+                        <div class="component-label">高级筛选（可选）</div>
+                        <div class="filter-group-title">课程特色</div>
+                        <div class="filter-options">
+                            <div class="filter-option">包含视频教学</div>
+                            <div class="filter-option">提供教案下载</div>
+                            <div class="filter-option">专家授课</div>
+                            <div class="filter-option">互动讨论</div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            可选的高级筛选条件
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 课程卡片详细设计 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🎴 课程卡片详细设计</div>
+            <div class="wireframe-content">
+                <div style="max-width: 400px; margin: 0 auto;">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">📚</div>
+                                <div>课程封面图片</div>
+                                <div style="font-size: 12px; color: #999; margin-top: 4px;">16:9 比例，高质量图片</div>
+                            </div>
+                            <div class="course-badge">6-9岁</div>
+                            <div style="position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">
+                                15个课程
+                            </div>
+                        </div>
+                        <div class="course-content">
+                            <div class="course-title">启点阅读力1阶</div>
+                            <div class="course-description">通过经典绘本阅读，培养儿童的观察力、理解力和表达能力，建立良好的阅读习惯。适合6-9岁儿童。</div>
+                            <div class="course-meta">
+                                <div class="course-organization">
+                                    <span>👥</span>
+                                    <span>启点阅读</span>
+                                </div>
+                                <div class="course-rating">
+                                    <span>⭐</span>
+                                    <span>4.8 (128评价)</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 12px; color: #666;">
+                                <span>📅 最近更新：2024年1月</span>
+                                <span>👥 1,234人学习</span>
+                            </div>
+                            <div class="course-price">
+                                <div>
+                                    <span class="price-current">¥299</span>
+                                    <span class="price-original">¥399</span>
+                                </div>
+                                <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                                    <span style="font-size: 12px; color: #28a745; font-weight: bold;">25%折扣</span>
+                                    <span style="font-size: 10px; color: #999;">限时优惠</span>
+                                </div>
+                            </div>
+                            <button class="course-button">查看详情</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="annotation" style="margin-top: 20px;">
+                    <strong>卡片信息层次：</strong>
+                    <br>• 封面图片 + 年龄标签 + 课程数量
+                    <br>• 课程标题（突出显示）
+                    <br>• 课程描述（2行截断）
+                    <br>• 机构信息 + 评分
+                    <br>• 更新时间 + 学习人数
+                    <br>• 价格信息 + 折扣标识
+                    <br>• 操作按钮
+                </div>
+            </div>
+        </div>
+
+        <!-- 空状态设计 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🔍 空状态设计</div>
+            <div class="wireframe-content">
+                <div class="component-box">
+                    <div class="component-label">No Results State</div>
+                    <div class="no-results">
+                        <div class="no-results-icon">🔍</div>
+                        <div class="no-results-title">没有找到符合条件的课程</div>
+                        <div class="no-results-text">请尝试调整筛选条件或搜索关键词</div>
+                        <div style="margin-top: 20px;">
+                            <button style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-right: 10px;">
+                                清除筛选条件
+                            </button>
+                            <button style="background: transparent; color: #007bff; border: 1px solid #007bff; padding: 10px 20px; border-radius: 6px; cursor: pointer;">
+                                浏览全部课程
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="annotation">
+                    <strong>空状态处理：</strong>
+                    <br>• 友好的图标和文案提示
+                    <br>• 提供解决方案（清除筛选、浏览全部）
+                    <br>• 避免用户陷入死胡同
+                </div>
+            </div>
+        </div>
+
+        <!-- 交互行为说明 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">⚡ 交互行为说明</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    
+                    <div class="feature-list">
+                        <h4>筛选交互</h4>
+                        <ul>
+                            <li>点击筛选项立即更新结果</li>
+                            <li>支持多选（机构、特色）</li>
+                            <li>显示每个选项的课程数量</li>
+                            <li>移动端全屏弹窗筛选</li>
+                            <li>筛选状态持久化保存</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>排序功能</h4>
+                        <ul>
+                            <li>默认排序（推荐算法）</li>
+                            <li>价格从低到高/从高到低</li>
+                            <li>评分最高</li>
+                            <li>最新发布</li>
+                            <li>最受欢迎</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>卡片交互</h4>
+                        <ul>
+                            <li>悬停时轻微上浮效果</li>
+                            <li>点击卡片任意位置跳转详情</li>
+                            <li>机构名称可点击跳转机构页</li>
+                            <li>收藏功能（登录用户）</li>
+                            <li>分享功能</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>分页导航</h4>
+                        <ul>
+                            <li>每页显示12个课程</li>
+                            <li>支持页码直接跳转</li>
+                            <li>上一页/下一页按钮</li>
+                            <li>移动端简化分页控件</li>
+                            <li>URL参数支持直接访问</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 性能优化要点 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🚀 性能优化要点</div>
+            <div class="wireframe-content">
+                <div class="feature-list">
+                    <h4>关键优化策略</h4>
+                    <ul>
+                        <li><strong>图片懒加载：</strong>课程封面图片按需加载，提升首屏速度</li>
+                        <li><strong>虚拟滚动：</strong>大量课程时使用虚拟滚动优化性能</li>
+                        <li><strong>筛选防抖：</strong>筛选操作防抖处理，减少API请求</li>
+                        <li><strong>缓存策略：</strong>筛选结果和课程数据合理缓存</li>
+                        <li><strong>骨架屏：</strong>加载时显示骨架屏，提升用户体验</li>
+                        <li><strong>预加载：</strong>预加载下一页数据，提升翻页体验</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技术实现要点 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🔧 技术实现要点</div>
+            <div class="wireframe-content">
+                <div class="feature-list">
+                    <h4>关键技术点</h4>
+                    <ul>
+                        <li><strong>路由设计：</strong>/courses?age=6-12&org=启点阅读&page=1</li>
+                        <li><strong>状态管理：</strong>筛选条件、排序方式、分页状态</li>
+                        <li><strong>数据获取：</strong>支持筛选、排序、分页的API设计</li>
+                        <li><strong>响应式实现：</strong>CSS Grid + Flexbox + 媒体查询</li>
+                        <li><strong>无障碍访问：</strong>键盘导航、屏幕阅读器支持</li>
+                        <li><strong>SEO优化：</strong>服务端渲染、合理的URL结构</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
