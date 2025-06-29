@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PageNavigationFlowchart: React.FC = () => {
   return (
@@ -11,10 +12,10 @@ const PageNavigationFlowchart: React.FC = () => {
           <div className="min-w-[1000px]">
             {/* 主要页面层级 */}
             <div className="flex justify-center mb-16">
-              <div className="bg-primary-100 border-2 border-primary-500 rounded-lg p-4 text-center w-40">
+              <Link to="/" className="bg-primary-100 border-2 border-primary-500 rounded-lg p-4 text-center w-40 hover:bg-primary-200 transition-colors">
                 <div className="font-bold text-primary-700 mb-1">首页</div>
                 <div className="text-xs text-forest-600">HomePage</div>
-              </div>
+              </Link>
             </div>
             
             {/* 二级页面层级 */}
@@ -34,35 +35,35 @@ const PageNavigationFlowchart: React.FC = () => {
                 ></div>
               ))}
               
-              <div className="bg-blue-100 border-2 border-blue-500 rounded-lg p-3 text-center w-36 mx-2">
+              <Link to="/courses" className="bg-blue-100 border-2 border-blue-500 rounded-lg p-3 text-center w-36 mx-2 hover:bg-blue-200 transition-colors">
                 <div className="font-bold text-blue-700 mb-1">课程中心</div>
                 <div className="text-xs text-forest-600">CoursesPage</div>
-              </div>
+              </Link>
               
-              <div className="bg-purple-100 border-2 border-purple-500 rounded-lg p-3 text-center w-36 mx-2">
+              <Link to="/experts" className="bg-purple-100 border-2 border-purple-500 rounded-lg p-3 text-center w-36 mx-2 hover:bg-purple-200 transition-colors">
                 <div className="font-bold text-purple-700 mb-1">专家联盟</div>
                 <div className="text-xs text-forest-600">ExpertsPage</div>
-              </div>
+              </Link>
               
-              <div className="bg-green-100 border-2 border-green-500 rounded-lg p-3 text-center w-36 mx-2">
+              <Link to="/resources" className="bg-green-100 border-2 border-green-500 rounded-lg p-3 text-center w-36 mx-2 hover:bg-green-200 transition-colors">
                 <div className="font-bold text-green-700 mb-1">资源库</div>
                 <div className="text-xs text-forest-600">ResourcesPage</div>
-              </div>
+              </Link>
               
-              <div className="bg-yellow-100 border-2 border-yellow-500 rounded-lg p-3 text-center w-36 mx-2">
+              <Link to="/smart-library" className="bg-yellow-100 border-2 border-yellow-500 rounded-lg p-3 text-center w-36 mx-2 hover:bg-yellow-200 transition-colors">
                 <div className="font-bold text-yellow-700 mb-1">智阅书库</div>
                 <div className="text-xs text-forest-600">SmartLibraryPage</div>
-              </div>
+              </Link>
               
-              <div className="bg-red-100 border-2 border-red-500 rounded-lg p-3 text-center w-36 mx-2">
+              <Link to="/support" className="bg-red-100 border-2 border-red-500 rounded-lg p-3 text-center w-36 mx-2 hover:bg-red-200 transition-colors">
                 <div className="font-bold text-red-700 mb-1">运营支持</div>
                 <div className="text-xs text-forest-600">SupportPage</div>
-              </div>
+              </Link>
               
-              <div className="bg-orange-100 border-2 border-orange-500 rounded-lg p-3 text-center w-36 mx-2">
+              <Link to="/account" className="bg-orange-100 border-2 border-orange-500 rounded-lg p-3 text-center w-36 mx-2 hover:bg-orange-200 transition-colors">
                 <div className="font-bold text-orange-700 mb-1">会员中心</div>
                 <div className="text-xs text-forest-600">AccountPage</div>
-              </div>
+              </Link>
             </div>
             
             {/* 三级页面层级 - 课程中心 */}
@@ -140,34 +141,34 @@ const PageNavigationFlowchart: React.FC = () => {
                 {/* 连接线 */}
                 <div className="absolute top-[-100px] right-1/2 w-0.5 h-[100px] bg-orange-300 transform translate-x-1/2"></div>
                 
-                <div className="bg-orange-50 border-2 border-orange-400 rounded-lg p-3 text-center">
+                <Link to="/admin" className="block bg-orange-50 border-2 border-orange-400 rounded-lg p-3 text-center hover:bg-orange-100 transition-colors">
                   <div className="font-bold text-orange-700 mb-1">机构管理中心</div>
                   <div className="text-xs text-forest-600">AdminDashboardPage</div>
-                </div>
+                </Link>
               </div>
             </div>
             
             {/* 其他页面 */}
             <div className="flex justify-center gap-8">
-              <div className="bg-gray-100 border-2 border-gray-400 rounded-lg p-3 text-center w-36">
+              <Link to="/about" className="bg-gray-100 border-2 border-gray-400 rounded-lg p-3 text-center w-36 hover:bg-gray-200 transition-colors">
                 <div className="font-bold text-gray-700 mb-1">关于我们</div>
                 <div className="text-xs text-forest-600">AboutUsPage</div>
-              </div>
+              </Link>
               
-              <div className="bg-gray-100 border-2 border-gray-400 rounded-lg p-3 text-center w-36">
+              <Link to="/contact" className="bg-gray-100 border-2 border-gray-400 rounded-lg p-3 text-center w-36 hover:bg-gray-200 transition-colors">
                 <div className="font-bold text-gray-700 mb-1">联系我们</div>
                 <div className="text-xs text-forest-600">ContactPage</div>
-              </div>
+              </Link>
               
               <div className="bg-gray-100 border-2 border-gray-400 rounded-lg p-3 text-center w-36">
                 <div className="font-bold text-gray-700 mb-1">机构详情</div>
                 <div className="text-xs text-forest-600">OrganizationDetailPage</div>
               </div>
               
-              <div className="bg-gray-100 border-2 border-gray-400 rounded-lg p-3 text-center w-36">
+              <Link to="/not-found-test" className="bg-gray-100 border-2 border-gray-400 rounded-lg p-3 text-center w-36 hover:bg-gray-200 transition-colors">
                 <div className="font-bold text-gray-700 mb-1">404页面</div>
                 <div className="text-xs text-forest-600">NotFoundPage</div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
