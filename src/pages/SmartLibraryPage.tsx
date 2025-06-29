@@ -215,6 +215,21 @@ const SmartLibraryPage: React.FC = () => {
     });
   };
 
+  // 新增：全选功能
+  const handleSelectAll = () => {
+    if (selectedBooks.size === generatedBooks.length) {
+      // 如果已经全选，则取消全选
+      setSelectedBooks(new Set());
+    } else {
+      // 否则选择所有图书
+      setSelectedBooks(new Set(generatedBooks.map(book => book.id)));
+    }
+  };
+
+  // 检查是否全选状态
+  const isAllSelected = selectedBooks.size === generatedBooks.length && generatedBooks.length > 0;
+  const isPartialSelected = selectedBooks.size > 0 && selectedBooks.size < generatedBooks.length;
+
   const calculateTotal = () => {
     return generatedBooks
       .filter(book => selectedBooks.has(book.id))
@@ -460,6 +475,48 @@ const SmartLibraryPage: React.FC = () => {
                     导出书单
                   </button>
                 </div>
+              </div>
+            </div>
+
+            {/* 新增：全选控制区域 */}
+            <div className="bg-white rounded-xl shadow-md p-4 mb-6 border border-cream-200">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={handleSelectAll}
+                    className={cn(
+                      "flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors",
+                      isAllSelected
+                        ? "bg-primary-600 text-white"
+                        : isPartialSelected
+                        ? "bg-primary-100 text-primary-700 border border-primary-300"
+                        : "bg-cream-100 text-forest-700 hover:bg-cream-200"
+                    )}
+                  >
+                    <div className={cn(
+                      "w-4 h-4 border-2 rounded flex items-center justify-center",
+                      isAllSelected
+                        ? "border-white bg-white"
+                        : isPartialSelected
+                        ? "border-primary-600 bg-primary-100"
+                        : "border-forest-400"
+                    )}>
+                      {isAllSelected && <span className="text-primary-600 text-xs">✓</span>}
+                      {isPartialSelected && <span className="text-primary-600 text-xs">-</span>}
+                    </div>
+                    {isAllSelected ? '取消全选' : '全选图书'}
+                  </button>
+                  
+                  <div className="text-sm text-forest-600">
+                    已选择 <span className="font-medium text-primary-600">{selectedBooks.size}</span> / {generatedBooks.length} 本图书
+                  </div>
+                </div>
+                
+                {selectedBooks.size > 0 && (
+                  <div className="text-sm text-forest-600">
+                    预计总价：<span className="font-bold text-primary-600 text-lg">¥{calculateTotal().toFixed(2)}</span>
+                  </div>
+                )}
               </div>
             </div>
 
