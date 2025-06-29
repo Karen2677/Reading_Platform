@@ -7,7 +7,7 @@ import { organizationsData } from '../data/organizationsData';
 import { Filter } from 'lucide-react';
 import { cn } from '../utils/cn';
 
-const ageGroups = ['全部', '0-3岁', '3-6岁', '6-12岁', '教师培训'];
+const ageGroups = ['全部', '0-3岁', '3-6岁', '6-12岁'];
 
 const CoursesPage: React.FC = () => {
   const location = useLocation();
