@@ -36,11 +36,11 @@ const CourseDetailPage: React.FC = () => {
   }
 
   // Determine the route based on course type
-  const getLessonRoute = (moduleId: number, lessonId: number) => {
+  const getModuleRoute = (moduleId: number) => {
     if (course.type === 'teacher') {
-      return `/expert-courses/${courseId}/modules/${moduleId}/lessons/${lessonId}`;
+      return `/expert-courses/${courseId}/modules/${moduleId}`;
     } else {
-      return `/courses/${courseId}/modules/${moduleId}/lessons/${lessonId}`;
+      return `/courses/${courseId}/modules/${moduleId}`;
     }
   };
 
@@ -109,6 +109,13 @@ const CourseDetailPage: React.FC = () => {
                   {course.type === 'classroom' ? '课堂教学' : '教师成长'}
                 </span>
               </div>
+              
+              {/* Module Count */}
+              <div className="flex items-center">
+                <FileText className="h-5 w-5 text-primary-600 mr-2" />
+                <span className="text-forest-600 mr-2">课程数量：</span>
+                <span className="font-medium">{course.modules.length} 个课程</span>
+              </div>
             </div>
           </div>
         </div>
@@ -122,7 +129,7 @@ const CourseDetailPage: React.FC = () => {
               {course.modules.map((module) => (
                 <Link
                   key={module.id}
-                  to={getLessonRoute(module.id, module.lesson.id)}
+                  to={getModuleRoute(module.id)}
                   className="group block bg-gradient-to-br from-primary-50 to-primary-100 hover:from-primary-100 hover:to-primary-200 rounded-xl p-6 transition-all duration-300 hover:shadow-lg border border-primary-200 hover:border-primary-300"
                 >
                   <div className="flex items-start justify-between mb-4">

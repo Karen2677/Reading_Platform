@@ -33,10 +33,9 @@ interface Comment {
 }
 
 const LessonPlanDetailPage: React.FC = () => {
-  const { courseId, moduleId, lessonId } = useParams<{ 
+  const { courseId, moduleId } = useParams<{ 
     courseId: string; 
     moduleId: string; 
-    lessonId: string; 
   }>();
   
   const [activeTab, setActiveTab] = useState('绘本简介');
@@ -84,12 +83,11 @@ const LessonPlanDetailPage: React.FC = () => {
     }
   ]);
 
-  // Find the course, module, and lesson
+  // Find the course and module
   const course = coursesData.find((c) => c.id === Number(courseId));
   const module = course?.modules.find((m) => m.id === Number(moduleId));
-  const lesson = module?.lesson;
 
-  if (!course || !module || !lesson) {
+  if (!course || !module) {
     return (
       <div className="pt-32 pb-20 bg-cream-50 min-h-screen">
         <div className="container-custom">
@@ -157,18 +155,14 @@ const LessonPlanDetailPage: React.FC = () => {
       case '绘本简介':
         return (
           <div className="prose max-w-none">
-            <h3 className="text-lg font-medium mb-4">《好饿的毛毛虫》绘本简介</h3>
+            <h3 className="text-lg font-medium mb-4">绘本简介</h3>
             <p className="text-forest-700 mb-4">
-              《好饿的毛毛虫》是艾瑞克·卡尔创作的经典绘本，讲述了一只小毛毛虫从卵中孵化出来后，
-              不断寻找食物，最终蜕变成美丽蝴蝶的故事。
+              本课程基于经典绘本设计，通过生动有趣的故事情节，
+              帮助孩子们在阅读中学习知识、培养品格、发展能力。
             </p>
             <p className="text-forest-700 mb-4">
-              这本书通过简单的故事情节，向孩子们展示了生命的成长过程，同时融入了数字、星期、
-              食物等基础认知内容，是一本集故事性、教育性和艺术性于一体的优秀绘本。
-            </p>
-            <p className="text-forest-700">
-              绘本采用拼贴画的艺术形式，色彩鲜艳，画面生动，特别适合3-6岁的幼儿阅读。
-              通过这个故事，孩子们可以学习到坚持、成长、变化等重要的人生主题。
+              绘本采用精美的插画和简洁的文字，特别适合幼儿阅读。
+              通过这个故事，孩子们可以学习到重要的人生主题和价值观。
             </p>
           </div>
         );
@@ -178,15 +172,15 @@ const LessonPlanDetailPage: React.FC = () => {
           <div className="prose max-w-none">
             <h3 className="text-lg font-medium mb-4">活动设计理念</h3>
             <p className="text-forest-700 mb-4">
-              本次活动以《好饿的毛毛虫》绘本为载体，通过多感官体验、角色扮演、
+              本次活动以绘本为载体，通过多感官体验、角色扮演、
               手工制作等多种形式，帮助幼儿深入理解故事内容。
             </p>
             <h4 className="font-medium mb-2">活动目标：</h4>
             <ul className="list-disc list-inside text-forest-700 space-y-1 mb-4">
-              <li>认识数字1-5，理解数量概念</li>
-              <li>了解毛毛虫的生长过程和生命周期</li>
-              <li>培养观察能力和想象力</li>
-              <li>提升语言表达和社交能力</li>
+              <li>培养阅读兴趣和良好的阅读习惯</li>
+              <li>提升语言表达和理解能力</li>
+              <li>发展观察力和想象力</li>
+              <li>增强社交能力和合作精神</li>
             </ul>
             <p className="text-forest-700">
               活动设计注重幼儿的主体性和参与性，通过游戏化的方式让学习变得有趣而有意义。
@@ -202,7 +196,7 @@ const LessonPlanDetailPage: React.FC = () => {
               <div className="bg-cream-50 p-4 rounded-lg">
                 <h4 className="font-medium mb-2">基础材料：</h4>
                 <ul className="list-disc list-inside text-forest-700 space-y-1 text-sm">
-                  {lesson.materials.map((material, index) => (
+                  {module.materials.map((material, index) => (
                     <li key={index}>{material}</li>
                   ))}
                 </ul>
@@ -215,15 +209,15 @@ const LessonPlanDetailPage: React.FC = () => {
                   <li>安全剪刀</li>
                   <li>胶水或双面胶</li>
                   <li>彩色笔或蜡笔</li>
-                  <li>毛球或棉花球</li>
+                  <li>装饰材料</li>
                 </ul>
               </div>
               
-              {lesson.resources && lesson.resources.length > 0 && (
+              {module.resources && module.resources.length > 0 && (
                 <div className="bg-primary-50 p-4 rounded-lg">
                   <h4 className="font-medium mb-2">数字资源下载：</h4>
                   <div className="space-y-2">
-                    {lesson.resources.map((resource) => (
+                    {module.resources.map((resource) => (
                       <a key={resource.id} href={resource.url} className="flex items-center text-primary-600 hover:text-primary-800 text-sm">
                         <Download className="h-4 w-4 mr-2 flex-shrink-0" />
                         <span className="break-all">{resource.title}</span>
@@ -239,8 +233,8 @@ const LessonPlanDetailPage: React.FC = () => {
       case '活动流程':
         const lessons = [
           {
-            title: '课时1：绘本导读与基础认知',
-            content: lesson.lessonPlan?.content || '教案内容加载中...'
+            title: '完整活动流程',
+            content: module.lessonPlan?.content || '教案内容加载中...'
           }
         ];
         
@@ -309,26 +303,26 @@ const LessonPlanDetailPage: React.FC = () => {
             <h3 className="text-lg font-medium mb-4">延伸活动建议</h3>
             
             <div className="bg-primary-50 p-4 rounded-lg mb-4">
-              <h4 className="font-medium mb-2 text-sm sm:text-base">🌱 种植观察活动</h4>
+              <h4 className="font-medium mb-2 text-sm sm:text-base">🌱 探索活动</h4>
               <p className="text-forest-700 text-sm">
-                在教室里种植豆苗或其他快速生长的植物，让幼儿每天观察记录植物的生长变化，
-                体验生命成长的奇妙过程。
+                结合课程主题，设计相关的探索和观察活动，
+                让幼儿在实践中深化理解和体验。
               </p>
             </div>
             
             <div className="bg-accent-50 p-4 rounded-lg mb-4">
               <h4 className="font-medium mb-2 text-sm sm:text-base">🎨 创意美术活动</h4>
               <p className="text-forest-700 text-sm">
-                用手指画、拼贴画等方式创作毛毛虫和蝴蝶的艺术作品，
-                鼓励幼儿发挥想象力，创造属于自己的毛毛虫故事。
+                用绘画、手工等方式创作相关的艺术作品，
+                鼓励幼儿发挥想象力，表达自己的理解。
               </p>
             </div>
             
             <div className="bg-accent-100 p-4 rounded-lg mb-4">
-              <h4 className="font-medium mb-2 text-sm sm:text-base">🍎 健康饮食教育</h4>
+              <h4 className="font-medium mb-2 text-sm sm:text-base">🎭 角色扮演</h4>
               <p className="text-forest-700 text-sm">
-                结合故事中的水果，开展健康饮食教育，让幼儿了解各种水果的营养价值，
-                培养良好的饮食习惯。
+                通过角色扮演和戏剧表演，让幼儿更深入地理解故事情节，
+                培养表达能力和同理心。
               </p>
             </div>
           </div>
@@ -342,20 +336,20 @@ const LessonPlanDetailPage: React.FC = () => {
             <div className="bg-accent-50 p-4 rounded-lg mb-4">
               <h4 className="font-medium mb-2 text-sm sm:text-base">📚 亲子共读建议</h4>
               <ul className="list-disc list-inside text-forest-700 space-y-1 text-sm">
-                <li>每天睡前与孩子一起阅读绘本</li>
+                <li>每天安排固定的亲子阅读时间</li>
                 <li>鼓励孩子复述故事情节</li>
                 <li>引导孩子观察绘本中的细节</li>
-                <li>与孩子讨论毛毛虫的变化过程</li>
+                <li>与孩子讨论故事的意义和感受</li>
               </ul>
             </div>
             
             <div className="bg-primary-50 p-4 rounded-lg mb-4">
               <h4 className="font-medium mb-2 text-sm sm:text-base">🏠 家庭延伸活动</h4>
               <ul className="list-disc list-inside text-forest-700 space-y-1 text-sm">
-                <li>在家中寻找不同的昆虫，观察它们的特征</li>
-                <li>制作毛毛虫主题的手工作品</li>
-                <li>用水果制作健康小食，练习数数</li>
-                <li>观看关于蝴蝶生长的纪录片</li>
+                <li>在家中寻找与课程相关的物品或现象</li>
+                <li>制作相关主题的手工作品</li>
+                <li>观看相关的纪录片或视频</li>
+                <li>进行相关的游戏和体验活动</li>
               </ul>
             </div>
             
@@ -363,7 +357,7 @@ const LessonPlanDetailPage: React.FC = () => {
               <h4 className="font-medium mb-2 text-sm sm:text-base">💡 家长小贴士</h4>
               <p className="text-forest-700 text-sm">
                 在与孩子互动时，要耐心倾听孩子的想法，鼓励他们提出问题。
-                可以结合日常生活中的观察，帮助孩子更好地理解故事内容。
+                可以结合日常生活中的观察，帮助孩子更好地理解课程内容。
               </p>
             </div>
           </div>
@@ -379,7 +373,7 @@ const LessonPlanDetailPage: React.FC = () => {
                   <Play className="h-8 w-8 sm:h-12 sm:w-12 text-forest-400" />
                 </div>
                 <h4 className="font-medium mb-2 text-sm sm:text-base">绘本导读示范</h4>
-                <p className="text-xs sm:text-sm text-forest-600 mb-3">专业教师示范如何生动地讲述《好饿的毛毛虫》</p>
+                <p className="text-xs sm:text-sm text-forest-600 mb-3">专业教师示范如何生动地讲述绘本故事</p>
                 <button className="btn btn-primary text-xs sm:text-sm w-full">
                   <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                   观看视频
@@ -391,7 +385,7 @@ const LessonPlanDetailPage: React.FC = () => {
                   <Play className="h-8 w-8 sm:h-12 sm:w-12 text-forest-400" />
                 </div>
                 <h4 className="font-medium mb-2 text-sm sm:text-base">手工制作教程</h4>
-                <p className="text-xs sm:text-sm text-forest-600 mb-3">详细演示毛毛虫手工制作的每个步骤</p>
+                <p className="text-xs sm:text-sm text-forest-600 mb-3">详细演示相关手工制作的每个步骤</p>
                 <button className="btn btn-primary text-xs sm:text-sm w-full">
                   <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                   观看视频
@@ -575,8 +569,8 @@ const LessonPlanDetailPage: React.FC = () => {
               <span className="text-sm">目录</span>
             </button>
           </div>
-          <h1 className="text-lg font-bold text-forest-900 mt-2 truncate">{lesson.title}</h1>
-          <p className="text-sm text-forest-600">{module.title}</p>
+          <h1 className="text-lg font-bold text-forest-900 mt-2 truncate">{module.title}</h1>
+          <p className="text-sm text-forest-600">{module.description}</p>
         </div>
 
         {/* Desktop Layout: Left-Right Two Columns */}
@@ -599,20 +593,17 @@ const LessonPlanDetailPage: React.FC = () => {
               <div className="space-y-2">
                 {course.modules.map((mod) => (
                   <div key={mod.id} className="border border-cream-200 rounded-lg overflow-hidden">
-                    <div className="bg-cream-50 p-3">
-                      <h3 className="font-medium text-forest-800 text-sm">{mod.title}</h3>
-                    </div>
-                    <div className="p-2">
+                    <div className="p-3">
                       <Link
-                        to={`/courses/${courseId}/modules/${mod.id}/lessons/${mod.lesson.id}`}
+                        to={`/courses/${courseId}/modules/${mod.id}`}
                         className={cn(
                           "block p-2 rounded text-sm transition-colors",
-                          mod.lesson.id === Number(lessonId)
+                          mod.id === Number(moduleId)
                             ? "bg-primary-100 text-primary-700 font-medium"
                             : "text-forest-600 hover:bg-cream-100"
                         )}
                       >
-                        {mod.lesson.title}
+                        {mod.title}
                       </Link>
                     </div>
                   </div>
@@ -624,24 +615,19 @@ const LessonPlanDetailPage: React.FC = () => {
           {/* Right Content Area (Desktop Only) */}
           <div className="flex-1 min-w-0">
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-cream-200">
-              {/* Lesson Header */}
+              {/* Module Header */}
               <div className="relative h-64">
                 <img
                   src={course.coverImage}
-                  alt={lesson.title}
+                  alt={module.title}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
                   <div className="p-6 text-white">
-                    <h1 className="text-2xl font-bold mb-2">{lesson.title}</h1>
-                    <p className="text-cream-200">{module.title}</p>
+                    <h1 className="text-2xl font-bold mb-2">{module.title}</h1>
+                    <p className="text-cream-200">{module.description}</p>
                   </div>
                 </div>
-              </div>
-              
-              {/* Lesson Description */}
-              <div className="p-6 border-b border-cream-200">
-                <p className="text-forest-700">{lesson.description}</p>
               </div>
               
               {/* Tabs */}
@@ -690,21 +676,18 @@ const LessonPlanDetailPage: React.FC = () => {
                   <div className="space-y-2">
                     {course.modules.map((mod) => (
                       <div key={mod.id} className="border border-cream-200 rounded-lg overflow-hidden">
-                        <div className="bg-cream-50 p-3">
-                          <h3 className="font-medium text-forest-800 text-sm">{mod.title}</h3>
-                        </div>
-                        <div className="p-2">
+                        <div className="p-3">
                           <Link
-                            to={`/courses/${courseId}/modules/${mod.id}/lessons/${mod.lesson.id}`}
+                            to={`/courses/${courseId}/modules/${mod.id}`}
                             onClick={toggleSidebar}
                             className={cn(
                               "block p-2 rounded text-sm transition-colors",
-                              mod.lesson.id === Number(lessonId)
+                              mod.id === Number(moduleId)
                                 ? "bg-primary-100 text-primary-700 font-medium"
                                 : "text-forest-600 hover:bg-cream-100"
                             )}
                           >
-                            {mod.lesson.title}
+                            {mod.title}
                           </Link>
                         </div>
                       </div>
@@ -717,24 +700,19 @@ const LessonPlanDetailPage: React.FC = () => {
           
           {/* Mobile Content */}
           <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-cream-200">
-            {/* Mobile Lesson Header */}
+            {/* Mobile Module Header */}
             <div className="relative h-48">
               <img
                 src={course.coverImage}
-                alt={lesson.title}
+                alt={module.title}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
                 <div className="p-4 text-white">
-                  <h1 className="text-xl font-bold mb-1">{lesson.title}</h1>
-                  <p className="text-cream-200 text-sm">{module.title}</p>
+                  <h1 className="text-xl font-bold mb-1">{module.title}</h1>
+                  <p className="text-cream-200 text-sm">{module.description}</p>
                 </div>
               </div>
-            </div>
-            
-            {/* Mobile Lesson Description */}
-            <div className="p-4 border-b border-cream-200">
-              <p className="text-forest-700 text-sm">{lesson.description}</p>
             </div>
             
             {/* Mobile Tabs */}
@@ -745,7 +723,7 @@ const LessonPlanDetailPage: React.FC = () => {
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={cn(
-                      "px-3 py-3  text-xs font-medium whitespace-nowrap border-b-2 transition-colors flex-shrink-0",
+                      "px-3 py-3 text-xs font-medium whitespace-nowrap border-b-2 transition-colors flex-shrink-0",
                       activeTab === tab
                         ? "border-primary-500 text-primary-600"
                         : "border-transparent text-forest-500 hover:text-forest-700"

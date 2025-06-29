@@ -16,13 +16,6 @@ export interface CourseModule {
   id: number;
   title: string;
   description: string;
-  lesson: Lesson;
-}
-
-export interface Lesson {
-  id: number;
-  title: string;
-  description: string;
   materials: string[];
   lessonPlan?: {
     content: string;
@@ -51,22 +44,18 @@ export const coursesData: Course[] = [
     modules: [
       {
         id: 1,
-        title: '课程1-启点阅读力1阶',
+        title: '启点阅读力1阶-课程1',
         description: '通过经典绘本《好饿的毛毛虫》，培养儿童基础阅读能力',
-        lesson: {
-          id: 1,
-          title: '《好饿的毛毛虫》',
-          description: '通过《好饿的毛毛虫》这本经典绘本，帮助孩子认识数字、星期、食物，理解生命成长的过程。',
-          materials: [
-            '《好饿的毛毛虫》绘本',
-            '数字卡片1-5',
-            '星期卡片',
-            '水果图片卡',
-            '毛毛虫手偶',
-            '蝴蝶贴纸'
-          ],
-          lessonPlan: {
-            content: `**课前准备**
+        materials: [
+          '《好饿的毛毛虫》绘本',
+          '数字卡片1-5',
+          '星期卡片',
+          '水果图片卡',
+          '毛毛虫手偶',
+          '蝴蝶贴纸'
+        ],
+        lessonPlan: {
+          content: `**课前准备**
 • 准备《好饿的毛毛虫》绘本
 • 准备数字卡片1-5
 • 准备各种水果的图片或实物
@@ -99,46 +88,41 @@ export const coursesData: Course[] = [
 • 回顾故事主要内容
 • 奖励表现好的幼儿蝴蝶贴纸
 • 预告下次活动内容`
+        },
+        resources: [
+          {
+            id: 1,
+            title: '《好饿的毛毛虫》PPT课件',
+            url: '/resources/hungry-caterpillar-ppt.pdf',
+            type: 'pdf'
           },
-          resources: [
-            {
-              id: 1,
-              title: '《好饿的毛毛虫》PPT课件',
-              url: '/resources/hungry-caterpillar-ppt.pdf',
-              type: 'pdf'
-            },
-            {
-              id: 2,
-              title: '数字卡片打印版',
-              url: '/resources/number-cards.pdf',
-              type: 'pdf'
-            },
-            {
-              id: 3,
-              title: '水果图片素材包',
-              url: '/resources/fruit-images.zip',
-              type: 'image'
-            }
-          ]
-        }
+          {
+            id: 2,
+            title: '数字卡片打印版',
+            url: '/resources/number-cards.pdf',
+            type: 'pdf'
+          },
+          {
+            id: 3,
+            title: '水果图片素材包',
+            url: '/resources/fruit-images.zip',
+            type: 'image'
+          }
+        ]
       },
       {
         id: 2,
-        title: '启点阅读力2阶',
+        title: '启点阅读力1阶-课程2',
         description: '通过经典绘本《爷爷一定有办法》，培养儿童逻辑思维能力',
-        lesson: {
-          id: 2,
-          title: '《爷爷一定有办法》',
-          description: '通过这个温馨的故事，让孩子理解传承、创新和珍惜的意义，培养解决问题的思维能力。',
-          materials: [
-            '《爷爷一定有办法》绘本',
-            '各种布料样品',
-            '针线道具',
-            '小毯子、外套等道具',
-            '手工制作材料'
-          ],
-          lessonPlan: {
-            content: `**课前准备**
+        materials: [
+          '《爷爷一定有办法》绘本',
+          '各种布料样品',
+          '针线道具',
+          '小毯子、外套等道具',
+          '手工制作材料'
+        ],
+        lessonPlan: {
+          content: `**课前准备**
 • 准备《爷爷一定有办法》绘本
 • 准备各种布料样品供幼儿触摸
 • 准备手工制作的简单材料
@@ -169,22 +153,199 @@ export const coursesData: Course[] = [
 • 讨论爷爷对约瑟的爱
 • 分享自己和爷爷奶奶的故事
 • 培养感恩之心`
+        },
+        resources: [
+          {
+            id: 4,
+            title: '《爷爷一定有办法》教学视频',
+            url: '/resources/grandpa-story-video.mp4',
+            type: 'video'
           },
-          resources: [
-            {
-              id: 4,
-              title: '《爷爷一定有办法》教学视频',
-              url: '/resources/grandpa-story-video.mp4',
-              type: 'video'
-            },
-            {
-              id: 5,
-              title: '手工制作指导手册',
-              url: '/resources/craft-guide.pdf',
-              type: 'pdf'
-            }
-          ]
+          {
+            id: 5,
+            title: '手工制作指导手册',
+            url: '/resources/craft-guide.pdf',
+            type: 'pdf'
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: '启点阅读力1阶-课程3',
+        description: '通过经典绘本《猜猜我有多爱你》，培养儿童情感表达能力',
+        materials: [
+          '《猜猜我有多爱你》绘本',
+          '小兔子手偶',
+          '大兔子手偶',
+          '爱心贴纸',
+          '彩色卡纸'
+        ],
+        lessonPlan: {
+          content: `**课前准备**
+• 准备《猜猜我有多爱你》绘本
+• 准备小兔子和大兔子手偶
+• 准备爱心贴纸和彩色卡纸
+
+**情感导入（5分钟）**
+• 出示小兔子手偶，引起幼儿兴趣
+• 提问：你们爱自己的爸爸妈妈吗？有多爱？
+• 引出今天的故事主题
+
+**绘本阅读（20分钟）**
+• 用手偶演示故事情节
+• 重点关注小兔子和大兔子表达爱的方式
+• 引导幼儿理解"爱"的深度和广度
+
+**情感表达（15分钟）**
+• 讨论：你会怎样表达对家人的爱？
+• 角色扮演：模仿小兔子的动作
+• 创编：想出更多表达爱的方式
+
+**制作活动（10分钟）**
+• 制作爱心卡片
+• 写下或画出对家人的爱
+• 准备带回家送给家人
+
+**分享总结（5分钟）**
+• 分享自己制作的爱心卡片
+• 表达对家人的爱意
+• 约定回家后的行动`
         }
+      },
+      {
+        id: 4,
+        title: '启点阅读力1阶-课程4',
+        description: '通过经典绘本《小蓝和小黄》，认识颜色和友谊',
+        materials: [
+          '《小蓝和小黄》绘本',
+          '蓝色和黄色颜料',
+          '调色盘',
+          '画笔',
+          '白纸',
+          '彩色圆片'
+        ]
+      },
+      {
+        id: 5,
+        title: '启点阅读力1阶-课程5',
+        description: '通过经典绘本《逃家小兔》，理解母爱的伟大',
+        materials: [
+          '《逃家小兔》绘本',
+          '小兔子头饰',
+          '妈妈兔子头饰',
+          '各种道具（帆船、花朵等）'
+        ]
+      },
+      {
+        id: 6,
+        title: '启点阅读力1阶-课程6',
+        description: '通过经典绘本《月亮的味道》，培养想象力和合作精神',
+        materials: [
+          '《月亮的味道》绘本',
+          '动物头饰',
+          '月亮道具',
+          '各种食物图片'
+        ]
+      },
+      {
+        id: 7,
+        title: '启点阅读力1阶-课程7',
+        description: '通过经典绘本《彩虹鱼》，学习分享和友谊',
+        materials: [
+          '《彩虹鱼》绘本',
+          '彩色鳞片贴纸',
+          '鱼形卡纸',
+          '亮片装饰材料'
+        ]
+      },
+      {
+        id: 8,
+        title: '启点阅读力1阶-课程8',
+        description: '通过经典绘本《小黑鱼》，培养勇气和团队合作',
+        materials: [
+          '《小黑鱼》绘本',
+          '黑色和红色卡纸',
+          '海洋背景图',
+          '鱼群贴纸'
+        ]
+      },
+      {
+        id: 9,
+        title: '启点阅读力1阶-课程9',
+        description: '通过经典绘本《花婆婆》，理解美好愿望的实现',
+        materials: [
+          '《花婆婆》绘本',
+          '花种子',
+          '小花盆',
+          '土壤',
+          '花朵贴纸'
+        ]
+      },
+      {
+        id: 10,
+        title: '启点阅读力1阶-课程10',
+        description: '通过经典绘本《要是你给老鼠吃饼干》，理解因果关系',
+        materials: [
+          '《要是你给老鼠吃饼干》绘本',
+          '小老鼠手偶',
+          '饼干道具',
+          '故事卡片'
+        ]
+      },
+      {
+        id: 11,
+        title: '启点阅读力1阶-课程11',
+        description: '通过经典绘本《大卫，不可以》，学习规则和自控',
+        materials: [
+          '《大卫，不可以》绘本',
+          '规则卡片',
+          '笑脸和哭脸贴纸',
+          '行为记录表'
+        ]
+      },
+      {
+        id: 12,
+        title: '启点阅读力1阶-课程12',
+        description: '通过经典绘本《我妈妈》，表达对妈妈的爱',
+        materials: [
+          '《我妈妈》绘本',
+          '妈妈照片',
+          '彩色卡纸',
+          '装饰材料'
+        ]
+      },
+      {
+        id: 13,
+        title: '启点阅读力1阶-课程13',
+        description: '通过经典绘本《我爸爸》，了解爸爸的特点',
+        materials: [
+          '《我爸爸》绘本',
+          '爸爸照片',
+          '超人斗篷',
+          '各种职业道具'
+        ]
+      },
+      {
+        id: 14,
+        title: '启点阅读力1阶-课程14',
+        description: '通过经典绘本《鳄鱼怕怕牙医怕怕》，克服看医生的恐惧',
+        materials: [
+          '《鳄鱼怕怕牙医怕怕》绘本',
+          '鳄鱼头饰',
+          '医生帽',
+          '牙刷道具'
+        ]
+      },
+      {
+        id: 15,
+        title: '启点阅读力1阶-课程15',
+        description: '通过经典绘本《小熊和最好的爸爸》，感受父爱的温暖',
+        materials: [
+          '《小熊和最好的爸爸》绘本',
+          '小熊手偶',
+          '爸爸熊手偶',
+          '温馨场景道具'
+        ]
       }
     ]
   },
@@ -200,22 +361,18 @@ export const coursesData: Course[] = [
     type: 'classroom',
     modules: [
       {
-        id: 3,
-        title: '感官认知启蒙',
+        id: 16,
+        title: '乐米乐早期阅读启蒙-课程1',
         description: '通过触摸书和感官游戏，启发婴幼儿的认知能力',
-        lesson: {
-          id: 3,
-          title: '《小手摸摸》触感认知',
-          description: '通过不同材质的触摸体验，帮助宝宝认识世界，发展触觉和语言能力。',
-          materials: [
-            '触摸认知书',
-            '不同材质的布料',
-            '安全的触摸玩具',
-            '音乐播放设备',
-            '柔软的垫子'
-          ],
-          lessonPlan: {
-            content: `**环境准备**
+        materials: [
+          '触摸认知书',
+          '不同材质的布料',
+          '安全的触摸玩具',
+          '音乐播放设备',
+          '柔软的垫子'
+        ],
+        lessonPlan: {
+          content: `**环境准备**
 • 铺设柔软安全的地垫
 • 准备各种材质的触摸材料
 • 播放轻柔的背景音乐
@@ -247,8 +404,30 @@ export const coursesData: Course[] = [
 • 轻柔的音乐和抚触
 • 总结今天的活动
 • 给宝宝温暖的拥抱`
-          }
         }
+      },
+      {
+        id: 17,
+        title: '乐米乐早期阅读启蒙-课程2',
+        description: '通过声音和韵律，培养宝宝的听觉能力',
+        materials: [
+          '音乐绘本',
+          '小铃铛',
+          '沙锤',
+          '音乐播放设备',
+          '彩色丝巾'
+        ]
+      },
+      {
+        id: 18,
+        title: '乐米乐早期阅读启蒙-课程3',
+        description: '通过颜色认知，刺激宝宝的视觉发展',
+        materials: [
+          '彩色认知书',
+          '彩色球球',
+          '彩色布条',
+          '彩色灯光'
+        ]
       }
     ]
   },
@@ -264,23 +443,19 @@ export const coursesData: Course[] = [
     type: 'classroom',
     modules: [
       {
-        id: 4,
-        title: '自然探索主题',
+        id: 19,
+        title: '桃言主题式阅读探究-课程1',
         description: '通过自然主题的绘本和活动，培养幼儿的观察力和探究精神',
-        lesson: {
-          id: 4,
-          title: '《小种子的旅行》自然探索',
-          description: '跟随小种子的成长旅程，了解植物的生长过程，培养对自然的热爱和观察能力。',
-          materials: [
-            '《小种子的旅行》绘本',
-            '各种植物种子',
-            '放大镜',
-            '小花盆和土壤',
-            '观察记录表',
-            '植物成长图片'
-          ],
-          lessonPlan: {
-            content: `**探究导入（8分钟）**
+        materials: [
+          '《小种子的旅行》绘本',
+          '各种植物种子',
+          '放大镜',
+          '小花盆和土壤',
+          '观察记录表',
+          '植物成长图片'
+        ],
+        lessonPlan: {
+          content: `**探究导入（8分钟）**
 • 出示神秘盒子，里面装着各种种子
 • 让幼儿猜测盒子里是什么
 • 引出今天的探究主题：种子的秘密
@@ -308,8 +483,18 @@ export const coursesData: Course[] = [
 • 分享今天的发现和感受
 • 制定观察计划：每天观察种子的变化
 • 预告下次活动：观察记录分享`
-          }
         }
+      },
+      {
+        id: 20,
+        title: '桃言主题式阅读探究-课程2',
+        description: '通过动物主题探究，了解动物的生活习性',
+        materials: [
+          '《动物的家》绘本',
+          '动物图片卡',
+          '动物栖息地模型',
+          '观察记录本'
+        ]
       }
     ]
   },
@@ -326,20 +511,26 @@ export const coursesData: Course[] = [
     expertId: 1,
     modules: [
       {
-        id: 5,
-        title: '0-12岁儿童阅读心理发展特点',
+        id: 21,
+        title: '儿童阅读心理发展-模块1',
         description: '系统学习不同年龄段儿童的阅读心理发展规律和特点',
-        lesson: {
-          id: 5,
-          title: '儿童阅读心理发展的阶段性特征',
-          description: '深入理解0-12岁儿童阅读心理发展的核心理论与实践应用，掌握科学的阅读教学方法。',
-          materials: [
-            '儿童发展心理学理论资料',
-            '不同年龄段阅读案例',
-            '阅读能力评估工具',
-            '教学实践指导手册'
-          ]
-        }
+        materials: [
+          '儿童发展心理学理论资料',
+          '不同年龄段阅读案例',
+          '阅读能力评估工具',
+          '教学实践指导手册'
+        ]
+      },
+      {
+        id: 22,
+        title: '儿童阅读心理发展-模块2',
+        description: '深入理解阅读动机与兴趣培养的理论与实践',
+        materials: [
+          '阅读动机理论资料',
+          '兴趣培养案例集',
+          '评估工具包',
+          '实践指导手册'
+        ]
       }
     ]
   },
@@ -356,20 +547,15 @@ export const coursesData: Course[] = [
     expertId: 2,
     modules: [
       {
-        id: 6,
-        title: '绘本教学设计原理与方法',
+        id: 23,
+        title: '绘本教学设计与实施-模块1',
         description: '学习绘本教学的理论基础和实践方法',
-        lesson: {
-          id: 6,
-          title: '绘本教学的设计原理与实施策略',
-          description: '掌握绘本教学的核心理念，学会设计有效的绘本教学活动，提升教学质量。',
-          materials: [
-            '绘本教学理论资料',
-            '优秀教学案例集',
-            '教学设计模板',
-            '评估工具和方法'
-          ]
-        }
+        materials: [
+          '绘本教学理论资料',
+          '优秀教学案例集',
+          '教学设计模板',
+          '评估工具和方法'
+        ]
       }
     ]
   },
@@ -386,20 +572,15 @@ export const coursesData: Course[] = [
     expertId: 3,
     modules: [
       {
-        id: 7,
-        title: '阅读能力评估理论与实践',
+        id: 24,
+        title: '阅读评估与诊断-模块1',
         description: '掌握科学的阅读评估方法和诊断技巧',
-        lesson: {
-          id: 7,
-          title: '阅读能力的科学评估与个性化诊断',
-          description: '学习使用专业的评估工具，准确诊断儿童阅读能力水平，制定个性化教学方案。',
-          materials: [
-            '阅读评估理论资料',
-            '标准化评估工具',
-            '诊断报告模板',
-            '个性化教学方案示例'
-          ]
-        }
+        materials: [
+          '阅读评估理论资料',
+          '标准化评估工具',
+          '诊断报告模板',
+          '个性化教学方案示例'
+        ]
       }
     ]
   }

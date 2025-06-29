@@ -25,8 +25,8 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="courses" element={<CoursesPage />} />
         <Route path="courses/:courseId" element={<CourseDetailPage />} />
-        <Route path="courses/:courseId/modules/:moduleId/lessons/:lessonId" element={<LessonPlanDetailPage />} />
-        <Route path="expert-courses/:courseId/modules/:moduleId/lessons/:lessonId" element={<ExpertLessonPlanDetailPage />} />
+        <Route path="courses/:courseId/modules/:moduleId" element={<LessonPlanDetailPage />} />
+        <Route path="expert-courses/:courseId/modules/:moduleId" element={<ExpertLessonPlanDetailPage />} />
         <Route path="experts" element={<ExpertsPage />} />
         <Route path="experts/:expertId" element={<ExpertDetailPage />} />
         <Route path="resources" element={<ResourcesPage />} />

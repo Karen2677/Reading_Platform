@@ -29,10 +29,9 @@ interface Comment {
 }
 
 const ExpertLessonPlanDetailPage: React.FC = () => {
-  const { courseId, moduleId, lessonId } = useParams<{ 
+  const { courseId, moduleId } = useParams<{ 
     courseId: string; 
     moduleId: string; 
-    lessonId: string; 
   }>();
   
   const [activeTab, setActiveTab] = useState('活动简介');
@@ -79,17 +78,16 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
     }
   ]);
 
-  // Find the course, module, and lesson
+  // Find the course and module
   const course = coursesData.find((c) => c.id === Number(courseId));
   const module = course?.modules.find((m) => m.id === Number(moduleId));
-  const lesson = module?.lesson;
 
-  if (!course || !module || !lesson) {
+  if (!course || !module) {
     return (
-      <div className="pt-32 pb-20">
+      <div className="pt-32 pb-20 bg-cream-50 min-h-screen">
         <div className="container-custom">
-          <div className="bg-white p-8 rounded-xl text-center">
-            <p className="text-gray-500">未找到课程信息</p>
+          <div className="bg-white p-8 rounded-xl text-center border border-cream-200">
+            <p className="text-forest-500">未找到课程信息</p>
           </div>
         </div>
       </div>
@@ -141,14 +139,14 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
         return (
           <div className="prose max-w-none">
             <h3 className="text-lg font-medium mb-4">课程内容概述</h3>
-            <p className="text-gray-700 mb-4">
+            <p className="text-forest-700 mb-4">
               本课程深入探讨儿童阅读心理发展的核心理论与实践应用。通过系统性的理论学习和案例分析，
               帮助教师全面理解不同年龄段儿童的阅读心理特点，掌握科学的阅读教学方法。
             </p>
             
             <h4 className="font-medium mb-3 text-base">学习目标</h4>
-            <div className="bg-blue-50 p-4 rounded-lg mb-4">
-              <ul className="list-disc list-inside text-gray-700 space-y-2 text-sm">
+            <div className="bg-primary-50 p-4 rounded-lg mb-4">
+              <ul className="list-disc list-inside text-forest-700 space-y-2 text-sm">
                 <li>深入理解0-12岁儿童阅读心理发展的阶段性特征</li>
                 <li>掌握不同年龄段儿童的阅读能力评估方法</li>
                 <li>学会根据儿童发展特点选择适宜的阅读材料</li>
@@ -159,9 +157,9 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
             
             <h4 className="font-medium mb-3 text-base">核心内容</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="bg-green-50 p-4 rounded-lg">
+              <div className="bg-accent-50 p-4 rounded-lg">
                 <h5 className="font-medium mb-2 text-sm">理论基础</h5>
-                <ul className="text-xs text-gray-700 space-y-1">
+                <ul className="text-xs text-forest-700 space-y-1">
                   <li>• 儿童认知发展理论</li>
                   <li>• 语言习得与阅读发展</li>
                   <li>• 阅读动机与兴趣培养</li>
@@ -169,9 +167,9 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
                 </ul>
               </div>
               
-              <div className="bg-yellow-50 p-4 rounded-lg">
+              <div className="bg-accent-100 p-4 rounded-lg">
                 <h5 className="font-medium mb-2 text-sm">实践应用</h5>
-                <ul className="text-xs text-gray-700 space-y-1">
+                <ul className="text-xs text-forest-700 space-y-1">
                   <li>• 阅读材料分级与选择</li>
                   <li>• 个性化教学策略设计</li>
                   <li>• 阅读困难儿童的支持</li>
@@ -181,8 +179,8 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
             </div>
             
             <h4 className="font-medium mb-3 text-base">适用对象</h4>
-            <div className="bg-purple-50 p-4 rounded-lg">
-              <p className="text-gray-700 text-sm">
+            <div className="bg-primary-100 p-4 rounded-lg">
+              <p className="text-forest-700 text-sm">
                 本课程适合幼儿园教师、小学语文教师、阅读推广人员、儿童图书馆员、
                 教育管理者以及对儿童阅读教育感兴趣的家长和教育工作者。
               </p>
@@ -196,12 +194,12 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
             <h3 className="text-lg font-medium mb-4">专家讲座视频</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Main Video */}
-              <div className="lg:col-span-2 bg-gray-100 rounded-lg p-6 mb-4">
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center mb-4">
+              <div className="lg:col-span-2 bg-cream-100 rounded-lg p-6 mb-4">
+                <div className="aspect-video bg-cream-200 rounded-lg flex items-center justify-center mb-4">
                   <div className="text-center">
-                    <Play className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                    <h4 className="font-medium text-gray-700 mb-2">主讲视频：儿童阅读心理发展特点</h4>
-                    <p className="text-sm text-gray-600 mb-4">王明教授详细讲解不同年龄段儿童的阅读心理特征</p>
+                    <Play className="h-16 w-16 text-forest-400 mx-auto mb-4" />
+                    <h4 className="font-medium text-forest-700 mb-2">主讲视频：儿童阅读心理发展特点</h4>
+                    <p className="text-sm text-forest-600 mb-4">王明教授详细讲解不同年龄段儿童的阅读心理特征</p>
                     <button className="btn btn-primary">
                       <Play className="h-5 w-5 mr-2" />
                       开始学习 (45分钟)
@@ -211,48 +209,48 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
               </div>
               
               {/* Supplementary Videos */}
-              <div className="bg-gray-100 rounded-lg p-4">
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center mb-3">
-                  <Play className="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" />
+              <div className="bg-cream-100 rounded-lg p-4">
+                <div className="aspect-video bg-cream-200 rounded-lg flex items-center justify-center mb-3">
+                  <Play className="h-8 w-8 sm:h-12 sm:w-12 text-forest-400" />
                 </div>
                 <h4 className="font-medium mb-2 text-sm sm:text-base">案例分析：3-4岁幼儿阅读指导</h4>
-                <p className="text-xs sm:text-sm text-gray-600 mb-3">实际案例演示如何进行有效的阅读指导</p>
+                <p className="text-xs sm:text-sm text-forest-600 mb-3">实际案例演示如何进行有效的阅读指导</p>
                 <button className="btn btn-outline text-xs sm:text-sm w-full">
                   <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                   观看视频 (20分钟)
                 </button>
               </div>
               
-              <div className="bg-gray-100 rounded-lg p-4">
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center mb-3">
-                  <Play className="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" />
+              <div className="bg-cream-100 rounded-lg p-4">
+                <div className="aspect-video bg-cream-200 rounded-lg flex items-center justify-center mb-3">
+                  <Play className="h-8 w-8 sm:h-12 sm:w-12 text-forest-400" />
                 </div>
                 <h4 className="font-medium mb-2 text-sm sm:text-base">实操演示：阅读能力评估方法</h4>
-                <p className="text-xs sm:text-sm text-gray-600 mb-3">专业的阅读能力评估工具使用方法</p>
+                <p className="text-xs sm:text-sm text-forest-600 mb-3">专业的阅读能力评估工具使用方法</p>
                 <button className="btn btn-outline text-xs sm:text-sm w-full">
                   <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                   观看视频 (15分钟)
                 </button>
               </div>
               
-              <div className="bg-gray-100 rounded-lg p-4">
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center mb-3">
-                  <Play className="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" />
+              <div className="bg-cream-100 rounded-lg p-4">
+                <div className="aspect-video bg-cream-200 rounded-lg flex items-center justify-center mb-3">
+                  <Play className="h-8 w-8 sm:h-12 sm:w-12 text-forest-400" />
                 </div>
                 <h4 className="font-medium mb-2 text-sm sm:text-base">互动答疑：常见问题解答</h4>
-                <p className="text-xs sm:text-sm text-gray-600 mb-3">王明教授回答学员常见问题</p>
+                <p className="text-xs sm:text-sm text-forest-600 mb-3">王明教授回答学员常见问题</p>
                 <button className="btn btn-outline text-xs sm:text-sm w-full">
                   <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                   观看视频 (25分钟)
                 </button>
               </div>
               
-              <div className="bg-gray-100 rounded-lg p-4">
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center mb-3">
-                  <Play className="h-8 w-8 sm:h-12 sm:w-12 text-gray-400" />
+              <div className="bg-cream-100 rounded-lg p-4">
+                <div className="aspect-video bg-cream-200 rounded-lg flex items-center justify-center mb-3">
+                  <Play className="h-8 w-8 sm:h-12 sm:w-12 text-forest-400" />
                 </div>
                 <h4 className="font-medium mb-2 text-sm sm:text-base">延伸学习：最新研究成果分享</h4>
-                <p className="text-xs sm:text-sm text-gray-600 mb-3">国际前沿的儿童阅读研究动态</p>
+                <p className="text-xs sm:text-sm text-forest-600 mb-3">国际前沿的儿童阅读研究动态</p>
                 <button className="btn btn-outline text-xs sm:text-sm w-full">
                   <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                   观看视频 (30分钟)
@@ -261,23 +259,23 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
             </div>
             
             {/* Learning Progress */}
-            <div className="mt-6 bg-blue-50 p-4 rounded-lg">
+            <div className="mt-6 bg-primary-50 p-4 rounded-lg">
               <h4 className="font-medium mb-3">学习进度</h4>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span>主讲视频</span>
-                  <span className="text-blue-600">已完成</span>
+                  <span className="text-primary-600">已完成</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-blue-600 h-2 rounded-full" style={{ width: '100%' }}></div>
+                <div className="w-full bg-cream-200 rounded-full h-2">
+                  <div className="bg-primary-600 h-2 rounded-full" style={{ width: '100%' }}></div>
                 </div>
                 
                 <div className="flex justify-between text-sm mt-3">
                   <span>补充视频</span>
-                  <span className="text-gray-600">2/4 已观看</span>
+                  <span className="text-forest-600">2/4 已观看</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-blue-600 h-2 rounded-full" style={{ width: '50%' }}></div>
+                <div className="w-full bg-cream-200 rounded-full h-2">
+                  <div className="bg-primary-600 h-2 rounded-full" style={{ width: '50%' }}></div>
                 </div>
               </div>
             </div>
@@ -290,16 +288,16 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
             <h3 className="text-lg font-medium mb-4">学员讨论区</h3>
             
             {/* Comment Input */}
-            <div className="bg-gray-50 p-4 rounded-lg mb-6">
+            <div className="bg-cream-50 p-4 rounded-lg mb-6">
               <textarea
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="分享您的学习心得，提出疑问，或与其他学员交流..."
-                className="w-full p-3 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
+                className="w-full p-3 border border-cream-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary-400 text-sm bg-white"
                 rows={3}
               />
               <div className="flex justify-between items-center mt-3">
-                <button className="flex items-center text-gray-500 hover:text-gray-700 text-sm">
+                <button className="flex items-center text-forest-500 hover:text-forest-700 text-sm">
                   <ImageIcon className="h-4 w-4 mr-1" />
                   <span className="hidden sm:inline">添加图片</span>
                   <span className="sm:hidden">图片</span>
@@ -318,7 +316,7 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
             {/* Comments List */}
             <div className="space-y-4">
               {comments.map((comment) => (
-                <div key={comment.id} className="bg-white p-4 rounded-lg border border-gray-200">
+                <div key={comment.id} className="bg-white p-4 rounded-lg border border-cream-200">
                   <div className="flex items-start space-x-3">
                     <img
                       src={comment.user.avatar}
@@ -327,11 +325,11 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className="font-medium text-gray-900 text-sm">{comment.user.name}</span>
-                        <span className="text-xs text-gray-500">{comment.timestamp}</span>
+                        <span className="font-medium text-forest-900 text-sm">{comment.user.name}</span>
+                        <span className="text-xs text-forest-500">{comment.timestamp}</span>
                       </div>
                       
-                      <p className="text-gray-700 mb-3 text-sm break-words">{comment.content}</p>
+                      <p className="text-forest-700 mb-3 text-sm break-words">{comment.content}</p>
                       
                       {comment.images && comment.images.length > 0 && (
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
@@ -351,19 +349,19 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
                           onClick={() => handleLike(comment.id)}
                           className={cn(
                             "flex items-center space-x-1 text-xs sm:text-sm",
-                            comment.liked ? "text-red-500" : "text-gray-500 hover:text-red-500"
+                            comment.liked ? "text-red-500" : "text-forest-500 hover:text-red-500"
                           )}
                         >
                           <Heart className={cn("h-3 w-3 sm:h-4 sm:w-4", comment.liked && "fill-current")} />
                           <span>{comment.likes}</span>
                         </button>
                         
-                        <button className="flex items-center space-x-1 text-xs sm:text-sm text-gray-500 hover:text-blue-500">
+                        <button className="flex items-center space-x-1 text-xs sm:text-sm text-forest-500 hover:text-primary-500">
                           <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4" />
                           <span>回复</span>
                         </button>
                         
-                        <button className="flex items-center space-x-1 text-xs sm:text-sm text-gray-500 hover:text-blue-500">
+                        <button className="flex items-center space-x-1 text-xs sm:text-sm text-forest-500 hover:text-primary-500">
                           <Share2 className="h-3 w-3 sm:h-4 sm:w-4" />
                           <span className="hidden sm:inline">分享</span>
                         </button>
@@ -371,7 +369,7 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
                       
                       {/* Replies */}
                       {comment.replies.length > 0 && (
-                        <div className="mt-4 pl-2 sm:pl-4 border-l-2 border-gray-100 space-y-3">
+                        <div className="mt-4 pl-2 sm:pl-4 border-l-2 border-cream-100 space-y-3">
                           {comment.replies.map((reply) => (
                             <div key={reply.id} className="flex items-start space-x-2 sm:space-x-3">
                               <img
@@ -381,19 +379,19 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
                               />
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center space-x-2 mb-1">
-                                  <span className="font-medium text-gray-900 text-xs sm:text-sm">{reply.user.name}</span>
-                                  <span className="text-xs text-gray-500">{reply.timestamp}</span>
+                                  <span className="font-medium text-forest-900 text-xs sm:text-sm">{reply.user.name}</span>
+                                  <span className="text-xs text-forest-500">{reply.timestamp}</span>
                                 </div>
-                                <p className="text-gray-700 text-xs sm:text-sm mb-2 break-words">{reply.content}</p>
+                                <p className="text-forest-700 text-xs sm:text-sm mb-2 break-words">{reply.content}</p>
                                 <div className="flex items-center space-x-3">
                                   <button className={cn(
                                     "flex items-center space-x-1 text-xs",
-                                    reply.liked ? "text-red-500" : "text-gray-500 hover:text-red-500"
+                                    reply.liked ? "text-red-500" : "text-forest-500 hover:text-red-500"
                                   )}>
                                     <Heart className={cn("h-3 w-3", reply.liked && "fill-current")} />
                                     <span>{reply.likes}</span>
                                   </button>
-                                  <button className="text-xs text-gray-500 hover:text-blue-500">回复</button>
+                                  <button className="text-xs text-forest-500 hover:text-primary-500">回复</button>
                                 </div>
                               </div>
                             </div>
@@ -414,64 +412,61 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-20 pb-20 min-h-screen bg-gray-50">
+    <div className="pt-20 pb-20 min-h-screen bg-cream-50">
       <div className="container-custom">
         {/* Mobile Header */}
-        <div className="lg:hidden bg-white rounded-xl shadow-sm p-4 mb-4">
+        <div className="lg:hidden bg-white rounded-xl shadow-sm p-4 mb-4 border border-cream-200">
           <div className="flex items-center justify-between">
             <Link
               to={`/courses/${courseId}`}
-              className="flex items-center text-blue-600 hover:text-blue-800"
+              className="flex items-center text-primary-600 hover:text-primary-800"
             >
               <ChevronLeft className="h-4 w-4 mr-1" />
               <span className="text-sm">返回课程</span>
             </Link>
             <button
               onClick={toggleSidebar}
-              className="flex items-center text-gray-600 hover:text-gray-800"
+              className="flex items-center text-forest-600 hover:text-forest-800"
             >
               <Menu className="h-5 w-5 mr-1" />
               <span className="text-sm">目录</span>
             </button>
           </div>
-          <h1 className="text-lg font-bold text-gray-900 mt-2 truncate">{lesson.title}</h1>
-          <p className="text-sm text-gray-600">{module.title}</p>
+          <h1 className="text-lg font-bold text-forest-900 mt-2 truncate">{module.title}</h1>
+          <p className="text-sm text-forest-600">{module.description}</p>
         </div>
 
         {/* Desktop Layout: Left-Right Two Columns */}
         <div className="hidden lg:flex gap-8">
           {/* Left Sidebar - Course Modules (Desktop Only) */}
           <div className="w-80 shrink-0">
-            <div className="bg-white rounded-xl shadow-sm p-6 sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
+            <div className="bg-white rounded-xl shadow-sm p-6 sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto border border-cream-200">
               <div className="mb-6">
                 <Link
                   to={`/courses/${courseId}`}
-                  className="flex items-center text-blue-600 hover:text-blue-800 mb-4"
+                  className="flex items-center text-primary-600 hover:text-primary-800 mb-4"
                 >
                   <ChevronLeft className="h-4 w-4 mr-1" />
                   返回课程
                 </Link>
-                <h2 className="text-lg font-bold text-gray-900">{course.title}</h2>
-                <p className="text-sm text-gray-600 mt-1">专家培训课程</p>
+                <h2 className="text-lg font-bold text-forest-900">{course.title}</h2>
+                <p className="text-sm text-forest-600 mt-1">专家培训课程</p>
               </div>
               
               <div className="space-y-2">
                 {course.modules.map((mod) => (
-                  <div key={mod.id} className="border border-gray-200 rounded-lg overflow-hidden">
-                    <div className="bg-gray-50 p-3">
-                      <h3 className="font-medium text-gray-800 text-sm">{mod.title}</h3>
-                    </div>
-                    <div className="p-2">
+                  <div key={mod.id} className="border border-cream-200 rounded-lg overflow-hidden">
+                    <div className="p-3">
                       <Link
-                        to={`/expert-courses/${courseId}/modules/${mod.id}/lessons/${mod.lesson.id}`}
+                        to={`/expert-courses/${courseId}/modules/${mod.id}`}
                         className={cn(
                           "block p-2 rounded text-sm transition-colors",
-                          mod.lesson.id === Number(lessonId)
-                            ? "bg-blue-100 text-blue-700 font-medium"
-                            : "text-gray-600 hover:bg-gray-100"
+                          mod.id === Number(moduleId)
+                            ? "bg-primary-100 text-primary-700 font-medium"
+                            : "text-forest-600 hover:bg-cream-100"
                         )}
                       >
-                        {mod.lesson.title}
+                        {mod.title}
                       </Link>
                     </div>
                   </div>
@@ -482,29 +477,24 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
 
           {/* Right Content Area (Desktop Only) */}
           <div className="flex-1 min-w-0">
-            <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-              {/* Lesson Header */}
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-cream-200">
+              {/* Module Header */}
               <div className="relative h-64">
                 <img
                   src={course.coverImage}
-                  alt={lesson.title}
+                  alt={module.title}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
                   <div className="p-6 text-white">
-                    <h1 className="text-2xl font-bold mb-2">{lesson.title}</h1>
-                    <p className="text-blue-200">{module.title} • 专家培训</p>
+                    <h1 className="text-2xl font-bold mb-2">{module.title}</h1>
+                    <p className="text-cream-200">{module.description} • 专家培训</p>
                   </div>
                 </div>
               </div>
               
-              {/* Lesson Description */}
-              <div className="p-6 border-b border-gray-200">
-                <p className="text-gray-700">{lesson.description}</p>
-              </div>
-              
               {/* Tabs */}
-              <div className="border-b border-gray-200">
+              <div className="border-b border-cream-200">
                 <div className="flex">
                   {tabs.map((tab) => (
                     <button
@@ -513,8 +503,8 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
                       className={cn(
                         "px-6 py-3 text-sm font-medium border-b-2 transition-colors",
                         activeTab === tab
-                          ? "border-blue-500 text-blue-600"
-                          : "border-transparent text-gray-500 hover:text-gray-700"
+                          ? "border-primary-500 text-primary-600"
+                          : "border-transparent text-forest-500 hover:text-forest-700"
                       )}
                     >
                       {tab}
@@ -537,10 +527,10 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
           {isSidebarOpen && (
             <div className="fixed inset-0 z-50 bg-black bg-opacity-50" onClick={toggleSidebar}>
               <div className="absolute left-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-xl" onClick={(e) => e.stopPropagation()}>
-                <div className="p-4 border-b border-gray-200">
+                <div className="p-4 border-b border-cream-200">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-bold text-gray-900">课程目录</h2>
-                    <button onClick={toggleSidebar} className="text-gray-500 hover:text-gray-700">
+                    <h2 className="text-lg font-bold text-forest-900">课程目录</h2>
+                    <button onClick={toggleSidebar} className="text-forest-500 hover:text-forest-700">
                       <X className="h-5 w-5" />
                     </button>
                   </div>
@@ -548,22 +538,19 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
                 <div className="p-4 overflow-y-auto h-full pb-20">
                   <div className="space-y-2">
                     {course.modules.map((mod) => (
-                      <div key={mod.id} className="border border-gray-200 rounded-lg overflow-hidden">
-                        <div className="bg-gray-50 p-3">
-                          <h3 className="font-medium text-gray-800 text-sm">{mod.title}</h3>
-                        </div>
-                        <div className="p-2">
+                      <div key={mod.id} className="border border-cream-200 rounded-lg overflow-hidden">
+                        <div className="p-3">
                           <Link
-                            to={`/expert-courses/${courseId}/modules/${mod.id}/lessons/${mod.lesson.id}`}
+                            to={`/expert-courses/${courseId}/modules/${mod.id}`}
                             onClick={toggleSidebar}
                             className={cn(
                               "block p-2 rounded text-sm transition-colors",
-                              mod.lesson.id === Number(lessonId)
-                                ? "bg-blue-100 text-blue-700 font-medium"
-                                : "text-gray-600 hover:bg-gray-100"
+                              mod.id === Number(moduleId)
+                                ? "bg-primary-100 text-primary-700 font-medium"
+                                : "text-forest-600 hover:bg-cream-100"
                             )}
                           >
-                            {mod.lesson.title}
+                            {mod.title}
                           </Link>
                         </div>
                       </div>
@@ -575,29 +562,24 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
           )}
           
           {/* Mobile Content */}
-          <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-            {/* Mobile Lesson Header */}
+          <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-cream-200">
+            {/* Mobile Module Header */}
             <div className="relative h-48">
               <img
                 src={course.coverImage}
-                alt={lesson.title}
+                alt={module.title}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
                 <div className="p-4 text-white">
-                  <h1 className="text-xl font-bold mb-1">{lesson.title}</h1>
-                  <p className="text-blue-200 text-sm">{module.title} • 专家培训</p>
+                  <h1 className="text-xl font-bold mb-1">{module.title}</h1>
+                  <p className="text-cream-200 text-sm">{module.description} • 专家培训</p>
                 </div>
               </div>
             </div>
             
-            {/* Mobile Lesson Description */}
-            <div className="p-4 border-b border-gray-200">
-              <p className="text-gray-700 text-sm">{lesson.description}</p>
-            </div>
-            
             {/* Mobile Tabs */}
-            <div className="border-b border-gray-200">
+            <div className="border-b border-cream-200">
               <div className="flex">
                 {tabs.map((tab) => (
                   <button
@@ -606,8 +588,8 @@ const ExpertLessonPlanDetailPage: React.FC = () => {
                     className={cn(
                       "flex-1 px-3 py-3 text-xs font-medium border-b-2 transition-colors",
                       activeTab === tab
-                        ? "border-blue-500 text-blue-600"
-                        : "border-transparent text-gray-500 hover:text-gray-700"
+                        ? "border-primary-500 text-primary-600"
+                        : "border-transparent text-forest-500 hover:text-forest-700"
                     )}
                   >
                     {tab}
