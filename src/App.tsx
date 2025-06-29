@@ -40,7 +40,7 @@ function App() {
         <Route path="contact" element={<ContactPage />} />
         <Route path="account" element={<AccountPage />} />
         <Route path="admin" element={<AdminDashboardPage />} />
-        <Route path="flowchart" element={<PageNavigationFlowchart />} />
+        <Route path="/flowchart" element={<PageNavigationFlowchart />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
