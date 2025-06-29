@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教案详情页 Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .wireframe {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .wireframe-section {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .wireframe-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .wireframe-content {
+            padding: 20px;
+        }
+        
+        .layout-container {
+            display: flex;
+            gap: 30px;
+            min-height: 600px;
+        }
+        
+        .sidebar {
+            width: 320px;
+            flex-shrink: 0;
+            background: #fff;
+            border: 2px dashed #007bff;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .main-content {
+            flex: 1;
+            background: #fff;
+            border: 2px dashed #28a745;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .mobile-layout {
+            display: none;
+            background: #fff;
+            border: 2px dashed #dc3545;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .component-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .component-label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 2px 8px;
+            font-size: 12px;
+            color: #666;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+        }
+        
+        .tab-container {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .tab-header {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            overflow-x: auto;
+        }
+        
+        .tab-item {
+            padding: 12px 16px;
+            border-right: 1px solid #dee2e6;
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .tab-item:hover {
+            background: #e9ecef;
+        }
+        
+        .tab-item.active {
+            background: #007bff;
+            color: white;
+        }
+        
+        .tab-content {
+            padding: 20px;
+            min-height: 300px;
+            background: #fafafa;
+        }
+        
+        .image-placeholder {
+            background: #e9ecef;
+            border: 2px dashed #adb5bd;
+            border-radius: 4px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .text-block {
+            background: #e9ecef;
+            height: 20px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .text-block.short {
+            width: 60%;
+        }
+        
+        .text-block.medium {
+            width: 80%;
+        }
+        
+        .button-placeholder {
+            background: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .navigation-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .navigation-item:hover {
+            background: #e9ecef;
+            border-color: #007bff;
+        }
+        
+        .navigation-item.active {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            color: #1976d2;
+            font-weight: medium;
+        }
+        
+        .comment-box {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #fafafa;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #dee2e6;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .video-placeholder {
+            background: #343a40;
+            color: white;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .responsive-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #856404;
+        }
+        
+        .collapsible-section {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .collapsible-header {
+            background: #f8f9fa;
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .collapsible-content {
+            padding: 16px;
+            background: white;
+        }
+        
+        .resource-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .resource-icon {
+            width: 24px;
+            height: 24px;
+            background: #007bff;
+            border-radius: 4px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 1024px) {
+            .layout-container {
+                display: none;
+            }
+            
+            .mobile-layout {
+                display: block;
+            }
+        }
+        
+        .annotation {
+            position: relative;
+            margin: 10px 0;
+        }
+        
+        .annotation::before {
+            content: "📝 ";
+            color: #007bff;
+        }
+        
+        .feature-list {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .feature-list ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 5px;
+        }
+        
+        .mobile-header {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .mobile-sidebar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 300px;
+            background: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .expert-training-tabs {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 15px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe">
+        <h1 style="text-align: center; margin-bottom: 30px; color: #333;">教案详情页 Wireframe 设计</h1>
+        
+        <!-- 页面概述 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📋 页面功能概述</div>
+            <div class="wireframe-content">
+                <div class="feature-list">
+                    <h3>核心功能</h3>
+                    <ul>
+                        <li><strong>响应式布局：</strong>桌面端左右两栏，移动端单栏</li>
+                        <li><strong>课程导航：</strong>左侧边栏显示所有课程模块</li>
+                        <li><strong>多标签内容：</strong>绘本简介、活动简介、所需材料、活动流程、延伸活动、家庭互动、教学视频、讨论区</li>
+                        <li><strong>互动功能：</strong>视频播放、资源下载、评论讨论</li>
+                        <li><strong>专家培训差异化：</strong>仅显示活动简介、教学视频、讨论区三个标签</li>
+                        <li><strong>路由结构：</strong>/courses/:courseId/modules/:moduleId</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 桌面端布局 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🖥️ 桌面端布局 (≥1024px)</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>布局特点：</strong>左右两栏布局，左侧固定宽度320px的导航栏，右侧自适应内容区域
+                </div>
+                
+                <div class="layout-container">
+                    <!-- 左侧边栏 -->
+                    <div class="sidebar">
+                        <div class="component-box">
+                            <div class="component-label">返回按钮</div>
+                            <div class="button-placeholder">← 返回课程</div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">课程信息</div>
+                            <div class="text-block"></div>
+                            <div class="text-block short"></div>
+                            <div style="font-size: 12px; color: #666; margin-top: 8px;">
+                                课程标题 + 描述
+                            </div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">课程模块导航</div>
+                            <div style="margin-bottom: 15px;">
+                                <div class="navigation-item active">启点阅读力1阶-课程1</div>
+                                <div class="navigation-item">启点阅读力1阶-课程2</div>
+                                <div class="navigation-item">启点阅读力1阶-课程3</div>
+                                <div class="navigation-item">启点阅读力1阶-课程4</div>
+                                <div class="navigation-item">启点阅读力1阶-课程5</div>
+                                <div style="text-align: center; color: #999; font-size: 12px; margin: 10px 0;">
+                                    ... 更多课程 ...
+                                </div>
+                                <div class="navigation-item">启点阅读力1阶-课程15</div>
+                            </div>
+                        </div>
+                        
+                        <div class="annotation">固定定位，可滚动，显示所有课程模块</div>
+                    </div>
+                    
+                    <!-- 右侧主内容区 -->
+                    <div class="main-content">
+                        <div class="component-box">
+                            <div class="component-label">课程头图</div>
+                            <div class="image-placeholder">
+                                课程封面图片 + 标题叠加
+                                <br>启点阅读力1阶-课程1
+                                <br>通过经典绘本《好饿的毛毛虫》，培养儿童基础阅读能力
+                            </div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">标签导航</div>
+                            <div class="tab-container">
+                                <div class="tab-header">
+                                    <div class="tab-item">绘本简介</div>
+                                    <div class="tab-item active">活动简介</div>
+                                    <div class="tab-item">所需材料</div>
+                                    <div class="tab-item">活动流程</div>
+                                    <div class="tab-item">延伸活动</div>
+                                    <div class="tab-item">家庭互动</div>
+                                    <div class="tab-item">教学视频</div>
+                                    <div class="tab-item">讨论区</div>
+                                </div>
+                                <div class="tab-content">
+                                    <h4 style="margin-bottom: 15px;">活动设计理念</h4>
+                                    <div class="text-block"></div>
+                                    <div class="text-block"></div>
+                                    <div class="text-block short"></div>
+                                    
+                                    <h4 style="margin: 20px 0 10px 0;">活动目标：</h4>
+                                    <div style="background: #e3f2fd; padding: 12px; border-radius: 4px; margin-bottom: 15px;">
+                                        <div style="font-size: 12px; color: #1976d2;">
+                                            • 培养阅读兴趣和良好的阅读习惯<br>
+                                            • 提升语言表达和理解能力<br>
+                                            • 发展观察力和想象力<br>
+                                            • 增强社交能力和合作精神
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="margin-top: 15px;">
+                                        <div class="button-placeholder">下载教案</div>
+                                        <div class="button-placeholder">观看视频</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="annotation">内容区域可滚动，标签内容动态切换</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 移动端布局 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📱 移动端布局 (<1024px)</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>布局特点：</strong>单栏布局，侧边栏通过抽屉式菜单展示，优化触摸操作
+                </div>
+                
+                <div class="mobile-layout">
+                    <div class="component-box">
+                        <div class="component-label">移动端头部</div>
+                        <div class="mobile-header">
+                            <div class="button-placeholder">← 返回课程</div>
+                            <div class="button-placeholder">☰ 目录</div>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <div class="text-block"></div>
+                            <div class="text-block short"></div>
+                            <div style="font-size: 12px; color: #666; margin-top: 8px;">
+                                课程标题 + 描述
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-box">
+                        <div class="component-label">课程头图 (移动端优化)</div>
+                        <div class="image-placeholder" style="height: 150px;">
+                            移动端课程封面 (高度调整)
+                            <br>启点阅读力1阶-课程1
+                        </div>
+                    </div>
+                    
+                    <div class="component-box">
+                        <div class="component-label">移动端标签 (横向滚动)</div>
+                        <div class="tab-container">
+                            <div class="tab-header" style="overflow-x: auto; white-space: nowrap;">
+                                <div class="tab-item" style="display: inline-block;">绘本简介</div>
+                                <div class="tab-item active" style="display: inline-block;">活动简介</div>
+                                <div class="tab-item" style="display: inline-block;">所需材料</div>
+                                <div class="tab-item" style="display: inline-block;">活动流程</div>
+                                <div class="tab-item" style="display: inline-block;">延伸活动</div>
+                                <div class="tab-item" style="display: inline-block;">家庭互动</div>
+                                <div class="tab-item" style="display: inline-block;">教学视频</div>
+                                <div class="tab-item" style="display: inline-block;">讨论区</div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="text-block"></div>
+                                <div class="text-block"></div>
+                                <div style="margin-top: 15px;">
+                                    <div class="button-placeholder" style="width: 100%; text-align: center; margin-bottom: 10px;">下载教案</div>
+                                    <div class="button-placeholder" style="width: 100%; text-align: center;">观看视频</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="annotation">移动端按钮全宽，标签可横向滚动</div>
+                    
+                    <!-- 移动端侧边栏示意 -->
+                    <div class="component-box">
+                        <div class="component-label">移动端侧边栏 (抽屉式)</div>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; border: 2px dashed #6c757d;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <strong>课程目录</strong>
+                                <span style="cursor: pointer;">✕</span>
+                            </div>
+                            <div class="navigation-item active" style="margin-bottom: 8px;">启点阅读力1阶-课程1</div>
+                            <div class="navigation-item" style="margin-bottom: 8px;">启点阅读力1阶-课程2</div>
+                            <div class="navigation-item" style="margin-bottom: 8px;">启点阅读力1阶-课程3</div>
+                            <div style="text-align: center; color: #999; font-size: 12px;">
+                                ... 更多课程 ...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 标签内容详细设计 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📑 标签内容详细设计</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    
+                    <!-- 绘本简介 -->
+                    <div class="component-box">
+                        <div class="component-label">绘本简介</div>
+                        <h4 style="margin-bottom: 10px;">绘本简介</h4>
+                        <div class="text-block"></div>
+                        <div class="text-block"></div>
+                        <div class="text-block short"></div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            包含：绘本背景、作者介绍、故事概要、教育价值
+                        </div>
+                    </div>
+                    
+                    <!-- 活动简介 -->
+                    <div class="component-box">
+                        <div class="component-label">活动简介</div>
+                        <h4 style="margin-bottom: 10px;">活动设计理念</h4>
+                        <div class="text-block"></div>
+                        <div class="text-block medium"></div>
+                        <div style="background: #e3f2fd; padding: 10px; border-radius: 4px; margin-top: 10px;">
+                            <div style="font-size: 12px; color: #1976d2; font-weight: bold;">活动目标列表</div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            包含：设计理念、活动目标、核心价值
+                        </div>
+                    </div>
+                    
+                    <!-- 所需材料 -->
+                    <div class="component-box">
+                        <div class="component-label">所需材料</div>
+                        <h4 style="margin-bottom: 10px;">教学材料清单</h4>
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="font-size: 12px; color: #666; font-weight: bold;">基础材料清单</div>
+                            <div style="font-size: 11px; color: #999; margin-top: 4px;">
+                                • 绘本、卡片、手偶等
+                            </div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="font-size: 12px; color: #666; font-weight: bold;">手工材料清单</div>
+                            <div style="font-size: 11px; color: #999; margin-top: 4px;">
+                                • 彩纸、剪刀、胶水等
+                            </div>
+                        </div>
+                        <div style="background: #e3f2fd; padding: 10px; border-radius: 4px;">
+                            <div class="button-placeholder" style="font-size: 12px;">📥 下载资源包</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 活动流程 -->
+                    <div class="component-box">
+                        <div class="component-label">活动流程</div>
+                        <h4 style="margin-bottom: 10px;">完整活动流程</h4>
+                        <div class="collapsible-section">
+                            <div class="collapsible-header">
+                                <span style="font-size: 14px; font-weight: medium;">完整活动流程</span>
+                                <span style="font-size: 12px;">▼</span>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="text-block"></div>
+                                <div class="text-block short"></div>
+                                <div style="font-size: 11px; color: #666; margin-top: 8px;">
+                                    详细的教学步骤和时间安排
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            可折叠的详细流程，包含时间分配和具体步骤
+                        </div>
+                    </div>
+                    
+                    <!-- 延伸活动 -->
+                    <div class="component-box">
+                        <div class="component-label">延伸活动</div>
+                        <h4 style="margin-bottom: 10px;">延伸活动建议</h4>
+                        <div style="background: #e8f5e8; padding: 10px; border-radius: 4px; margin-bottom: 8px;">
+                            <div style="font-size: 12px; font-weight: bold;">🌱 探索活动</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 4px;">
+                                结合课程主题的探索活动
+                            </div>
+                        </div>
+                        <div style="background: #fff3cd; padding: 10px; border-radius: 4px; margin-bottom: 8px;">
+                            <div style="font-size: 12px; font-weight: bold;">🎨 创意美术</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 4px;">
+                                相关主题的艺术创作
+                            </div>
+                        </div>
+                        <div style="background: #f8d7da; padding: 10px; border-radius: 4px;">
+                            <div style="font-size: 12px; font-weight: bold;">🎭 角色扮演</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 4px;">
+                                戏剧表演和角色体验
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 家庭互动 -->
+                    <div class="component-box">
+                        <div class="component-label">家庭互动</div>
+                        <h4 style="margin-bottom: 10px;">家庭互动指南</h4>
+                        <div style="background: #e3f2fd; padding: 10px; border-radius: 4px; margin-bottom: 8px;">
+                            <div style="font-size: 12px; font-weight: bold;">📚 亲子共读建议</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 4px;">
+                                • 固定阅读时间<br>
+                                • 鼓励复述故事<br>
+                                • 观察绘本细节
+                            </div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 8px;">
+                            <div style="font-size: 12px; font-weight: bold;">🏠 家庭延伸活动</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 4px;">
+                                • 寻找相关物品<br>
+                                • 制作手工作品<br>
+                                • 观看相关视频
+                            </div>
+                        </div>
+                        <div style="background: #fff3cd; padding: 10px; border-radius: 4px;">
+                            <div style="font-size: 12px; font-weight: bold;">💡 家长小贴士</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 4px;">
+                                耐心倾听，鼓励提问，结合生活观察
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 教学视频 -->
+                    <div class="component-box">
+                        <div class="component-label">教学视频</div>
+                        <h4 style="margin-bottom: 10px;">相关教学视频</h4>
+                        <div class="video-placeholder" style="height: 120px; font-size: 12px;">
+                            ▶️ 绘本导读示范
+                            <br>(15分钟)
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px;">
+                            <div class="video-placeholder" style="height: 80px; font-size: 10px;">
+                                ▶️ 手工制作
+                                <br>(10分钟)
+                            </div>
+                            <div class="video-placeholder" style="height: 80px; font-size: 10px;">
+                                ▶️ 互动游戏
+                                <br>(8分钟)
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            专业教师示范和实操指导
+                        </div>
+                    </div>
+                    
+                    <!-- 讨论区 */
+                    <div class="component-box">
+                        <div class="component-label">讨论区</div>
+                        <h4 style="margin-bottom: 10px;">教师讨论区</h4>
+                        
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+                            <div style="height: 40px; background: white; border: 1px solid #dee2e6; border-radius: 4px; margin-bottom: 8px; display: flex; align-items: center; padding: 0 8px; font-size: 12px; color: #999;">
+                                分享您的教学心得或提出问题...
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="font-size: 12px; color: #666;">🖼️ 添加图片</div>
+                                <div class="button-placeholder" style="font-size: 12px; padding: 4px 12px;">发布</div>
+                            </div>
+                        </div>
+                        
+                        <div class="comment-box">
+                            <div style="display: flex; align-items: start;">
+                                <div class="user-avatar" style="width: 32px; height: 32px;"></div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">李老师</div>
+                                    <div style="font-size: 11px; color: #666; margin-bottom: 8px;">
+                                        这个教案设计得很棒！孩子们特别喜欢...
+                                    </div>
+                                    <div style="display: flex; gap: 12px; font-size: 10px; color: #999;">
+                                        <span>❤️ 12</span>
+                                        <span>💬 回复</span>
+                                        <span>🔗 分享</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            支持图片上传、点赞、回复、分享功能
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 专家培训差异化设计 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🎓 专家培训课程差异化设计</div>
+            <div class="wireframe-content">
+                <div class="expert-training-tabs">
+                    <strong>重要差异：</strong>专家培训课程仅显示"活动简介"、"教学视频"、"讨论区"三个标签
+                </div>
+                
+                <div class="tab-container">
+                    <div class="tab-header">
+                        <div class="tab-item active">活动简介</div>
+                        <div class="tab-item">教学视频</div>
+                        <div class="tab-item">讨论区</div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="feature-list">
+                            <h4>专家培训特色内容</h4>
+                            <ul>
+                                <li><strong>活动简介：</strong>更注重理论基础和教学理念，包含学习目标、核心内容、适用对象</li>
+                                <li><strong>教学视频：</strong>专家讲座为主，包含主讲视频、案例分析、实操演示、互动答疑</li>
+                                <li><strong>讨论区：</strong>学员交流学习心得，专家答疑，支持图片分享</li>
+                                <li><strong>学习进度：</strong>显示视频观看进度和完成状态</li>
+                                <li><strong>路由差异：</strong>/expert-courses/:courseId/modules/:moduleId</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;">
+                            <div style="background: #e3f2fd; padding: 12px; border-radius: 4px;">
+                                <h5 style="font-size: 14px; margin-bottom: 8px;">理论基础</h5>
+                                <div style="font-size: 11px; color: #666;">
+                                    • 儿童认知发展理论<br>
+                                    • 语言习得与阅读发展<br>
+                                    • 阅读动机与兴趣培养
+                                </div>
+                            </div>
+                            
+                            <div style="background: #fff3cd; padding: 12px; border-radius: 4px;">
+                                <h5 style="font-size: 14px; margin-bottom: 8px;">实践应用</h5>
+                                <div style="font-size: 11px; color: #666;">
+                                    • 阅读材料分级与选择<br>
+                                    • 个性化教学策略设计<br>
+                                    • 阅读困难儿童的支持
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交互说明 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">⚡ 交互行为说明</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    
+                    <div class="feature-list">
+                        <h4>导航交互</h4>
+                        <ul>
+                            <li>左侧导航固定定位，可滚动</li>
+                            <li>当前课程模块高亮显示</li>
+                            <li>点击其他模块直接跳转</li>
+                            <li>移动端通过抽屉菜单展示</li>
+                            <li>支持键盘导航</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>标签切换</h4>
+                        <ul>
+                            <li>点击标签切换内容区域</li>
+                            <li>移动端标签可横向滚动</li>
+                            <li>活动状态保持和记忆</li>
+                            <li>URL路由支持直接访问</li>
+                            <li>专家培训课程标签数量减少</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>内容交互</h4>
+                        <ul>
+                            <li>活动流程支持折叠展开</li>
+                            <li>视频支持在线播放</li>
+                            <li>资源文件支持下载</li>
+                            <li>讨论区支持实时互动</li>
+                            <li>图片支持点击放大</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>响应式适配</h4>
+                        <ul>
+                            <li>1024px以上：左右两栏布局</li>
+                            <li>1024px以下：单栏布局</li>
+                            <li>触摸友好的按钮尺寸</li>
+                            <li>优化的滚动和导航体验</li>
+                            <li>移动端抽屉式侧边栏</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技术实现要点 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🔧 技术实现要点</div>
+            <div class="wireframe-content">
+                <div class="feature-list">
+                    <h4>关键技术点</h4>
+                    <ul>
+                        <li><strong>路由设计：</strong>/courses/:courseId/modules/:moduleId</li>
+                        <li><strong>专家培训路由：</strong>/expert-courses/:courseId/modules/:moduleId</li>
+                        <li><strong>状态管理：</strong>当前标签、侧边栏开关、评论数据</li>
+                        <li><strong>数据获取：</strong>根据URL参数获取对应的课程、模块数据</li>
+                        <li><strong>响应式实现：</strong>CSS Grid + Flexbox + 媒体查询</li>
+                        <li><strong>性能优化：</strong>图片懒加载、视频按需加载、虚拟滚动</li>
+                        <li><strong>无障碍访问：</strong>键盘导航、屏幕阅读器支持</li>
+                        <li><strong>SEO优化：</strong>合理的页面标题和meta描述</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; margin-top: 15px;">
+                    <h4 style="margin-bottom: 10px;">数据结构示例</h4>
+                    <pre style="font-size: 12px; color: #666; margin: 0; white-space: pre-wrap;">
+// 课程模块数据结构
+{
+  id: 1,
+  title: "启点阅读力1阶-课程1",
+  description: "通过经典绘本《好饿的毛毛虫》，培养儿童基础阅读能力",
+  materials: ["绘本", "数字卡片", "手偶"],
+  lessonPlan: {
+    content: "详细的教学流程..."
+  },
+  resources: [
+    { id: 1, title: "PPT课件", url: "...", type: "pdf" }
+  ]
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- 用户体验优化 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">✨ 用户体验优化</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    
+                    <div class="feature-list">
+                        <h4>加载体验</h4>
+                        <ul>
+                            <li>骨架屏加载效果</li>
+                            <li>图片懒加载优化</li>
+                            <li>视频预加载策略</li>
+                            <li>渐进式内容展示</li>
+                            <li>错误状态友好提示</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>操作反馈</h4>
+                        <ul>
+                            <li>按钮点击状态反馈</li>
+                            <li>下载进度显示</li>
+                            <li>评论发布成功提示</li>
+                            <li>网络错误重试机制</li>
+                            <li>操作确认对话框</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>内容组织</h4>
+                        <ul>
+                            <li>清晰的信息层次结构</li>
+                            <li>合理的内容分组</li>
+                            <li>重要信息突出显示</li>
+                            <li>相关内容关联推荐</li>
+                            <li>搜索和筛选功能</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>个性化体验</h4>
+                        <ul>
+                            <li>学习进度记录</li>
+                            <li>个人收藏功能</li>
+                            <li>最近浏览历史</li>
+                            <li>个性化推荐</li>
+                            <li>用户偏好设置</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
