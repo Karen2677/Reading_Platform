@@ -51,7 +51,7 @@ export const coursesData: Course[] = [
     modules: [
       {
         id: 1,
-        title: '启点阅读力1阶',
+        title: '课程1-启点阅读力1阶',
         description: '通过经典绘本《好饿的毛毛虫》，培养儿童基础阅读能力',
         lesson: {
           id: 1,
