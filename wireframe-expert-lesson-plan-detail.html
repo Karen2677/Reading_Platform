@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专家培训详情页 Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .wireframe {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .wireframe-section {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .wireframe-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .wireframe-content {
+            padding: 20px;
+        }
+        
+        .layout-container {
+            display: flex;
+            gap: 30px;
+            min-height: 600px;
+        }
+        
+        .sidebar {
+            width: 320px;
+            flex-shrink: 0;
+            background: #fff;
+            border: 2px dashed #6f42c1;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .main-content {
+            flex: 1;
+            background: #fff;
+            border: 2px dashed #e83e8c;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .mobile-layout {
+            display: none;
+            background: #fff;
+            border: 2px dashed #fd7e14;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .component-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .component-label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 2px 8px;
+            font-size: 12px;
+            color: #666;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+        }
+        
+        .expert-badge {
+            background: linear-gradient(135deg, #6f42c1, #e83e8c);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .tab-container {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .tab-header {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .tab-item {
+            padding: 15px 20px;
+            border-right: 1px solid #dee2e6;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .tab-item:hover {
+            background: #e9ecef;
+        }
+        
+        .tab-item.active {
+            background: #6f42c1;
+            color: white;
+        }
+        
+        .tab-content {
+            padding: 25px;
+            min-height: 400px;
+            background: #fafafa;
+        }
+        
+        .image-placeholder {
+            background: #e9ecef;
+            border: 2px dashed #adb5bd;
+            border-radius: 4px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .text-block {
+            background: #e9ecef;
+            height: 20px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .text-block.short {
+            width: 60%;
+        }
+        
+        .text-block.medium {
+            width: 80%;
+        }
+        
+        .button-placeholder {
+            background: #6f42c1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: medium;
+        }
+        
+        .navigation-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .navigation-item:hover {
+            background: #e9ecef;
+            border-color: #6f42c1;
+        }
+        
+        .navigation-item.active {
+            background: #e8e2ff;
+            border-color: #6f42c1;
+            color: #6f42c1;
+            font-weight: medium;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .video-placeholder {
+            background: #343a40;
+            color: white;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .main-video {
+            grid-column: 1 / -1;
+            height: 300px;
+            background: linear-gradient(135deg, #6f42c1, #e83e8c);
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            background: #6f42c1;
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .comment-box {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: white;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #6f42c1;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 12px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .responsive-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #856404;
+        }
+        
+        .expert-highlight {
+            background: linear-gradient(135deg, #6f42c1, #e83e8c);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .learning-objectives {
+            background: #e8e2ff;
+            border: 1px solid #6f42c1;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .theory-practice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .theory-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .practice-box {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .mobile-header {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        @media (max-width: 1024px) {
+            .layout-container {
+                display: none;
+            }
+            
+            .mobile-layout {
+                display: block;
+            }
+            
+            .theory-practice-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .annotation {
+            position: relative;
+            margin: 10px 0;
+        }
+        
+        .annotation::before {
+            content: "🎓 ";
+            color: #6f42c1;
+        }
+        
+        .feature-list {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .feature-list ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 5px;
+        }
+        
+        .expert-feature-list {
+            background: #e8e2ff;
+            border-left: 4px solid #6f42c1;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .expert-row {
+            background: #e8e2ff;
+        }
+        
+        .regular-row {
+            background: #e8f5e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe">
+        <h1 style="text-align: center; margin-bottom: 30px; color: #333;">专家培训详情页 Wireframe 设计</h1>
+        
+        <!-- 页面概述 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📋 专家培训页面功能概述</div>
+            <div class="wireframe-content">
+                <div class="expert-feature-list">
+                    <h3>专家培训特色功能</h3>
+                    <ul>
+                        <li><strong>精简标签结构：</strong>仅显示"活动简介"、"教学视频"、"讨论区"三个核心标签</li>
+                        <li><strong>理论导向内容：</strong>重点展示教育理论、学习目标、核心概念</li>
+                        <li><strong>专家视频教学：</strong>主讲视频 + 案例分析 + 实操演示 + 互动答疑</li>
+                        <li><strong>学习进度跟踪：</strong>视频观看进度、完成状态、学习路径</li>
+                        <li><strong>专业讨论区：</strong>学员交流、专家答疑、深度讨论</li>
+                        <li><strong>差异化路由：</strong>/expert-courses/:courseId/modules/:moduleId</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 与普通教案的对比 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🔄 专家培训 vs 普通教案对比</div>
+            <div class="wireframe-content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>功能模块</th>
+                            <th>普通教案详情页</th>
+                            <th>专家培训详情页</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="regular-row">
+                            <td><strong>标签数量</strong></td>
+                            <td>8个标签（绘本简介、活动简介、所需材料、活动流程、延伸活动、家庭互动、教学视频、讨论区）</td>
+                            <td class="expert-row">3个标签（活动简介、教学视频、讨论区）</td>
+                        </tr>
+                        <tr class="regular-row">
+                            <td><strong>内容重点</strong></td>
+                            <td>实用教学指导、具体操作步骤、材料准备</td>
+                            <td class="expert-row">教育理论、专业知识、能力提升</td>
+                        </tr>
+                        <tr class="regular-row">
+                            <td><strong>视频内容</strong></td>
+                            <td>教学示范、手工制作、互动游戏</td>
+                            <td class="expert-row">专家讲座、案例分析、理论阐述</td>
+                        </tr>
+                        <tr class="regular-row">
+                            <td><strong>目标用户</strong></td>
+                            <td>一线教师、家长</td>
+                            <td class="expert-row">教师、教育管理者、研究者</td>
+                        </tr>
+                        <tr class="regular-row">
+                            <td><strong>学习方式</strong></td>
+                            <td>实践操作、直接应用</td>
+                            <td class="expert-row">理论学习、深度思考、专业提升</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 桌面端布局 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🖥️ 桌面端布局 (≥1024px)</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>布局特点：</strong>左右两栏布局，左侧320px专家培训导航栏，右侧自适应专业内容区域
+                </div>
+                
+                <div class="layout-container">
+                    <!-- 左侧边栏 -->
+                    <div class="sidebar">
+                        <div class="component-box">
+                            <div class="component-label">返回按钮</div>
+                            <div class="button-placeholder">← 返回课程</div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">专家培训信息</div>
+                            <div class="expert-badge">专家培训课程</div>
+                            <div class="text-block"></div>
+                            <div class="text-block short"></div>
+                            <div style="font-size: 12px; color: #666; margin-top: 8px;">
+                                课程标题 + 专业描述
+                            </div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">培训模块导航</div>
+                            <div style="margin-bottom: 15px;">
+                                <div class="navigation-item active">儿童阅读心理发展-模块1</div>
+                                <div class="navigation-item">儿童阅读心理发展-模块2</div>
+                                <div class="navigation-item">绘本教学设计与实施-模块1</div>
+                                <div class="navigation-item">阅读评估与诊断-模块1</div>
+                            </div>
+                            <div style="background: #e8e2ff; padding: 10px; border-radius: 4px; font-size: 12px;">
+                                <strong>学习进度：</strong>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%;"></div>
+                                </div>
+                                <span style="color: #6f42c1;">3/5 模块已完成</span>
+                            </div>
+                        </div>
+                        
+                        <div class="annotation">专家培训专用导航，显示学习进度</div>
+                    </div>
+                    
+                    <!-- 右侧主内容区 -->
+                    <div class="main-content">
+                        <div class="component-box">
+                            <div class="component-label">专家培训头图</div>
+                            <div class="image-placeholder">
+                                专家培训封面图片 + 专业标识
+                                <br>儿童阅读心理发展-模块1
+                                <br>系统学习不同年龄段儿童的阅读心理发展规律和特点
+                            </div>
+                        </div>
+                        
+                        <div class="component-box">
+                            <div class="component-label">专家培训标签（仅3个）</div>
+                            <div class="tab-container">
+                                <div class="tab-header">
+                                    <div class="tab-item active">活动简介</div>
+                                    <div class="tab-item">教学视频</div>
+                                    <div class="tab-item">讨论区</div>
+                                </div>
+                                <div class="tab-content">
+                                    <h3 style="margin-bottom: 15px; color: #6f42c1;">课程内容概述</h3>
+                                    <div class="text-block"></div>
+                                    <div class="text-block"></div>
+                                    <div class="text-block short"></div>
+                                    
+                                    <div class="learning-objectives">
+                                        <h4 style="margin-bottom: 10px; color: #6f42c1;">学习目标</h4>
+                                        <ul style="font-size: 14px; color: #333;">
+                                            <li>深入理解0-12岁儿童阅读心理发展的阶段性特征</li>
+                                            <li>掌握不同年龄段儿童的阅读能力评估方法</li>
+                                            <li>学会根据儿童发展特点选择适宜的阅读材料</li>
+                                            <li>提升个性化阅读指导的专业能力</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="theory-practice-grid">
+                                        <div class="theory-box">
+                                            <h5 style="margin-bottom: 8px; color: #1976d2;">理论基础</h5>
+                                            <ul style="font-size: 12px; color: #333;">
+                                                <li>儿童认知发展理论</li>
+                                                <li>语言习得与阅读发展</li>
+                                                <li>阅读动机与兴趣培养</li>
+                                                <li>多元智能理论应用</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="practice-box">
+                                            <h5 style="margin-bottom: 8px; color: #f57c00;">实践应用</h5>
+                                            <ul style="font-size: 12px; color: #333;">
+                                                <li>阅读材料分级与选择</li>
+                                                <li>个性化教学策略设计</li>
+                                                <li>阅读困难儿童的支持</li>
+                                                <li>家校合作指导方法</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                                        <h5 style="margin-bottom: 8px;">适用对象</h5>
+                                        <p style="font-size: 14px; color: #666;">
+                                            本课程适合幼儿园教师、小学语文教师、阅读推广人员、儿童图书馆员、
+                                            教育管理者以及对儿童阅读教育感兴趣的家长和教育工作者。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="annotation">专业化内容展示，重点突出理论与实践结合</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 移动端布局 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📱 移动端布局 (<1024px)</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>布局特点：</strong>单栏布局，专家培训侧边栏通过抽屉式菜单展示，优化专业学习体验
+                </div>
+                
+                <div class="mobile-layout">
+                    <div class="component-box">
+                        <div class="component-label">移动端专家培训头部</div>
+                        <div class="mobile-header">
+                            <div class="button-placeholder">← 返回课程</div>
+                            <div class="button-placeholder">☰ 培训目录</div>
+                        </div>
+                        <div class="expert-badge">专家培训课程</div>
+                        <div style="margin-top: 10px;">
+                            <div class="text-block"></div>
+                            <div class="text-block short"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-box">
+                        <div class="component-label">专家培训头图 (移动端优化)</div>
+                        <div class="image-placeholder" style="height: 150px;">
+                            移动端专家培训封面
+                            <br>儿童阅读心理发展-模块1
+                        </div>
+                    </div>
+                    
+                    <div class="component-box">
+                        <div class="component-label">移动端专家培训标签</div>
+                        <div class="tab-container">
+                            <div class="tab-header">
+                                <div class="tab-item active">活动简介</div>
+                                <div class="tab-item">教学视频</div>
+                                <div class="tab-item">讨论区</div>
+                            </div>
+                            <div class="tab-content">
+                                <h4 style="margin-bottom: 12px; color: #6f42c1;">课程内容概述</h4>
+                                <div class="text-block"></div>
+                                <div class="text-block"></div>
+                                
+                                <div class="learning-objectives" style="margin: 15px 0;">
+                                    <h5 style="margin-bottom: 8px; color: #6f42c1;">学习目标</h5>
+                                    <div style="font-size: 12px; color: #333;">
+                                        • 理解儿童阅读心理发展特征<br>
+                                        • 掌握阅读能力评估方法<br>
+                                        • 提升个性化指导能力
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 15px;">
+                                    <div class="button-placeholder" style="width: 100%; text-align: center; margin-bottom: 10px;">开始学习</div>
+                                    <div class="button-placeholder" style="width: 100%; text-align: center;">下载资料</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="annotation">移动端专业学习体验优化，突出核心内容</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 专家培训标签内容详细设计 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📑 专家培训标签内容详细设计</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px;">
+                    
+                    <!-- 活动简介（专家培训版） -->
+                    <div class="component-box">
+                        <div class="component-label">活动简介（专家培训版）</div>
+                        <div class="expert-highlight">
+                            <h4 style="margin-bottom: 15px;">课程内容概述</h4>
+                            <p style="font-size: 14px; line-height: 1.6;">
+                                本课程深入探讨儿童阅读心理发展的核心理论与实践应用。
+                                通过系统性的理论学习和案例分析，帮助教师全面理解不同年龄段儿童的阅读心理特点。
+                            </p>
+                        </div>
+                        
+                        <div class="learning-objectives">
+                            <h5 style="margin-bottom: 12px; color: #6f42c1;">学习目标</h5>
+                            <ul style="font-size: 13px; color: #333; line-height: 1.5;">
+                                <li>深入理解0-12岁儿童阅读心理发展的阶段性特征</li>
+                                <li>掌握不同年龄段儿童的阅读能力评估方法</li>
+                                <li>学会根据儿童发展特点选择适宜的阅读材料</li>
+                                <li>提升个性化阅读指导的专业能力</li>
+                                <li>建立科学的阅读教学观念和方法体系</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="theory-practice-grid">
+                            <div class="theory-box">
+                                <h6 style="margin-bottom: 8px; color: #1976d2;">理论基础</h6>
+                                <ul style="font-size: 11px; color: #333;">
+                                    <li>• 儿童认知发展理论</li>
+                                    <li>• 语言习得与阅读发展</li>
+                                    <li>• 阅读动机与兴趣培养</li>
+                                    <li>• 多元智能理论应用</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="practice-box">
+                                <h6 style="margin-bottom: 8px; color: #f57c00;">实践应用</h6>
+                                <ul style="font-size: 11px; color: #333;">
+                                    <li>• 阅读材料分级与选择</li>
+                                    <li>• 个性化教学策略设计</li>
+                                    <li>• 阅读困难儿童的支持</li>
+                                    <li>• 家校合作指导方法</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; margin-top: 15px;">
+                            <h6 style="margin-bottom: 6px; color: #333;">适用对象</h6>
+                            <p style="font-size: 12px; color: #666;">
+                                幼儿园教师、小学语文教师、阅读推广人员、儿童图书馆员、教育管理者
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 教学视频（专家培训版） -->
+                    <div class="component-box">
+                        <div class="component-label">教学视频（专家培训版）</div>
+                        <h4 style="margin-bottom: 15px; color: #6f42c1;">专家讲座视频</h4>
+                        
+                        <!-- 主讲视频 -->
+                        <div class="video-placeholder main-video">
+                            <div style="text-align: center;">
+                                <div style="font-size: 24px; margin-bottom: 10px;">▶️</div>
+                                <h5 style="margin-bottom: 8px;">主讲视频：儿童阅读心理发展特点</h5>
+                                <p style="font-size: 12px; opacity: 0.9; margin-bottom: 15px;">
+                                    王明教授详细讲解不同年龄段儿童的阅读心理特征
+                                </p>
+                                <div class="button-placeholder" style="background: rgba(255,255,255,0.2);">
+                                    开始学习 (45分钟)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 补充视频 -->
+                        <div class="video-grid">
+                            <div class="video-placeholder">
+                                <div style="font-size: 16px; margin-bottom: 8px;">▶️</div>
+                                <h6 style="margin-bottom: 6px;">案例分析</h6>
+                                <p style="font-size: 11px; opacity: 0.8;">3-4岁幼儿阅读指导</p>
+                                <div style="margin-top: 8px; font-size: 10px;">(20分钟)</div>
+                            </div>
+                            
+                            <div class="video-placeholder">
+                                <div style="font-size: 16px; margin-bottom: 8px;">▶️</div>
+                                <h6 style="margin-bottom: 6px;">实操演示</h6>
+                                <p style="font-size: 11px; opacity: 0.8;">阅读能力评估方法</p>
+                                <div style="margin-top: 8px; font-size: 10px;">(15分钟)</div>
+                            </div>
+                            
+                            <div class="video-placeholder">
+                                <div style="font-size: 16px; margin-bottom: 8px;">▶️</div>
+                                <h6 style="margin-bottom: 6px;">互动答疑</h6>
+                                <p style="font-size: 11px; opacity: 0.8;">常见问题解答</p>
+                                <div style="margin-top: 8px; font-size: 10px;">(25分钟)</div>
+                            </div>
+                            
+                            <div class="video-placeholder">
+                                <div style="font-size: 16px; margin-bottom: 8px;">▶️</div>
+                                <h6 style="margin-bottom: 6px;">延伸学习</h6>
+                                <p style="font-size: 11px; opacity: 0.8;">最新研究成果分享</p>
+                                <div style="margin-top: 8px; font-size: 10px;">(30分钟)</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 学习进度 */}
+                        <div style="background: #e8e2ff; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <h6 style="margin-bottom: 12px; color: #6f42c1;">学习进度</h6>
+                            <div style="margin-bottom: 10px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                                    <span>主讲视频</span>
+                                    <span style="color: #6f42c1;">已完成</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                                    <span>补充视频</span>
+                                    <span style="color: #666;">2/4 已观看</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 讨论区（专家培训版） -->
+                    <div class="component-box">
+                        <div class="component-label">讨论区（专家培训版）</div>
+                        <h4 style="margin-bottom: 15px; color: #6f42c1;">学员讨论区</h4>
+                        
+                        <!-- 评论输入 -->
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                            <div style="height: 60px; background: white; border: 1px solid #dee2e6; border-radius: 6px; margin-bottom: 10px; display: flex; align-items: center; padding: 0 12px; font-size: 12px; color: #999;">
+                                分享您的学习心得，提出疑问，或与其他学员交流...
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="font-size: 12px; color: #666;">🖼️ 添加图片</div>
+                                <div class="button-placeholder" style="font-size: 12px; padding: 6px 16px;">发布</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 专业讨论示例 -->
+                        <div class="comment-box">
+                            <div style="display: flex; align-items: start;">
+                                <div class="user-avatar">张</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 13px; font-weight: bold; margin-bottom: 4px;">张老师</div>
+                                    <div style="font-size: 12px; color: #666; margin-bottom: 8px;">2小时前</div>
+                                    <p style="font-size: 12px; color: #333; margin-bottom: 10px; line-height: 1.5;">
+                                        王明教授的这个培训内容非常实用，特别是关于儿童阅读心理发展的部分，
+                                        让我对不同年龄段孩子的特点有了更深入的理解。
+                                    </p>
+                                    <div style="display: flex; gap: 15px; font-size: 11px; color: #999;">
+                                        <span style="color: #e91e63;">❤️ 15</span>
+                                        <span>💬 回复</span>
+                                        <span>🔗 分享</span>
+                                    </div>
+                                    
+                                    <!-- 回复示例 -->
+                                    <div style="margin-top: 12px; padding-left: 15px; border-left: 2px solid #e9ecef;">
+                                        <div style="display: flex; align-items: start;">
+                                            <div class="user-avatar" style="width: 28px; height: 28px; font-size: 10px;">李</div>
+                                            <div style="flex: 1;">
+                                                <div style="font-size: 12px; font-weight: bold; margin-bottom: 2px;">李园长</div>
+                                                <div style="font-size: 11px; color: #666; margin-bottom: 6px;">1小时前</div>
+                                                <p style="font-size: 11px; color: #333; margin-bottom: 6px;">
+                                                    同感！我们园里已经开始按照这个理论调整教学方法了，效果很明显。
+                                                </p>
+                                                <div style="display: flex; gap: 12px; font-size: 10px; color: #999;">
+                                                    <span style="color: #e91e63;">❤️ 8</span>
+                                                    <span>回复</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="comment-box">
+                            <div style="display: flex; align-items: start;">
+                                <div class="user-avatar">王</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 13px; font-weight: bold; margin-bottom: 4px;">王主任</div>
+                                    <div style="font-size: 12px; color: #666; margin-bottom: 8px;">3小时前</div>
+                                    <p style="font-size: 12px; color: #333; margin-bottom: 10px; line-height: 1.5;">
+                                        请问教授，对于3-4岁的孩子，如何判断他们是否真正理解了故事内容？
+                                        有什么具体的评估方法吗？
+                                    </p>
+                                    <div style="display: flex; gap: 15px; font-size: 11px; color: #999;">
+                                        <span>❤️ 12</span>
+                                        <span>💬 回复</span>
+                                        <span>🔗 分享</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 15px; font-size: 12px; color: #666;">
+                            支持深度学术讨论、专家答疑、经验分享
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 专家培训特色功能 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🌟 专家培训特色功能</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    
+                    <div class="expert-feature-list">
+                        <h4>学习进度跟踪</h4>
+                        <ul>
+                            <li>视频观看进度实时记录</li>
+                            <li>模块完成状态标识</li>
+                            <li>学习路径可视化展示</li>
+                            <li>学习时长统计</li>
+                            <li>证书获取条件提示</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="expert-feature-list">
+                        <h4>专业内容展示</h4>
+                        <ul>
+                            <li>理论与实践并重的内容结构</li>
+                            <li>学习目标明确标识</li>
+                            <li>核心概念重点突出</li>
+                            <li>适用对象清晰说明</li>
+                            <li>专业术语解释</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="expert-feature-list">
+                        <h4>互动学习体验</h4>
+                        <ul>
+                            <li>专家视频讲座</li>
+                            <li>案例分析演示</li>
+                            <li>实操技能指导</li>
+                            <li>互动答疑环节</li>
+                            <li>学员讨论交流</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="expert-feature-list">
+                        <h4>专业认证体系</h4>
+                        <ul>
+                            <li>学习完成度评估</li>
+                            <li>专业能力测试</li>
+                            <li>结业证书颁发</li>
+                            <li>继续教育学分</li>
+                            <li>专业发展建议</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交互行为说明 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">⚡ 专家培训交互行为说明</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    
+                    <div class="expert-feature-list">
+                        <h4>视频学习交互</h4>
+                        <ul>
+                            <li>视频播放进度自动保存</li>
+                            <li>支持倍速播放调节</li>
+                            <li>重点内容标记功能</li>
+                            <li>笔记记录与同步</li>
+                            <li>视频章节快速跳转</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="expert-feature-list">
+                        <h4>学习路径导航</h4>
+                        <ul>
+                            <li>模块间顺序学习引导</li>
+                            <li>前置知识检查</li>
+                            <li>学习建议智能推荐</li>
+                            <li>个性化学习计划</li>
+                            <li>学习提醒设置</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="expert-feature-list">
+                        <h4>专业讨论功能</h4>
+                        <ul>
+                            <li>按主题分类讨论</li>
+                            <li>专家实时答疑</li>
+                            <li>优质回答置顶</li>
+                            <li>学术资料分享</li>
+                            <li>讨论内容搜索</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="expert-feature-list">
+                        <h4>成果展示分享</h4>
+                        <ul>
+                            <li>学习成果作品展示</li>
+                            <li>实践案例分享</li>
+                            <li>同行经验交流</li>
+                            <li>专业网络建立</li>
+                            <li>持续学习社群</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技术实现要点 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🔧 专家培训技术实现要点</div>
+            <div class="wireframe-content">
+                <div class="expert-feature-list">
+                    <h4>关键技术点</h4>
+                    <ul>
+                        <li><strong>路由设计：</strong>/expert-courses/:courseId/modules/:moduleId</li>
+                        <li><strong>状态管理：</strong>学习进度、视频播放状态、讨论数据</li>
+                        <li><strong>数据持久化：</strong>学习记录、笔记内容、讨论历史</li>
+                        <li><strong>视频优化：</strong>自适应码率、断点续播、离线缓存</li>
+                        <li><strong>实时通信：</strong>WebSocket支持实时讨论和答疑</li>
+                        <li><strong>学习分析：</strong>学习行为数据收集与分析</li>
+                        <li><strong>认证系统：</strong>学习完成度验证、证书生成</li>
+                        <li><strong>个性化推荐：</strong>基于学习行为的内容推荐算法</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; margin-top: 15px;">
+                    <h4 style="margin-bottom: 10px;">专家培训数据结构示例</h4>
+                    <pre style="font-size: 12px; color: #666; margin: 0; white-space: pre-wrap;">
+// 专家培训模块数据结构
+{
+  id: 21,
+  title: "儿童阅读心理发展-模块1",
+  description: "系统学习不同年龄段儿童的阅读心理发展规律和特点",
+  type: "expert-training",
+  expertId: 1,
+  learningObjectives: [
+    "深入理解0-12岁儿童阅读心理发展的阶段性特征",
+    "掌握不同年龄段儿童的阅读能力评估方法"
+  ],
+  theoryContent: {
+    concepts: ["儿童认知发展理论", "语言习得与阅读发展"],
+    applications: ["阅读材料分级与选择", "个性化教学策略设计"]
+  },
+  videos: [
+    { id: 1, title: "主讲视频", duration: 2700, type: "main" },
+    { id: 2, title: "案例分析", duration: 1200, type: "case" }
+  ],
+  targetAudience: "幼儿园教师、小学语文教师、阅读推广人员"
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- 用户体验优化 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">✨ 专家培训用户体验优化</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    
+                    <div class="expert-feature-list">
+                        <h4>专业学习体验</h4>
+                        <ul>
+                            <li>沉浸式学习环境设计</li>
+                            <li>专业视觉识别系统</li>
+                            <li>学术氛围营造</li>
+                            <li>专业术语智能提示</li>
+                            <li>学习专注度保护</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="expert-feature-list">
+                        <h4>个性化学习支持</h4>
+                        <ul>
+                            <li>学习风格适配</li>
+                            <li>学习节奏自主调节</li>
+                            <li>知识点关联推荐</li>
+                            <li>学习困难智能识别</li>
+                            <li>个性化复习计划</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="expert-feature-list">
+                        <h4>社交学习促进</h4>
+                        <ul>
+                            <li>学习小组组建</li>
+                            <li>同行交流匹配</li>
+                            <li>专家导师连接</li>
+                            <li>学习成果分享</li>
+                            <li>专业网络扩展</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="expert-feature-list">
+                        <h4>持续发展支持</h4>
+                        <ul>
+                            <li>学习成果追踪</li>
+                            <li>职业发展建议</li>
+                            <li>继续教育路径</li>
+                            <li>专业认证指导</li>
+                            <li>终身学习社群</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
