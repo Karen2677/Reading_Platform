@@ -22,8 +22,14 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
         className
       )}
     >
-      <h2 className="section-title">{title}</h2>
-      {subtitle && <p className="section-subtitle">{subtitle}</p>}
+      <h2 className={cn(
+        "section-title",
+        className?.includes('text-white') ? 'text-white' : 'text-forest-900'
+      )}>{title}</h2>
+      {subtitle && <p className={cn(
+        "section-subtitle",
+        className?.includes('text-white') ? 'text-cream-200' : 'text-forest-600'
+      )}>{subtitle}</p>}
     </div>
   );
 };

@@ -79,6 +79,7 @@ const HomePage: React.FC = () => {
             title="阅读教育项目推荐"
             subtitle="精心设计的分龄阅读课程，满足不同年龄段儿童的发展需求"
             centered
+            className="text-forest-900"
           />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -107,6 +108,7 @@ const HomePage: React.FC = () => {
             title="专家培训推荐"
             subtitle="专业的教师成长课程，提升阅读教学能力和专业素养"
             centered
+            className="text-forest-900"
           />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -135,6 +137,7 @@ const HomePage: React.FC = () => {
             title="教学资源库"
             subtitle="丰富的教学资源，助力高效教学与学习"
             centered
+            className="text-forest-900"
           />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -162,6 +165,7 @@ const HomePage: React.FC = () => {
             title="联盟机构陪跑"
             subtitle="优质教育机构联合，共建阅读教育生态"
             centered
+            className="text-forest-900"
           />
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -188,6 +192,7 @@ const HomePage: React.FC = () => {
             title="专家护航"
             subtitle="汇聚国内外阅读教育领域顶尖专家，提供专业指导"
             centered
+            className="text-forest-900"
           />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -55,7 +55,7 @@ const Header: React.FC = () => {
     <header 
       className={cn(
         'fixed w-full top-0 z-50 transition-all duration-300',
-        isScrolled || isMenuOpen ? 'bg-white shadow-md border-b border-cream-200' : 'bg-transparent'
+        isScrolled || isMenuOpen ? 'bg-cream-50 shadow-md border-b border-cream-200' : 'bg-cream-50'
       )}
     >
       <div className="container-custom">
@@ -134,7 +134,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white py-4 animate-slide-down border-t border-cream-200">
+        <div className="md:hidden bg-cream-50 py-4 animate-slide-down border-t border-cream-200">
           <div className="container-custom space-y-2">
             {navigation.map((item) => (
               <div key={item.name}>
