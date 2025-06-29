@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智阅书库 Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .wireframe {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .wireframe-section {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .wireframe-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .wireframe-content {
+            padding: 20px;
+        }
+        
+        .component-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .component-label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 2px 8px;
+            font-size: 12px;
+            color: #666;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+        }
+        
+        .page-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .page-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .tab-nav {
+            background: #f8f9fa;
+            padding: 4px;
+            border-radius: 8px;
+            display: flex;
+        }
+        
+        .tab-item {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: medium;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        
+        .tab-item.active {
+            background: white;
+            color: #4f46e5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .tab-item:not(.active) {
+            color: #666;
+        }
+        
+        .tab-item:not(.active):hover {
+            color: #333;
+        }
+        
+        .config-section {
+            background: white;
+            border: 2px dashed #4f46e5;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .config-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .config-group {
+            margin-bottom: 30px;
+        }
+        
+        .config-group-title {
+            font-size: 18px;
+            font-weight: medium;
+            margin-bottom: 15px;
+            color: #4f46e5;
+        }
+        
+        .library-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .library-type-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .library-type-card:hover {
+            border-color: #4f46e5;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+        }
+        
+        .library-type-card.selected {
+            border-color: #4f46e5;
+            background: #f0f9ff;
+        }
+        
+        .library-icon {
+            width: 60px;
+            height: 60px;
+            background: #4f46e5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .library-type-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .library-type-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .tag-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .tag-item {
+            padding: 8px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            font-weight: medium;
+        }
+        
+        .tag-item:hover {
+            border-color: #4f46e5;
+        }
+        
+        .tag-item.selected {
+            background: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+        
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .input-label {
+            font-size: 14px;
+            font-weight: medium;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+        
+        .input-field {
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+        
+        .input-hint {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        .generate-button {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 0 auto;
+        }
+        
+        .generate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+        
+        .generate-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .results-section {
+            background: white;
+            border: 2px dashed #10b981;
+            border-radius: 12px;
+            padding: 30px;
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+        
+        .results-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .results-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .results-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .action-button {
+            padding: 10px 20px;
+            border: 2px solid #4f46e5;
+            border-radius: 6px;
+            background: white;
+            color: #4f46e5;
+            cursor: pointer;
+            font-weight: medium;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .action-button:hover {
+            background: #4f46e5;
+            color: white;
+        }
+        
+        .action-button.primary {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        
+        .action-button.primary:hover {
+            background: #059669;
+            border-color: #059669;
+        }
+        
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .book-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .book-card:hover {
+            border-color: #4f46e5;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .book-card.selected {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+        
+        .book-cover {
+            height: 200px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            position: relative;
+        }
+        
+        .book-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #4f46e5;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .book-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #10b981;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .book-info {
+            padding: 20px;
+        }
+        
+        .book-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+            line-height: 1.3;
+        }
+        
+        .book-author {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        
+        .book-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+        
+        .star {
+            color: #fbbf24;
+            font-size: 14px;
+        }
+        
+        .rating-text {
+            font-size: 12px;
+            color: #666;
+            margin-left: 4px;
+        }
+        
+        .book-description {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .book-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .price-current {
+            font-size: 18px;
+            font-weight: bold;
+            color: #10b981;
+        }
+        
+        .price-original {
+            font-size: 14px;
+            color: #9ca3af;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+        
+        .discount-badge {
+            background: #ef4444;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .book-select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-weight: medium;
+            transition: all 0.2s;
+        }
+        
+        .book-select:hover {
+            border-color: #4f46e5;
+        }
+        
+        .book-select.selected {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        
+        .order-summary {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 30px;
+        }
+        
+        .summary-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 2px solid #e2e8f0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .total-price {
+            color: #10b981;
+        }
+        
+        .checkout-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .checkout-button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .checkout-button.primary {
+            background: #10b981;
+            color: white;
+        }
+        
+        .checkout-button.primary:hover {
+            background: #059669;
+        }
+        
+        .checkout-button.secondary {
+            background: white;
+            color: #4f46e5;
+            border: 2px solid #4f46e5;
+        }
+        
+        .checkout-button.secondary:hover {
+            background: #4f46e5;
+            color: white;
+        }
+        
+        .feature-highlight {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 30px 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-item {
+            text-align: center;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: #0ea5e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .feature-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .feature-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .annotation {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            color: #856404;
+            font-size: 12px;
+        }
+        
+        .feature-list {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .feature-list ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 5px;
+        }
+        
+        .responsive-note {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #0c5460;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .smart-features {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .page-subtitle {
+                font-size: 16px;
+            }
+            
+            .library-type-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .book-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+            
+            .results-actions {
+                justify-content: center;
+            }
+            
+            .checkout-actions {
+                flex-direction: column;
+            }
+            
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe">
+        <h1 style="text-align: center; margin-bottom: 30px; color: #333;">智阅书库页面 Wireframe 设计</h1>
+        
+        <!-- 页面概述 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📋 智阅书库功能概述</div>
+            <div class="wireframe-content">
+                <div class="ai-badge">🤖 AI智能推荐</div>
+                <div class="feature-list">
+                    <h3>核心功能</h3>
+                    <ul>
+                        <li><strong>智能配置：</strong>根据图书馆类型、年龄段、分类等需求配置</li>
+                        <li><strong>AI推荐：</strong>基于专业算法和专家推荐生成个性化书单</li>
+                        <li><strong>图书展示：</strong>精美的图书卡片展示，包含详细信息和评分</li>
+                        <li><strong>选择管理：</strong>支持多选图书，实时计算总价和数量</li>
+                        <li><strong>会员优惠：</strong>联盟会员享受专属折扣价格</li>
+                        <li><strong>一键采购：</strong>生成采购清单，支持导出和在线下单</li>
+                        <li><strong>专业服务：</strong>客服咨询和定制化服务支持</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面头部 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🎯 页面头部设计</div>
+            <div class="wireframe-content">
+                <div class="component-box">
+                    <div class="component-label">Page Header</div>
+                    <div class="page-header">
+                        <div class="page-title">智阅书库</div>
+                        <div class="page-subtitle">
+                            基于专业算法和教育专家推荐，为您的图书馆、阅读角或教学需求智能生成个性化书单，
+                            享受联盟会员专属折扣优惠。
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="annotation">
+                    <strong>设计要点：</strong>
+                    <br>• 突出"智能"和"专业"的品牌定位
+                    <br>• 说明核心价值：个性化推荐 + 会员优惠
+                    <br>• 渐变背景营造科技感和专业感
+                </div>
+            </div>
+        </div>
+
+        <!-- 标签导航 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🔄 双标签页面结构</div>
+            <div class="wireframe-content">
+                <div class="component-box">
+                    <div class="component-label">Tab Navigation</div>
+                    <div class="tab-container">
+                        <div class="tab-nav">
+                            <div class="tab-item active">配置需求</div>
+                            <div class="tab-item">智能书单 <span style="background: #4f46e5; color: white; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-left: 8px;">12</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="annotation">
+                    <strong>交互逻辑：</strong>
+                    <br>• 默认显示"配置需求"标签
+                    <br>• 生成书单后自动切换到"智能书单"标签
+                    <br>• 书单标签显示推荐图书数量
+                    <br>• 支持手动切换和状态记忆
+                </div>
+            </div>
+        </div>
+
+        <!-- 配置需求页面 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">⚙️ 配置需求页面</div>
+            <div class="wireframe-content">
+                <div class="config-section">
+                    <div class="config-title">配置您的书单需求</div>
+                    
+                    <!-- 图书馆类型选择 -->
+                    <div class="config-group">
+                        <div class="config-group-title">选择图书馆规模</div>
+                        <div class="library-type-grid">
+                            <div class="library-type-card selected">
+                                <div class="library-icon">🏛️</div>
+                                <div class="library-type-title">图书馆</div>
+                                <div class="library-type-desc">大型图书馆，需要丰富多样的藏书</div>
+                            </div>
+                            <div class="library-type-card">
+                                <div class="library-icon">📚</div>
+                                <div class="library-type-title">阅读角</div>
+                                <div class="library-type-desc">小型阅读空间，精选优质图书</div>
+                            </div>
+                            <div class="library-type-card">
+                                <div class="library-icon">👥</div>
+                                <div class="library-type-title">教学用书</div>
+                                <div class="library-type-desc">课堂教学专用，配套教案资源</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 年龄段选择 -->
+                    <div class="config-group">
+                        <div class="config-group-title">选择年龄段</div>
+                        <div class="tag-grid">
+                            <div class="tag-item">0-3岁</div>
+                            <div class="tag-item selected">3-6岁</div>
+                            <div class="tag-item selected">6-9岁</div>
+                            <div class="tag-item">9-12岁</div>
+                            <div class="tag-item">12岁以上</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 图书分类选择 -->
+                    <div class="config-group">
+                        <div class="config-group-title">选择图书分类</div>
+                        <div class="tag-grid">
+                            <div class="tag-item selected">认知启蒙</div>
+                            <div class="tag-item selected">情感教育</div>
+                            <div class="tag-item">科普百科</div>
+                            <div class="tag-item">文学经典</div>
+                            <div class="tag-item">成长故事</div>
+                            <div class="tag-item">冒险故事</div>
+                            <div class="tag-item">艺术美学</div>
+                            <div class="tag-item">历史文化</div>
+                            <div class="tag-item">生活技能</div>
+                            <div class="tag-item">思维训练</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 数量和预算设置 -->
+                    <div class="config-group">
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <div class="input-label">复本数量</div>
+                                <input type="number" class="input-field" value="1" min="1" max="10">
+                                <div class="input-hint">每本书的购买数量</div>
+                            </div>
+                            <div class="input-group">
+                                <div class="input-label">预算范围（可选）</div>
+                                <input type="number" class="input-field" placeholder="请输入预算金额">
+                                <div class="input-hint">系统将优先推荐预算内的图书</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 生成按钮 -->
+                    <div style="text-align: center;">
+                        <button class="generate-button">
+                            <span>🔍</span>
+                            智能生成书单
+                        </button>
+                        <div style="margin-top: 10px; font-size: 14px; color: #ef4444;">
+                            请至少选择一个年龄段
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 智能书单页面 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📚 智能书单页面</div>
+            <div class="wireframe-content">
+                <div class="results-section">
+                    <!-- 结果头部 -->
+                    <div class="results-header">
+                        <div>
+                            <div class="results-title">智能推荐书单</div>
+                            <div class="results-subtitle">根据您的需求，为您推荐了 6 本优质图书</div>
+                        </div>
+                        <div class="results-actions">
+                            <button class="action-button">
+                                <span>⚙️</span>
+                                重新配置
+                            </button>
+                            <button class="action-button primary">
+                                <span>📥</span>
+                                导出书单
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 图书网格 -->
+                    <div class="book-grid">
+                        <!-- 图书卡片1 -->
+                        <div class="book-card selected">
+                            <div class="book-cover">
+                                图书封面图片
+                                <div class="book-badge">3-6岁</div>
+                                <div class="book-category">认知启蒙</div>
+                            </div>
+                            <div class="book-info">
+                                <div class="book-title">好饿的毛毛虫</div>
+                                <div class="book-author">艾瑞克·卡尔 · 明天出版社</div>
+                                <div class="book-rating">
+                                    <span class="star">★★★★★</span>
+                                    <span class="rating-text">(4.8)</span>
+                                </div>
+                                <div class="book-description">
+                                    经典绘本，讲述毛毛虫成长为蝴蝶的故事，适合幼儿认知启蒙。
+                                </div>
+                                <div class="book-price">
+                                    <div>
+                                        <span class="price-current">¥31.8</span>
+                                        <span class="price-original">¥39.8</span>
+                                    </div>
+                                    <div class="discount-badge">20%折</div>
+                                </div>
+                                <button class="book-select selected">
+                                    <span>✓</span>
+                                    已选择
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 图书卡片2 -->
+                        <div class="book-card selected">
+                            <div class="book-cover">
+                                图书封面图片
+                                <div class="book-badge">3-6岁</div>
+                                <div class="book-category">情感教育</div>
+                            </div>
+                            <div class="book-info">
+                                <div class="book-title">猜猜我有多爱你</div>
+                                <div class="book-author">山姆·麦克布雷尼 · 少年儿童出版社</div>
+                                <div class="book-rating">
+                                    <span class="star">★★★★★</span>
+                                    <span class="rating-text">(4.9)</span>
+                                </div>
+                                <div class="book-description">
+                                    温馨的亲子绘本，表达父母与孩子之间深深的爱意。
+                                </div>
+                                <div class="book-price">
+                                    <div>
+                                        <span class="price-current">¥28.0</span>
+                                        <span class="price-original">¥35.0</span>
+                                    </div>
+                                    <div class="discount-badge">20%折</div>
+                                </div>
+                                <button class="book-select selected">
+                                    <span>✓</span>
+                                    已选择
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 图书卡片3 -->
+                        <div class="book-card">
+                            <div class="book-cover">
+                                图书封面图片
+                                <div class="book-badge">6-12岁</div>
+                                <div class="book-category">文学经典</div>
+                            </div>
+                            <div class="book-info">
+                                <div class="book-title">小王子</div>
+                                <div class="book-author">安托万·德·圣-埃克苏佩里 · 人民文学出版社</div>
+                                <div class="book-rating">
+                                    <span class="star">★★★★☆</span>
+                                    <span class="rating-text">(4.7)</span>
+                                </div>
+                                <div class="book-description">
+                                    世界经典文学作品，适合小学生阅读的哲理故事。
+                                </div>
+                                <div class="book-price">
+                                    <div>
+                                        <span class="price-current">¥22.4</span>
+                                        <span class="price-original">¥28.0</span>
+                                    </div>
+                                    <div class="discount-badge">20%折</div>
+                                </div>
+                                <button class="book-select">加入书单</button>
+                            </div>
+                        </div>
+                        
+                        <!-- 更多图书卡片... -->
+                        <div class="book-card" style="opacity: 0.6;">
+                            <div class="book-cover">更多推荐图书...</div>
+                            <div class="book-info">
+                                <div class="book-title">更多优质图书</div>
+                                <div class="book-author">...</div>
+                                <div class="book-rating">
+                                    <span class="star">★★★★☆</span>
+                                    <span class="rating-text">(4.x)</span>
+                                </div>
+                                <div class="book-description">...</div>
+                                <div class="book-price">
+                                    <div>
+                                        <span class="price-current">¥xx.x</span>
+                                    </div>
+                                </div>
+                                <button class="book-select">加入书单</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 订单汇总 -->
+                    <div class="order-summary">
+                        <div class="summary-title">订单汇总</div>
+                        <div class="summary-row">
+                            <span>已选择图书：</span>
+                            <span>2 种</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>每种复本数：</span>
+                            <span>1 本</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>总计图书：</span>
+                            <span>2 本</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>合计金额：</span>
+                            <span class="total-price">¥59.8</span>
+                        </div>
+                        
+                        <div class="checkout-actions">
+                            <button class="checkout-button primary">
+                                <span>🛒</span>
+                                立即采购
+                            </button>
+                            <button class="checkout-button secondary">
+                                联系客服咨询
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 智能推荐特色功能 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🤖 智能推荐特色功能</div>
+            <div class="wireframe-content">
+                <div class="smart-features">
+                    <div class="ai-badge">🧠 AI智能算法</div>
+                    <h3 style="margin-bottom: 20px; color: #333;">智能推荐核心优势</h3>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon" style="background: #f59e0b;">🎯</div>
+                            <div class="feature-title">精准匹配</div>
+                            <div class="feature-desc">基于年龄段、兴趣偏好和教育目标的精准推荐</div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon" style="background: #8b5cf6;">👨‍🏫</div>
+                            <div class="feature-title">专家审核</div>
+                            <div class="feature-desc">所有推荐图书均经过教育专家严格筛选</div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon" style="background: #10b981;">💰</div>
+                            <div class="feature-title">会员优惠</div>
+                            <div class="feature-desc">联盟会员享受专属折扣，最高可达8折优惠</div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon" style="background: #ef4444;">⚡</div>
+                            <div class="feature-title">快速生成</div>
+                            <div class="feature-desc">30秒内生成个性化书单，提升采购效率</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-highlight">
+                    <h3 style="margin-bottom: 15px; color: #0ea5e9; text-align: center;">会员专享服务</h3>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">🎁</div>
+                            <div class="feature-title">专属折扣</div>
+                            <div class="feature-desc">机构会员8折，联盟会员6折</div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">📋</div>
+                            <div class="feature-title">定制服务</div>
+                            <div class="feature-desc">专业顾问一对一定制书单</div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">🚚</div>
+                            <div class="feature-title">物流支持</div>
+                            <div class="feature-desc">免费配送，专业包装保护</div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">💬</div>
+                            <div class="feature-title">售后服务</div>
+                            <div class="feature-desc">专属客服，7×24小时支持</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 响应式设计说明 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📱 响应式设计说明</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>断点设置：</strong>
+                    <br>• 桌面端：≥1024px - 多列网格布局，完整功能展示
+                    <br>• 平板端：768px-1023px - 适中的网格布局，保持可读性
+                    <br>• 移动端：<768px - 单列布局，优化触摸操作
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div class="feature-list">
+                        <h4>桌面端特性</h4>
+                        <ul>
+                            <li>3列图书馆类型选择</li>
+                            <li>多列图书网格展示</li>
+                            <li>完整的配置选项</li>
+                            <li>悬停效果和动画</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>平板端适配</h4>
+                        <ul>
+                            <li>2列图书网格布局</li>
+                            <li>适中的卡片尺寸</li>
+                            <li>保持视觉层次</li>
+                            <li>优化触摸目标</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>移动端优化</h4>
+                        <ul>
+                            <li>单列垂直布局</li>
+                            <li>全宽按钮设计</li>
+                            <li>简化的配置流程</li>
+                            <li>优化的滚动体验</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交互行为说明 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">⚡ 交互行为说明</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    
+                    <div class="feature-list">
+                        <h4>配置交互</h4>
+                        <ul>
+                            <li>图书馆类型单选，视觉反馈明确</li>
+                            <li>年龄段和分类支持多选</li>
+                            <li>实时验证配置完整性</li>
+                            <li>生成按钮状态智能控制</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>书单交互</h4>
+                        <ul>
+                            <li>图书卡片支持单选/多选</li>
+                            <li>实时计算总价和数量</li>
+                            <li>选中状态视觉突出</li>
+                            <li>支持批量操作</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>采购流程</h4>
+                        <ul>
+                            <li>一键生成采购清单</li>
+                            <li>支持导出Excel/PDF</li>
+                            <li>在线下单流程优化</li>
+                            <li>客服咨询快速接入</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>智能优化</h4>
+                        <ul>
+                            <li>基于历史数据的推荐优化</li>
+                            <li>用户行为学习和适应</li>
+                            <li>个性化推荐算法</li>
+                            <li>A/B测试持续优化</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技术实现要点 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🔧 技术实现要点</div>
+            <div class="wireframe-content">
+                <div class="feature-list">
+                    <h4>关键技术点</h4>
+                    <ul>
+                        <li><strong>状态管理：</strong>配置数据、书单数据、选择状态的统一管理</li>
+                        <li><strong>AI算法：</strong>基于机器学习的图书推荐算法</li>
+                        <li><strong>数据缓存：</strong>图书信息、用户偏好的智能缓存</li>
+                        <li><strong>实时计算：</strong>价格、数量、折扣的实时计算</li>
+                        <li><strong>导出功能：</strong>支持多种格式的书单导出</li>
+                        <li><strong>支付集成：</strong>与第三方支付平台的安全集成</li>
+                        <li><strong>库存管理：</strong>实时库存查询和预警机制</li>
+                        <li><strong>用户画像：</strong>基于行为数据的用户画像构建</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; margin-top: 15px;">
+                    <h4 style="margin-bottom: 10px;">数据结构示例</h4>
+                    <pre style="font-size: 12px; color: #666; margin: 0; white-space: pre-wrap;">
+// 书单配置数据结构
+{
+  libraryType: 'library' | 'reading-corner' | 'teaching',
+  ageGroups: ['3-6岁', '6-9岁'],
+  categories: ['认知启蒙', '情感教育'],
+  copyCount: 1,
+  budget: 1000,
+  generatedBooks: Book[],
+  selectedBooks: Set<number>
+}
+
+// 图书数据结构
+{
+  id: number,
+  title: string,
+  author: string,
+  publisher: string,
+  ageGroup: string,
+  category: string,
+  price: number,
+  discountPrice?: number,
+  rating: number,
+  description: string,
+  coverImage: string,
+  isbn: string
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- 用户体验优化 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">✨ 用户体验优化</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    
+                    <div class="feature-list">
+                        <h4>智能引导</h4>
+                        <ul>
+                            <li>新手引导和功能介绍</li>
+                            <li>配置建议和最佳实践</li>
+                            <li>错误预防和友好提示</li>
+                            <li>进度指示和状态反馈</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>个性化体验</h4>
+                        <ul>
+                            <li>记住用户配置偏好</li>
+                            <li>历史书单快速复用</li>
+                            <li>个性化推荐优化</li>
+                            <li>收藏和心愿单功能</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>性能优化</h4>
+                        <ul>
+                            <li>图书封面图片懒加载</li>
+                            <li>推荐算法异步计算</li>
+                            <li>分页加载大量图书</li>
+                            <li>缓存策略优化响应速度</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>服务保障</h4>
+                        <ul>
+                            <li>7×24小时客服支持</li>
+                            <li>专业采购顾问服务</li>
+                            <li>质量保证和退换政策</li>
+                            <li>物流跟踪和配送保障</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
