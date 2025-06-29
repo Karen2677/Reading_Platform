@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阅见未来首页 Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .wireframe {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .wireframe-section {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .wireframe-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .wireframe-content {
+            padding: 20px;
+        }
+        
+        .component-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .component-label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 2px 8px;
+            font-size: 12px;
+            color: #666;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+        }
+        
+        .hero-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-cta {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+        
+        .carousel-dot.active {
+            background: white;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.3);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        .carousel-nav.prev {
+            left: 20px;
+        }
+        
+        .carousel-nav.next {
+            right: 20px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-image {
+            height: 200px;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            position: relative;
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #007bff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .card-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .card-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .more-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .more-button {
+            background: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .membership-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+        
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .membership-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .membership-card.featured {
+            border: 2px solid #ff6b6b;
+            transform: scale(1.05);
+        }
+        
+        .membership-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+        }
+        
+        .membership-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .membership-price {
+            font-size: 18px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .membership-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .membership-features li {
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .membership-button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+        
+        .membership-button.featured {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .contact-section {
+            background: #f8f9fa;
+            padding: 60px 20px;
+            border-radius: 12px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        
+        .contact-info {
+            background: #007bff;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .organization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .organization-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .organization-logo {
+            width: 80px;
+            height: 80px;
+            background: #e9ecef;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+        }
+        
+        .organization-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .organization-description {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .organization-button {
+            background: transparent;
+            border: 1px solid #007bff;
+            color: #007bff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            width: 100%;
+        }
+        
+        .expert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .expert-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .expert-avatar {
+            height: 200px;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+        }
+        
+        .expert-info {
+            padding: 20px;
+        }
+        
+        .expert-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .expert-title {
+            color: #007bff;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .expert-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .expert-meta {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .expert-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .annotation {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            color: #856404;
+            font-size: 12px;
+        }
+        
+        .feature-list {
+            background: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .feature-list ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 5px;
+        }
+        
+        .responsive-note {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #0c5460;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .membership-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .membership-card.featured {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe">
+        <h1 style="text-align: center; margin-bottom: 30px; color: #333;">阅见未来首页 Wireframe 设计</h1>
+        
+        <!-- 页面概述 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📋 首页功能概述</div>
+            <div class="wireframe-content">
+                <div class="feature-list">
+                    <h3>核心功能模块</h3>
+                    <ul>
+                        <li><strong>轮播横幅：</strong>品牌展示、核心价值传达、主要功能入口</li>
+                        <li><strong>课程展示：</strong>阅读教育项目和专家培训推荐</li>
+                        <li><strong>资源库：</strong>教学资源展示和下载入口</li>
+                        <li><strong>联盟机构：</strong>合作机构展示，建立信任度</li>
+                        <li><strong>专家团队：</strong>权威专家展示，提升专业性</li>
+                        <li><strong>会员权益：</strong>会员体系介绍和升级引导</li>
+                        <li><strong>联系我们：</strong>咨询表单和联系方式</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 轮播横幅区域 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🎠 轮播横幅区域</div>
+            <div class="wireframe-content">
+                <div class="component-box">
+                    <div class="component-label">Hero Banner Carousel</div>
+                    <div class="hero-banner">
+                        <button class="carousel-nav prev">‹</button>
+                        <div class="hero-content">
+                            <div class="hero-title">阅见未来</div>
+                            <div class="hero-subtitle">打造中国最值得信赖的儿童阅读教育支持平台</div>
+                            <button class="hero-cta">了解更多</button>
+                        </div>
+                        <button class="carousel-nav next">›</button>
+                        <div class="carousel-indicators">
+                            <div class="carousel-dot active"></div>
+                            <div class="carousel-dot"></div>
+                            <div class="carousel-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="annotation">
+                    <strong>轮播内容：</strong>
+                    <br>• 幻灯片1：品牌介绍 - "阅见未来"
+                    <br>• 幻灯片2：优质课程资源 - "为孩子提供更有深度与温度的阅读教育"
+                    <br>• 幻灯片3：专业培训体系 - "邀请国内外阅读教育专家"
+                    <br><strong>交互：</strong>自动轮播(5秒)、左右箭头导航、底部指示器
+                </div>
+            </div>
+        </div>
+
+        <!-- 阅读教育项目推荐 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📚 阅读教育项目推荐</div>
+            <div class="wireframe-content">
+                <div class="section-header">
+                    <div class="section-title">阅读教育项目推荐</div>
+                    <div class="section-subtitle">精心设计的分龄阅读课程，满足不同年龄段儿童的发展需求</div>
+                </div>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-image">
+                            课程封面图片
+                            <div class="card-badge">6-9岁</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">启点阅读力1阶</div>
+                            <div class="card-description">通过经典绘本阅读，培养儿童的观察力、理解力和表达能力，建立良好的阅读习惯。</div>
+                            <div class="card-meta">
+                                <span>👥 启点阅读</span>
+                                <span>⭐ 4.8分</span>
+                            </div>
+                            <button class="card-button">查看详情</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-image">
+                            课程封面图片
+                            <div class="card-badge">0-3岁</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">乐米乐早期阅读启蒙</div>
+                            <div class="card-description">专为0-3岁婴幼儿设计的早期阅读启蒙课程，通过感官互动激发阅读兴趣。</div>
+                            <div class="card-meta">
+                                <span>👥 乐米乐</span>
+                                <span>⭐ 4.9分</span>
+                            </div>
+                            <button class="card-button">查看详情</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-image">
+                            课程封面图片
+                            <div class="card-badge">3-6岁</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">桃言主题式阅读探究</div>
+                            <div class="card-description">以主题探究为特色的幼儿阅读课程，培养好奇心和探索精神。</div>
+                            <div class="card-meta">
+                                <span>👥 桃言阅读</span>
+                                <span>⭐ 4.7分</span>
+                            </div>
+                            <button class="card-button">查看详情</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="more-link">
+                    <button class="more-button">查看更多课程 →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 专家培训推荐 */
+        <div class="wireframe-section">
+            <div class="wireframe-header">🎓 专家培训推荐</div>
+            <div class="wireframe-content">
+                <div class="section-header">
+                    <div class="section-title">专家培训推荐</div>
+                    <div class="section-subtitle">专业的教师成长课程，提升阅读教学能力和专业素养</div>
+                </div>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-image">
+                            培训封面图片
+                            <div class="card-badge">教师培训</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">儿童阅读心理发展</div>
+                            <div class="card-description">深入了解不同年龄段儿童的阅读心理特点，掌握科学的阅读指导方法。</div>
+                            <div class="card-meta">
+                                <span>👨‍🏫 王明教授</span>
+                                <span>⏱️ 2小时</span>
+                            </div>
+                            <button class="card-button">立即学习</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-image">
+                            培训封面图片
+                            <div class="card-badge">教师培训</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">绘本教学设计与实施</div>
+                            <div class="card-description">系统学习绘本教学的设计原理和实施技巧，提升课堂教学效果。</div>
+                            <div class="card-meta">
+                                <span>👩‍🏫 李华博士</span>
+                                <span>⏱️ 3小时</span>
+                            </div>
+                            <button class="card-button">立即学习</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-image">
+                            培训封面图片
+                            <div class="card-badge">教师培训</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">阅读评估与诊断</div>
+                            <div class="card-description">学习专业的阅读能力评估工具和方法，为个性化教学提供依据。</div>
+                            <div class="card-meta">
+                                <span>👨‍🏫 张伟教授</span>
+                                <span>⏱️ 2.5小时</span>
+                            </div>
+                            <button class="card-button">立即学习</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="more-link">
+                    <button class="more-button">查看全部专家培训 →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 教学资源库 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📁 教学资源库</div>
+            <div class="wireframe-content">
+                <div class="section-header">
+                    <div class="section-title">教学资源库</div>
+                    <div class="section-subtitle">丰富的教学资源，助力高效教学与学习</div>
+                </div>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-image">
+                            资源预览图
+                            <div class="card-badge">📄 文档</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">《好饿的毛毛虫》完整教案</div>
+                            <div class="card-description">包含详细的教学流程、活动设计和延伸建议，适合3-6岁幼儿。</div>
+                            <div class="card-meta">
+                                <span>📥 1,234 次下载</span>
+                                <span>⭐ 4.9分</span>
+                            </div>
+                            <button class="card-button">查看资源</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-image">
+                            资源预览图
+                            <div class="card-badge">🎥 视频</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">绘本导读技巧示范</div>
+                            <div class="card-description">专业教师示范如何生动有趣地进行绘本导读，提升课堂互动效果。</div>
+                            <div class="card-meta">
+                                <span>📥 856 次观看</span>
+                                <span>⏱️ 15分钟</span>
+                            </div>
+                            <button class="card-button">查看资源</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-image">
+                            资源预览图
+                            <div class="card-badge">🖼️ 图片</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title">阅读角环境布置素材</div>
+                            <div class="card-description">精美的阅读角装饰素材和布置方案，营造温馨的阅读氛围。</div>
+                            <div class="card-meta">
+                                <span>📥 567 次下载</span>
+                                <span>📦 50张图片</span>
+                            </div>
+                            <button class="card-button">查看资源</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="more-link">
+                    <button class="more-button">浏览更多资源 →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联盟机构陪跑 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🤝 联盟机构陪跑</div>
+            <div class="wireframe-content">
+                <div class="section-header">
+                    <div class="section-title">联盟机构陪跑</div>
+                    <div class="section-subtitle">优质教育机构联合，共建阅读教育生态</div>
+                </div>
+                
+                <div class="organization-grid">
+                    <div class="organization-card">
+                        <div class="organization-logo">LOGO</div>
+                        <div class="organization-name">启点阅读</div>
+                        <div class="organization-description">专注6-12岁儿童阅读能力培养的教育机构</div>
+                        <button class="organization-button">查看机构</button>
+                    </div>
+                    
+                    <div class="organization-card">
+                        <div class="organization-logo">LOGO</div>
+                        <div class="organization-name">乐米乐</div>
+                        <div class="organization-description">专为0-3岁婴幼儿提供早期阅读启蒙</div>
+                        <button class="organization-button">查看机构</button>
+                    </div>
+                    
+                    <div class="organization-card">
+                        <div class="organization-logo">LOGO</div>
+                        <div class="organization-name">桃言阅读</div>
+                        <div class="organization-description">专注3-6岁幼儿阅读与思维培养</div>
+                        <button class="organization-button">查看机构</button>
+                    </div>
+                    
+                    <div class="organization-card">
+                        <div class="organization-logo">LOGO</div>
+                        <div class="organization-name">阅见未来</div>
+                        <div class="organization-description">儿童阅读教育联盟总部</div>
+                        <button class="organization-button">查看机构</button>
+                    </div>
+                </div>
+                
+                <div class="more-link">
+                    <button class="more-button">了解更多机构 →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 专家护航 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">👨‍🏫 专家护航</div>
+            <div class="wireframe-content">
+                <div class="section-header">
+                    <div class="section-title">专家护航</div>
+                    <div class="section-subtitle">汇聚国内外阅读教育领域顶尖专家，提供专业指导</div>
+                </div>
+                
+                <div class="expert-grid">
+                    <div class="expert-card">
+                        <div class="expert-avatar">专家头像</div>
+                        <div class="expert-info">
+                            <div class="expert-name">王明教授</div>
+                            <div class="expert-title">儿童阅读心理学专家</div>
+                            <div class="expert-description">北京师范大学教育学院教授，专注儿童阅读心理发展研究20余年。</div>
+                            <div class="expert-meta">
+                                <span>🎓</span>
+                                <span>3 个相关课程</span>
+                            </div>
+                            <button class="expert-button">了解专家</button>
+                        </div>
+                    </div>
+                    
+                    <div class="expert-card">
+                        <div class="expert-avatar">专家头像</div>
+                        <div class="expert-info">
+                            <div class="expert-name">李华博士</div>
+                            <div class="expert-title">绘本教学专家</div>
+                            <div class="expert-description">华东师范大学学前教育系博士，绘本教学理论与实践专家。</div>
+                            <div class="expert-meta">
+                                <span>🎓</span>
+                                <span>2 个相关课程</span>
+                            </div>
+                            <button class="expert-button">了解专家</button>
+                        </div>
+                    </div>
+                    
+                    <div class="expert-card">
+                        <div class="expert-avatar">专家头像</div>
+                        <div class="expert-info">
+                            <div class="expert-name">张伟教授</div>
+                            <div class="expert-title">阅读评估专家</div>
+                            <div class="expert-description">首都师范大学心理学院教授，阅读能力评估与诊断领域权威。</div>
+                            <div class="expert-meta">
+                                <span>🎓</span>
+                                <span>1 个相关课程</span>
+                            </div>
+                            <button class="expert-button">了解专家</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="more-link">
+                    <button class="more-button">查看全部专家 →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 会员权益介绍 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">👑 会员权益介绍</div>
+            <div class="wireframe-content">
+                <div class="membership-section">
+                    <div class="section-header">
+                        <div class="section-title" style="color: white;">会员权益介绍</div>
+                        <div class="section-subtitle" style="color: rgba(255,255,255,0.9);">加入阅见未来联盟，享受专属会员权益与优质服务</div>
+                    </div>
+                    
+                    <div class="membership-grid">
+                        <div class="membership-card">
+                            <div class="membership-icon">👥</div>
+                            <div class="membership-title">基础会员</div>
+                            <div class="membership-price">免费注册</div>
+                            <ul class="membership-features">
+                                <li>⭐ 免费浏览所有课程信息</li>
+                                <li>⭐ 下载部分免费教学资源</li>
+                                <li>⭐ 参与社区讨论交流</li>
+                                <li>⭐ 接收最新教育资讯</li>
+                            </ul>
+                            <button class="membership-button">免费注册</button>
+                        </div>
+                        
+                        <div class="membership-card featured">
+                            <div class="membership-icon">📚</div>
+                            <div class="membership-title">机构会员</div>
+                            <div class="membership-price">¥2,980/年</div>
+                            <ul class="membership-features">
+                                <li>⭐ 享受所有基础会员权益</li>
+                                <li>⭐ 课程采购享受8折优惠</li>
+                                <li>⭐ 免费使用课程管理系统</li>
+                                <li>⭐ 专属客服支持服务</li>
+                                <li>⭐ 智阅书库专享折扣</li>
+                            </ul>
+                            <button class="membership-button featured">立即升级</button>
+                        </div>
+                        
+                        <div class="membership-card">
+                            <div class="membership-icon">👑</div>
+                            <div class="membership-title">联盟会员</div>
+                            <div class="membership-price">¥9,800/年</div>
+                            <ul class="membership-features">
+                                <li>⭐ 享受所有机构会员权益</li>
+                                <li>⭐ 课程采购享受6折优惠</li>
+                                <li>⭐ 专家一对一咨询服务</li>
+                                <li>⭐ 定制化培训方案</li>
+                                <li>⭐ 优先参与新产品内测</li>
+                            </ul>
+                            <button class="membership-button">联系咨询</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 特色权益展示 -->
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 12px; padding: 30px; margin-top: 40px;">
+                        <h3 style="text-align: center; margin-bottom: 30px; color: white;">会员专享特色权益</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+                            <div style="text-align: center;">
+                                <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 20px;">🎁</div>
+                                <h4 style="margin-bottom: 10px;">专属折扣</h4>
+                                <p style="font-size: 14px; opacity: 0.9;">课程采购享受会员专属优惠价格</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 20px;">🎓</div>
+                                <h4 style="margin-bottom: 10px;">专家指导</h4>
+                                <p style="font-size: 14px; opacity: 0.9;">定期专家讲座和一对一咨询服务</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 20px;">💻</div>
+                                <h4 style="margin-bottom: 10px;">管理系统</h4>
+                                <p style="font-size: 14px; opacity: 0.9;">免费使用专业的课程管理系统</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 20px;">👥</div>
+                                <h4 style="margin-bottom: 10px;">社群交流</h4>
+                                <p style="font-size: 14px; opacity: 0.9;">加入专属会员社群，与同行深度交流</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联系我们 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📞 联系我们</div>
+            <div class="wireframe-content">
+                <div class="contact-section">
+                    <div class="section-header">
+                        <div class="section-title">联系我们</div>
+                        <div class="section-subtitle">有任何问题或建议，欢迎随时与我们联系</div>
+                    </div>
+                    
+                    <div class="contact-grid">
+                        <!-- 联系表单 -->
+                        <div class="contact-form">
+                            <h3 style="margin-bottom: 20px; color: #333;">发送消息</h3>
+                            <div class="form-group">
+                                <label class="form-label">姓名</label>
+                                <input type="text" class="form-input" placeholder="请输入您的姓名">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">邮箱</label>
+                                <input type="email" class="form-input" placeholder="请输入您的邮箱">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">留言内容</label>
+                                <textarea class="form-textarea" placeholder="请输入您的留言内容"></textarea>
+                            </div>
+                            <button class="form-button">📤 发送消息</button>
+                        </div>
+                        
+                        <!-- 联系信息 -->
+                        <div class="contact-info">
+                            <h3 style="margin-bottom: 30px;">联系方式</h3>
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <div>
+                                    <h4>邮箱</h4>
+                                    <p>contact@yuejianweilai.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div>
+                                    <h4>电话</h4>
+                                    <p>+86 010-12345678</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div>
+                                    <h4>地址</h4>
+                                    <p>北京市朝阳区建国路88号</p>
+                                </div>
+                            </div>
+                            
+                            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; margin-top: 30px;">
+                                <h4 style="margin-bottom: 15px;">工作时间</h4>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                    <span>周一至周五</span>
+                                    <span>9:00 - 18:00</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                    <span>周六</span>
+                                    <span>10:00 - 16:00</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>周日及法定节假日</span>
+                                    <span>休息</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 响应式设计说明 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">📱 响应式设计说明</div>
+            <div class="wireframe-content">
+                <div class="responsive-note">
+                    <strong>断点设置：</strong>
+                    <br>• 桌面端：≥1024px - 多列网格布局，完整功能展示
+                    <br>• 平板端：768px-1023px - 适中的网格布局，保持可读性
+                    <br>• 移动端：<768px - 单列布局，优化触摸操作
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div class="feature-list">
+                        <h4>桌面端特性</h4>
+                        <ul>
+                            <li>3-4列网格布局</li>
+                            <li>悬停效果和动画</li>
+                            <li>完整的导航菜单</li>
+                            <li>大尺寸轮播横幅</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>平板端适配</h4>
+                        <ul>
+                            <li>2-3列网格布局</li>
+                            <li>适中的图片尺寸</li>
+                            <li>保持视觉层次</li>
+                            <li>优化触摸目标</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>移动端优化</h4>
+                        <ul>
+                            <li>单列垂直布局</li>
+                            <li>大按钮和触摸区域</li>
+                            <li>简化的导航菜单</li>
+                            <li>优化的表单设计</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交互行为说明 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">⚡ 交互行为说明</div>
+            <div class="wireframe-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    
+                    <div class="feature-list">
+                        <h4>轮播横幅</h4>
+                        <ul>
+                            <li>自动轮播，5秒间隔</li>
+                            <li>左右箭头手动切换</li>
+                            <li>底部指示器显示进度</li>
+                            <li>悬停时暂停自动播放</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>卡片交互</h4>
+                        <ul>
+                            <li>悬停时轻微上浮效果</li>
+                            <li>点击卡片跳转详情页</li>
+                            <li>按钮有明确的视觉反馈</li>
+                            <li>加载状态和错误处理</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>表单交互</h4>
+                        <ul>
+                            <li>实时表单验证</li>
+                            <li>提交成功/失败反馈</li>
+                            <li>防重复提交机制</li>
+                            <li>友好的错误提示</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-list">
+                        <h4>导航交互</h4>
+                        <ul>
+                            <li>平滑滚动到锚点</li>
+                            <li>"查看更多"按钮跳转</li>
+                            <li>面包屑导航支持</li>
+                            <li>返回顶部功能</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 性能优化要点 -->
+        <div class="wireframe-section">
+            <div class="wireframe-header">🚀 性能优化要点</div>
+            <div class="wireframe-content">
+                <div class="feature-list">
+                    <h4>关键优化策略</h4>
+                    <ul>
+                        <li><strong>图片优化：</strong>使用WebP格式，实现懒加载，提供多尺寸适配</li>
+                        <li><strong>代码分割：</strong>按需加载组件，减少首屏加载时间</li>
+                        <li><strong>缓存策略：</strong>合理设置浏览器缓存和CDN缓存</li>
+                        <li><strong>SEO优化：</strong>语义化HTML，合理的meta标签，结构化数据</li>
+                        <li><strong>无障碍访问：</strong>键盘导航支持，屏幕阅读器友好</li>
+                        <li><strong>渐进增强：</strong>核心功能在低端设备上也能正常工作</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
