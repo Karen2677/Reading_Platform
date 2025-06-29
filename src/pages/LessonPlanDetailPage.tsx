@@ -39,7 +39,6 @@ const LessonPlanDetailPage: React.FC = () => {
   }>();
   
   const [activeTab, setActiveTab] = useState('绘本简介');
-  const [expandedLesson, setExpandedLesson] = useState<number | null>(null);
   const [newComment, setNewComment] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [comments, setComments] = useState<Comment[]>([
@@ -109,10 +108,6 @@ const LessonPlanDetailPage: React.FC = () => {
     '教学视频',
     '讨论区'
   ];
-
-  const toggleLesson = (lessonIndex: number) => {
-    setExpandedLesson(expandedLesson === lessonIndex ? null : lessonIndex);
-  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -231,68 +226,128 @@ const LessonPlanDetailPage: React.FC = () => {
         );
       
       case '活动流程':
-        const lessons = [
-          {
-            title: '完整活动流程',
-            content: module.lessonPlan?.content || '教案内容加载中...'
-          }
-        ];
-        
         return (
           <div>
             <h3 className="text-lg font-medium mb-4">完整活动流程</h3>
-            <div className="space-y-3">
-              {lessons.map((lessonItem, index) => (
-                <div key={index} className="border border-cream-200 rounded-lg overflow-hidden">
-                  <button
-                    className="w-full flex items-center justify-between p-4 bg-cream-50 hover:bg-cream-100 transition-colors text-left"
-                    onClick={() => toggleLesson(index)}
-                  >
-                    <span className="font-medium text-forest-800 text-sm sm:text-base">{lessonItem.title}</span>
-                    {expandedLesson === index ? (
-                      <ChevronUp className="h-5 w-5 text-forest-500 flex-shrink-0 ml-2" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5 text-forest-500 flex-shrink-0 ml-2" />
-                    )}
-                  </button>
-                  
-                  {expandedLesson === index && (
-                    <div className="p-4 bg-white border-t border-cream-200">
-                      <div className="prose max-w-none text-sm">
-                        {lessonItem.content.split('\n').map((line, lineIndex) => {
-                          if (line.startsWith('**') && line.endsWith('**')) {
-                            return (
-                              <h4 key={lineIndex} className="font-medium text-forest-800 mt-4 mb-2 first:mt-0">
-                                {line.replace(/\*\*/g, '')}
-                              </h4>
-                            );
-                          } else if (line.startsWith('• ')) {
-                            return (
-                              <p key={lineIndex} className="text-forest-700 mb-1 ml-4">
-                                {line}
-                              </p>
-                            );
-                          } else if (line.startsWith('  - ')) {
-                            return (
-                              <p key={lineIndex} className="text-forest-600 mb-1 ml-8 text-xs">
-                                {line}
-                              </p>
-                            );
-                          } else if (line.trim() === '') {
-                            return <br key={lineIndex} />;
-                          } else {
-                            return (
-                              <p key={lineIndex} className="text-forest-700 mb-2">
-                                {line}
-                              </p>
-                            );
-                          }
-                        })}
-                      </div>
-                    </div>
-                  )}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* 课时1 */}
+              <div className="bg-white border border-cream-200 rounded-lg overflow-hidden">
+                <div className="bg-primary-50 p-4 border-b border-cream-200">
+                  <h4 className="font-medium text-forest-800 flex items-center">
+                    <span className="bg-primary-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3">1</span>
+                    课时1：绘本导读与理解
+                  </h4>
+                  <p className="text-sm text-forest-600 mt-1">时长：40分钟</p>
                 </div>
-              ))}
+                <div className="p-4 h-80 overflow-y-auto">
+                  <div className="prose prose-sm max-w-none text-forest-700">
+                    {module.lessonPlan?.content ? (
+                      module.lessonPlan.content.split('\n').map((line, lineIndex) => {
+                        if (line.startsWith('**') && line.endsWith('**')) {
+                          return (
+                            <h5 key={lineIndex} className="font-medium text-forest-800 mt-4 mb-2 first:mt-0">
+                              {line.replace(/\*\*/g, '')}
+                            </h5>
+                          );
+                        } else if (line.startsWith('• ')) {
+                          return (
+                            <p key={lineIndex} className="text-forest-700 mb-1 ml-4">
+                              {line}
+                            </p>
+                          );
+                        } else if (line.startsWith('  - ')) {
+                          return (
+                            <p key={lineIndex} className="text-forest-600 mb-1 ml-8 text-xs">
+                              {line}
+                            </p>
+                          );
+                        } else if (line.trim() === '') {
+                          return <br key={lineIndex} />;
+                        } else {
+                          return (
+                            <p key={lineIndex} className="text-forest-700 mb-2">
+                              {line}
+                            </p>
+                          );
+                        }
+                      })
+                    ) : (
+                      <p className="text-forest-500">教案内容加载中...</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* 课时2 */}
+              <div className="bg-white border border-cream-200 rounded-lg overflow-hidden">
+                <div className="bg-accent-50 p-4 border-b border-cream-200">
+                  <h4 className="font-medium text-forest-800 flex items-center">
+                    <span className="bg-accent-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3">2</span>
+                    课时2：创意表达与延伸
+                  </h4>
+                  <p className="text-sm text-forest-600 mt-1">时长：40分钟</p>
+                </div>
+                <div className="p-4 h-80 overflow-y-auto">
+                  <div className="prose prose-sm max-w-none text-forest-700">
+                    <h5 className="font-medium text-forest-800 mb-2">课前准备（5分钟）</h5>
+                    <p className="text-forest-700 mb-2">
+                      • 回顾上节课的绘本内容
+                    </p>
+                    <p className="text-forest-700 mb-2">
+                      • 准备手工制作材料
+                    </p>
+                    <p className="text-forest-700 mb-4">
+                      • 营造轻松的创作氛围
+                    </p>
+
+                    <h5 className="font-medium text-forest-800 mb-2">创意手工（20分钟）</h5>
+                    <p className="text-forest-700 mb-2">
+                      • 制作毛毛虫手工作品
+                    </p>
+                    <p className="text-forest-700 mb-2">
+                      • 用彩色卡纸制作蝴蝶
+                    </p>
+                    <p className="text-forest-700 mb-2">
+                      • 鼓励幼儿发挥创意
+                    </p>
+                    <p className="text-forest-700 mb-4">
+                      • 教师巡回指导和鼓励
+                    </p>
+
+                    <h5 className="font-medium text-forest-800 mb-2">作品展示（10分钟）</h5>
+                    <p className="text-forest-700 mb-2">
+                      • 幼儿展示自己的作品
+                    </p>
+                    <p className="text-forest-700 mb-2">
+                      • 介绍制作过程和想法
+                    </p>
+                    <p className="text-forest-700 mb-4">
+                      • 互相欣赏和鼓励
+                    </p>
+
+                    <h5 className="font-medium text-forest-800 mb-2">总结回顾（5分钟）</h5>
+                    <p className="text-forest-700 mb-2">
+                      • 回顾两节课的学习内容
+                    </p>
+                    <p className="text-forest-700 mb-2">
+                      • 分享学习感受
+                    </p>
+                    <p className="text-forest-700 mb-2">
+                      • 布置家庭延伸活动
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-6 bg-primary-50 p-4 rounded-lg">
+              <h4 className="font-medium mb-2 text-primary-700">教学建议</h4>
+              <ul className="text-sm text-forest-700 space-y-1">
+                <li>• 两个课时可以连续进行，也可以分开在不同时间进行</li>
+                <li>• 根据幼儿的注意力情况，可以适当调整每个环节的时间</li>
+                <li>• 鼓励幼儿在活动中大胆表达，营造轻松愉快的学习氛围</li>
+                <li>• 注意观察每个幼儿的参与情况，给予个别指导</li>
+              </ul>
             </div>
           </div>
         );
