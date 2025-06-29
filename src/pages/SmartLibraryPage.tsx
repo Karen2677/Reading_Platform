@@ -137,6 +137,102 @@ const SmartLibraryPage: React.FC = () => {
       isbn: '9787221091234',
       pageCount: 48,
       publishYear: 2019
+    },
+    {
+      id: 7,
+      title: '爷爷一定有办法',
+      author: '菲比·吉尔曼',
+      publisher: '明天出版社',
+      coverImage: 'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&dpr=2',
+      ageGroup: '3-6岁',
+      category: '情感教育',
+      rating: 4.7,
+      price: 29.8,
+      discountPrice: 23.8,
+      description: '温馨的祖孙情深故事，教会孩子珍惜和创新。',
+      isbn: '9787533271235',
+      pageCount: 32,
+      publishYear: 2020
+    },
+    {
+      id: 8,
+      title: '逃家小兔',
+      author: '玛格丽特·怀兹·布朗',
+      publisher: '明天出版社',
+      coverImage: 'https://images.pexels.com/photos/2128249/pexels-photo-2128249.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&dpr=2',
+      ageGroup: '3-6岁',
+      category: '情感教育',
+      rating: 4.8,
+      price: 32.8,
+      discountPrice: 26.2,
+      description: '经典亲子绘本，表达母爱的无私和伟大。',
+      isbn: '9787533271236',
+      pageCount: 32,
+      publishYear: 2019
+    },
+    {
+      id: 9,
+      title: '月亮的味道',
+      author: '麦克·格雷涅茨',
+      publisher: '二十一世纪出版社',
+      coverImage: 'https://images.pexels.com/photos/1925536/pexels-photo-1925536.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&dpr=2',
+      ageGroup: '3-6岁',
+      category: '冒险故事',
+      rating: 4.6,
+      price: 35.0,
+      discountPrice: 28.0,
+      description: '充满想象力的故事，培养孩子的合作精神。',
+      isbn: '9787539141237',
+      pageCount: 40,
+      publishYear: 2020
+    },
+    {
+      id: 10,
+      title: '彩虹鱼',
+      author: '马库斯·菲斯特',
+      publisher: '接力出版社',
+      coverImage: 'https://images.pexels.com/photos/301926/pexels-photo-301926.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&dpr=2',
+      ageGroup: '3-6岁',
+      category: '情感教育',
+      rating: 4.5,
+      price: 39.8,
+      discountPrice: 31.8,
+      description: '关于分享和友谊的美丽故事，培养孩子的社交能力。',
+      isbn: '9787544251238',
+      pageCount: 32,
+      publishYear: 2018
+    },
+    {
+      id: 11,
+      title: '小黑鱼',
+      author: '李欧·李奥尼',
+      publisher: '南海出版公司',
+      coverImage: 'https://images.pexels.com/photos/8535222/pexels-photo-8535222.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&dpr=2',
+      ageGroup: '3-6岁',
+      category: '成长故事',
+      rating: 4.7,
+      price: 35.0,
+      discountPrice: 28.0,
+      description: '关于勇气和团队合作的经典绘本。',
+      isbn: '9787544251239',
+      pageCount: 40,
+      publishYear: 2019
+    },
+    {
+      id: 12,
+      title: '花婆婆',
+      author: '芭芭拉·库尼',
+      publisher: '河北教育出版社',
+      coverImage: 'https://images.pexels.com/photos/6177645/pexels-photo-6177645.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&dpr=2',
+      ageGroup: '6-12岁',
+      category: '成长故事',
+      rating: 4.8,
+      price: 29.8,
+      discountPrice: 23.8,
+      description: '关于梦想和坚持的美丽故事，启发孩子追求美好。',
+      isbn: '9787544251240',
+      pageCount: 48,
+      publishYear: 2020
     }
   ];
 
@@ -177,6 +273,21 @@ const SmartLibraryPage: React.FC = () => {
     }));
   };
 
+  // 新增：全选功能
+  const handleSelectAll = () => {
+    if (selectedBooks.size === generatedBooks.length) {
+      // 如果已经全选，则取消全选
+      setSelectedBooks(new Set());
+    } else {
+      // 否则选择所有图书
+      setSelectedBooks(new Set(generatedBooks.map(book => book.id)));
+    }
+  };
+
+  // 检查是否全选状态
+  const isAllSelected = selectedBooks.size === generatedBooks.length && generatedBooks.length > 0;
+  const isPartialSelected = selectedBooks.size > 0 && selectedBooks.size < generatedBooks.length;
+
   const generateBookList = () => {
     setIsGenerating(true);
     
@@ -202,21 +313,6 @@ const SmartLibraryPage: React.FC = () => {
       setIsGenerating(false);
     }, 2000);
   };
-
-  // 新增：全选功能
-  const handleSelectAll = () => {
-    if (selectedBooks.size === generatedBooks.length) {
-      // 如果已经全选，则取消全选
-      setSelectedBooks(new Set());
-    } else {
-      // 否则选择所有图书
-      setSelectedBooks(new Set(generatedBooks.map(book => book.id)));
-    }
-  };
-
-  // 检查是否全选状态
-  const isAllSelected = selectedBooks.size === generatedBooks.length && generatedBooks.length > 0;
-  const isPartialSelected = selectedBooks.size > 0 && selectedBooks.size < generatedBooks.length;
 
   const toggleBookSelection = (bookId: number) => {
     setSelectedBooks(prev => {
@@ -478,7 +574,7 @@ const SmartLibraryPage: React.FC = () => {
               </div>
             </div>
 
-            {/* 新增：全选控制区域 */}
+            {/* 全选控制区域 */}
             <div className="bg-white rounded-xl shadow-md p-4 mb-6 border border-cream-200">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
@@ -520,116 +616,143 @@ const SmartLibraryPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Book List - 新的横条布局 */}
+            {/* Book List - 固定高度可滚动的横条布局 */}
             <div className="bg-white rounded-xl shadow-md overflow-hidden border border-cream-200 mb-6">
-              <div className="divide-y divide-cream-200">
-                {generatedBooks.map((book) => (
-                  <div
-                    key={book.id}
-                    className={cn(
-                      "p-4 hover:bg-cream-50 transition-colors",
-                      selectedBooks.has(book.id) && "bg-primary-50 border-l-4 border-primary-500"
-                    )}
-                  >
-                    <div className="flex items-center gap-4">
-                      {/* 图书封面 */}
-                      <div className="flex-shrink-0">
-                        <img
-                          src={book.coverImage}
-                          alt={book.title}
-                          className="w-16 h-20 object-cover rounded-lg shadow-sm"
-                        />
-                      </div>
-                      
-                      {/* 图书信息 */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1 min-w-0 mr-4">
-                            {/* 书名 - 可点击进入详情页 */}
-                            <h3 className="text-lg font-medium text-forest-900 hover:text-primary-600 cursor-pointer transition-colors mb-1 truncate">
-                              {book.title}
-                            </h3>
-                            
-                            {/* 作者和出版社 */}
-                            <p className="text-sm text-forest-600 mb-2">
-                              {book.author} · {book.publisher}
-                            </p>
-                            
-                            {/* 标签和评分 */}
-                            <div className="flex items-center gap-3 mb-2">
-                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-700">
-                                {book.ageGroup}
-                              </span>
-                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-700">
-                                {book.category}
-                              </span>
-                              <div className="flex items-center">
-                                {[...Array(5)].map((_, i) => (
-                                  <Star
-                                    key={i}
-                                    className={cn(
-                                      "h-3 w-3",
-                                      i < Math.floor(book.rating) ? "text-accent-400 fill-current" : "text-cream-300"
-                                    )}
-                                  />
-                                ))}
-                                <span className="text-xs text-forest-500 ml-1">({book.rating})</span>
+              <div className="p-4 border-b border-cream-200 bg-cream-50">
+                <h3 className="font-medium text-forest-800">推荐图书列表</h3>
+                <p className="text-sm text-forest-600 mt-1">
+                  显示区域可容纳10本书，支持上下滚动浏览全部推荐图书
+                </p>
+              </div>
+              
+              {/* 固定高度的滚动容器 - 10本书的高度 */}
+              <div 
+                className="overflow-y-auto"
+                style={{ 
+                  height: '800px', // 10本书 × 80px每本 = 800px
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#cbd5e1 #f1f5f9'
+                }}
+              >
+                <div className="divide-y divide-cream-200">
+                  {generatedBooks.map((book) => (
+                    <div
+                      key={book.id}
+                      className={cn(
+                        "p-4 hover:bg-cream-50 transition-colors",
+                        selectedBooks.has(book.id) && "bg-primary-50 border-l-4 border-primary-500"
+                      )}
+                      style={{ minHeight: '80px' }} // 确保每本书的最小高度
+                    >
+                      <div className="flex items-center gap-4">
+                        {/* 图书封面 */}
+                        <div className="flex-shrink-0">
+                          <img
+                            src={book.coverImage}
+                            alt={book.title}
+                            className="w-16 h-20 object-cover rounded-lg shadow-sm"
+                          />
+                        </div>
+                        
+                        {/* 图书信息 */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1 min-w-0 mr-4">
+                              {/* 书名 - 可点击进入详情页 */}
+                              <h3 className="text-lg font-medium text-forest-900 hover:text-primary-600 cursor-pointer transition-colors mb-1 truncate">
+                                {book.title}
+                              </h3>
+                              
+                              {/* 作者和出版社 */}
+                              <p className="text-sm text-forest-600 mb-2">
+                                {book.author} · {book.publisher}
+                              </p>
+                              
+                              {/* 标签和评分 */}
+                              <div className="flex items-center gap-3 mb-2">
+                                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-700">
+                                  {book.ageGroup}
+                                </span>
+                                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-700">
+                                  {book.category}
+                                </span>
+                                <div className="flex items-center">
+                                  {[...Array(5)].map((_, i) => (
+                                    <Star
+                                      key={i}
+                                      className={cn(
+                                        "h-3 w-3",
+                                        i < Math.floor(book.rating) ? "text-accent-400 fill-current" : "text-cream-300"
+                                      )}
+                                    />
+                                  ))}
+                                  <span className="text-xs text-forest-500 ml-1">({book.rating})</span>
+                                </div>
                               </div>
+                              
+                              {/* 描述 */}
+                              <p className="text-sm text-forest-600 line-clamp-2">
+                                {book.description}
+                              </p>
                             </div>
                             
-                            {/* 描述 */}
-                            <p className="text-sm text-forest-600 line-clamp-2">
-                              {book.description}
-                            </p>
-                          </div>
-                          
-                          {/* 价格和操作区域 */}
-                          <div className="flex-shrink-0 text-right">
-                            {/* 价格 */}
-                            <div className="mb-3">
-                              <div className="flex items-center justify-end gap-2 mb-1">
-                                {book.discountPrice && (
-                                  <span className="text-sm text-forest-400 line-through">¥{book.price}</span>
-                                )}
-                                <span className="text-xl font-bold text-primary-600">
-                                  ¥{book.discountPrice || book.price}
-                                </span>
-                              </div>
-                              {book.discountPrice && (
-                                <div className="flex justify-end">
-                                  <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">
-                                    {Math.round((1 - book.discountPrice / book.price) * 100)}%折
+                            {/* 价格和操作区域 */}
+                            <div className="flex-shrink-0 text-right">
+                              {/* 价格 */}
+                              <div className="mb-3">
+                                <div className="flex items-center justify-end gap-2 mb-1">
+                                  {book.discountPrice && (
+                                    <span className="text-sm text-forest-400 line-through">¥{book.price}</span>
+                                  )}
+                                  <span className="text-xl font-bold text-primary-600">
+                                    ¥{book.discountPrice || book.price}
                                   </span>
                                 </div>
-                              )}
+                                {book.discountPrice && (
+                                  <div className="flex justify-end">
+                                    <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">
+                                      {Math.round((1 - book.discountPrice / book.price) * 100)}%折
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {/* 加入书单按钮 */}
+                              <button
+                                onClick={() => toggleBookSelection(book.id)}
+                                className={cn(
+                                  "px-4 py-2 rounded-lg font-medium transition-colors text-sm min-w-[100px]",
+                                  selectedBooks.has(book.id)
+                                    ? "bg-primary-600 text-white"
+                                    : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
+                                )}
+                              >
+                                {selectedBooks.has(book.id) ? (
+                                  <>
+                                    <ShoppingCart className="h-4 w-4 mr-1 inline" />
+                                    已选择
+                                  </>
+                                ) : (
+                                  '加入书单'
+                                )}
+                              </button>
                             </div>
-                            
-                            {/* 加入书单按钮 */}
-                            <button
-                              onClick={() => toggleBookSelection(book.id)}
-                              className={cn(
-                                "px-4 py-2 rounded-lg font-medium transition-colors text-sm min-w-[100px]",
-                                selectedBooks.has(book.id)
-                                  ? "bg-primary-600 text-white"
-                                  : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
-                              )}
-                            >
-                              {selectedBooks.has(book.id) ? (
-                                <>
-                                  <ShoppingCart className="h-4 w-4 mr-1 inline" />
-                                  已选择
-                                </>
-                              ) : (
-                                '加入书单'
-                              )}
-                            </button>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
+              
+              {/* 滚动提示 */}
+              {generatedBooks.length > 10 && (
+                <div className="p-3 bg-cream-50 border-t border-cream-200 text-center">
+                  <p className="text-xs text-forest-500">
+                    共 {generatedBooks.length} 本图书，可上下滚动查看更多
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Order Summary */}
