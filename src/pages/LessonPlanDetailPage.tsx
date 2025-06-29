@@ -14,7 +14,8 @@ import {
   Image as ImageIcon,
   Send,
   Menu,
-  X
+  X,
+  Bookmark
 } from 'lucide-react';
 import { cn } from '../utils/cn';
 
@@ -41,6 +42,10 @@ const LessonPlanDetailPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('绘本简介');
   const [newComment, setNewComment] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [likeCount, setLikeCount] = useState(234);
+  const [bookmarkCount, setBookmarkCount] = useState(156);
   const [comments, setComments] = useState<Comment[]>([
     {
       id: 1,
@@ -113,7 +118,17 @@ const LessonPlanDetailPage: React.FC = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleLike = (commentId: number) => {
+  const handleLike = () => {
+    setIsLiked(!isLiked);
+    setLikeCount(prev => isLiked ? prev - 1 : prev + 1);
+  };
+
+  const handleBookmark = () => {
+    setIsBookmarked(!isBookmarked);
+    setBookmarkCount(prev => isBookmarked ? prev - 1 : prev + 1);
+  };
+
+  const handleCommentLike = (commentId: number) => {
     setComments(comments.map(comment => {
       if (comment.id === commentId) {
         return {
@@ -538,7 +553,7 @@ const LessonPlanDetailPage: React.FC = () => {
                       
                       <div className="flex items-center space-x-4">
                         <button
-                          onClick={() => handleLike(comment.id)}
+                          onClick={() => handleCommentLike(comment.id)}
                           className={cn(
                             "flex items-center space-x-1 text-xs sm:text-sm",
                             comment.liked ? "text-red-500" : "text-forest-500 hover:text-red-500"
@@ -722,13 +737,30 @@ const LessonPlanDetailPage: React.FC = () => {
                     </div>
                     
                     <div className="flex gap-3 pt-4">
-                      <button className="btn btn-primary flex-1">
-                        <Download className="h-4 w-4 mr-2" />
-                        下载教案
+                      <button
+                        onClick={handleLike}
+                        className={cn(
+                          "flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors",
+                          isLiked 
+                            ? "bg-red-50 text-red-600 border border-red-200" 
+                            : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
+                        )}
+                      >
+                        <Heart className={cn("h-4 w-4", isLiked && "fill-current")} />
+                        <span>{likeCount}</span>
                       </button>
-                      <button className="btn btn-outline">
-                        <Heart className="h-4 w-4 mr-2" />
-                        收藏
+                      
+                      <button
+                        onClick={handleBookmark}
+                        className={cn(
+                          "flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors",
+                          isBookmarked 
+                            ? "bg-blue-50 text-blue-600 border border-blue-200" 
+                            : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
+                        )}
+                      >
+                        <Bookmark className={cn("h-4 w-4", isBookmarked && "fill-current")} />
+                        <span>{bookmarkCount}</span>
                       </button>
                     </div>
                   </div>
@@ -852,13 +884,30 @@ const LessonPlanDetailPage: React.FC = () => {
                   </div>
                   
                   <div className="flex gap-2 pt-2">
-                    <button className="btn btn-primary text-xs flex-1">
-                      <Download className="h-3 w-3 mr-1" />
-                      下载
+                    <button
+                      onClick={handleLike}
+                      className={cn(
+                        "flex items-center gap-1 px-3 py-2 rounded-lg font-medium transition-colors text-xs flex-1",
+                        isLiked 
+                          ? "bg-red-50 text-red-600 border border-red-200" 
+                          : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
+                      )}
+                    >
+                      <Heart className={cn("h-3 w-3", isLiked && "fill-current")} />
+                      <span>{likeCount}</span>
                     </button>
-                    <button className="btn btn-outline text-xs">
-                      <Heart className="h-3 w-3 mr-1" />
-                      收藏
+                    
+                    <button
+                      onClick={handleBookmark}
+                      className={cn(
+                        "flex items-center gap-1 px-3 py-2 rounded-lg font-medium transition-colors text-xs flex-1",
+                        isBookmarked 
+                          ? "bg-blue-50 text-blue-600 border border-blue-200" 
+                          : "bg-cream-100 text-forest-700 hover:bg-cream-200 border border-cream-300"
+                      )}
+                    >
+                      <Bookmark className={cn("h-3 w-3", isBookmarked && "fill-current")} />
+                      <span>{bookmarkCount}</span>
                     </button>
                   </div>
                 </div>
